@@ -1,12 +1,16 @@
-@if (!onRootPath) {
-<app-header></app-header>
+<main>
+  @if (!onRootPath) {
+    <app-header></app-header>
+    
+    }
+    
+    <div class="router-container">
+      <router-outlet />
+    </div>
+    @if (!onRootPath) {
+    <app-nav-bar></app-nav-bar>
+    
+    }
+</main>
 
-}
 
-<div class="router-container">
-  <router-outlet />
-</div>
-@if (!onRootPath) {
-<app-nav-bar></app-nav-bar>
-
-}
