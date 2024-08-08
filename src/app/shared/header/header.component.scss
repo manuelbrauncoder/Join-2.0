@@ -1,0 +1,41 @@
+@import '../../../styles.scss';
+
+header{
+    box-shadow: 0px 4px 4px 0px #0000001A;
+    padding: 20px 40px 20px 116px;
+    @include dFlex($jc: space-between);
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 96px;
+    width: calc(100vw - 232px);
+    background-color: white;
+    h2{
+        @extend .v2-t6;
+    }
+
+    .btns{
+        @include dFlex($g: 16px);
+        .help{
+            color: $color-icon;
+            border: 1px solid $color-icon;
+            border-radius: 100%;
+            width: 20px;
+            height: 20px;
+            background-color: unset;
+        }
+    
+        .user-profile{
+            border: 3px solid #2A3647;
+            font-family: 'Inter';
+            font-size: 20px;
+            font-weight: 500;
+            width: 56px;
+            height: 56px;
+            color: $color-lightblue;
+            border-radius: 100%;
+            background-color: unset;
+        }
+    }
+    
+}
