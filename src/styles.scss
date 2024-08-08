@@ -12,6 +12,7 @@ $color-main: #2a3647;
 $color-icon: #a8a8a8;
 $color-lightblue: #29abe2;
 $color-bg-white: #f6f7f8;
+$color-grey: #D1D1D1;
 
 // Fonts
 
@@ -19,6 +20,7 @@ $color-bg-white: #f6f7f8;
   font-family: "Inter";
   font-size: 16px;
   font-weight: 400;
+  line-height: 19.2px;
 }
 
 .v2-t6 {
@@ -52,18 +54,20 @@ $color-bg-white: #f6f7f8;
   gap: $g;
 }
 
-button {
-  background-color: unset;
-  @include dFlex();
+@mixin link($c: white) {
+    color: $c;
+    text-decoration: none;
+    cursor: pointer;
 }
 
-// buttons
+// default classes
 
 .primary {
   color: #ffffff;
   background-color: $color-main;
   padding: 15px 24px 15px 24px;
   border-radius: 8px;
+  cursor: pointer;
   @include dFlex($g: 10px);
   @extend .btn-font;
 }
@@ -74,6 +78,19 @@ button {
   padding: 15px 24px 15px 24px;
   border-radius: 8px;
   border: 1px solid $color-main;
+  cursor: pointer;
   @include dFlex($g: 10px);
   @extend .btn-font;
 }
+
+.input-field{
+    @extend .v2-t6;
+    color: $color-grey;
+    border: 1px solid $color-grey;
+    padding: 12px 21px;
+    border-radius: 10px;
+    outline: none;
+}
+
+
+

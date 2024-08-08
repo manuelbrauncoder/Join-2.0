@@ -1,16 +1,35 @@
 <main>
+    <div class="signup">
+        <span>Not a Join user?</span>
+        <button class="primary">Sign up</button>
+    </div>
   <div class="login">
     <h1>Log in</h1>
     <form>
-      <input type="email" placeholder="Email"/>
-      <input type="password" placeholder="Password"/>
-      <label for="checkbox">Remember me</label>
-      <input name="checkbox" type="checkbox" />
+        <div class="input-wrapper">
+            <input class="input-field" type="email" placeholder="Email" />
+            <img src="assets/img/mail.png" alt="">
+        </div>
+        <div class="input-wrapper">
+            <input class="input-field" type="password" placeholder="Password" />
+            <img src="assets/img/lock.png" alt="">
+        </div>
+      <div class="checkbox-wrapper">
+        <input name="checkbox" type="checkbox" />
+        <label for="checkbox">Remember me</label>
+      </div>
 
       <div class="btns">
-        <button class="primary loginBtn">Log in</button>
+        <button class="primary">Log in</button>
         <button class="secondary">Guest Log in</button>
       </div>
     </form>
   </div>
+
+  <div class="legals">
+    <a href="">Privacy Policy</a>
+    <a href="">Legal notice</a>
+  </div>
 </main>
+
+<img class="logo" src="assets/img/join-logo-maincolor.png" alt="">
