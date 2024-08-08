@@ -1,48 +1,79 @@
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 
-body{
-    margin: 0;
+body {
+  margin: 0;
 }
 
 // Colors
 
-$color-main: #2A3647;
-$color-icon: #A8A8A8;
+$color-main: #2a3647;
+$color-icon: #a8a8a8;
 $color-lightblue: #29abe2;
+$color-bg-white: #f6f7f8;
 
 // Fonts
 
-.v2-body{
-    font-family: 'Inter';
-    font-size: 16px;
-    font-weight: 400;
+.v2-body {
+  font-family: "Inter";
+  font-size: 16px;
+  font-weight: 400;
 }
 
-.v2-t6{
-    font-family: 'Inter';
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 24px;
+.v2-t6 {
+  font-family: "Inter";
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
 }
 
+.v2-t1 {
+  font-family: Inter;
+  font-size: 61px;
+  font-weight: 700;
+  line-height: 73.2px;
+}
+
+.btn-font {
+  font-family: Inter;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 25.2px;
+}
 
 // Mixins
 
-
-
-@mixin dFlex($fd: row, $jc: center, $ai: center, $g: 0){
-    display: flex;
-    flex-direction: $fd;
-    justify-content: $jc;
-    align-items: $ai;
-    gap: $g;
+@mixin dFlex($fd: row, $jc: center, $ai: center, $g: 0) {
+  display: flex;
+  flex-direction: $fd;
+  justify-content: $jc;
+  align-items: $ai;
+  gap: $g;
 }
 
+button {
+  background-color: unset;
+  @include dFlex();
+}
 
+// buttons
 
-button{
-    background-color: unset;
-    @include dFlex();
+.primary {
+  color: #ffffff;
+  background-color: $color-main;
+  padding: 15px 24px 15px 24px;
+  border-radius: 8px;
+  @include dFlex($g: 10px);
+  @extend .btn-font;
+}
+
+.secondary {
+  color: $color-main;
+  background-color: white;
+  padding: 15px 24px 15px 24px;
+  border-radius: 8px;
+  border: 1px solid $color-main;
+  @include dFlex($g: 10px);
+  @extend .btn-font;
 }
