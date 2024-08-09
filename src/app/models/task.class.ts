@@ -1,4 +1,5 @@
 export class Task {
+    id: string;
     title: string;
     description: string;
     subtasks: SubTask[];
@@ -9,6 +10,7 @@ export class Task {
 
 
     constructor(obj?: Partial<Task>) {
+        this.id = obj?.id ?? '';
         this.title = obj?.title ?? '';
         this.description = obj?.description ?? '';
         this.subtasks = obj?.subtasks?.map(subtask => new SubTask(subtask)) ?? [];

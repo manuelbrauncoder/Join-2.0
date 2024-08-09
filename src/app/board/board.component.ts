@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { TaskService } from '../services/task.service';
 
 @Component({
   selector: 'app-board',
@@ -8,5 +9,7 @@ import { Component } from '@angular/core';
   styleUrl: './board.component.scss'
 })
 export class BoardComponent {
+
+  taskService = inject(TaskService);
 
 }

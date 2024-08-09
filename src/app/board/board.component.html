@@ -4,7 +4,7 @@
         <h1 class="v2-t1">Board</h1>
     <div class="search">
         <input type="text" class="input-field" placeholder="Find Task">
-        <button class="primary">Add task +</button>
+        <button (click)="taskService.addLocalTasksToFirebase()" class="primary">Add task +</button>
     </div>
     </div>
     
