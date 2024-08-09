@@ -3,7 +3,7 @@ export class Task {
     title: string;
     description: string;
     subtasks: SubTask[];
-    assignedTo: String[];
+    assignedTo: string[];
     priority: 'urgent' | 'medium' | 'low';
     dueDate: number;
     category: 'Technical Task' | 'User Story';

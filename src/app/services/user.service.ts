@@ -1,10 +1,12 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { User } from '../models/user.class';
+import { FirebaseService } from './firebase.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
+  fireService = inject(FirebaseService);
   users: User[] = [];
   colors: string[] = [
     '#FF7A00',
@@ -20,6 +22,7 @@ export class UserService {
 
   exampleUsers: User[] = [
     {
+      "id": '',
       "name": "Elon Musk",
       "email": "elon.musk@tech.com",
       "password": "SpaceX123!",
@@ -27,6 +30,7 @@ export class UserService {
       "color": "#FF7A00"
     },
     {
+      "id": '',
       "name": "Bill Gates",
       "email": "bill.gates@tech.com",
       "password": "Microsoft@98",
@@ -34,6 +38,7 @@ export class UserService {
       "color": "#9327FF"
     },
     {
+      "id": '',
       "name": "Jeff Bezos",
       "email": "jeff.bezos@tech.com",
       "password": "Amazon#2024",
@@ -41,6 +46,7 @@ export class UserService {
       "color": "#6E52FF"
     },
     {
+      "id": '',
       "name": "Tim Cook",
       "email": "tim.cook@tech.com",
       "password": "Apple123!",
@@ -48,6 +54,7 @@ export class UserService {
       "color": "#FC71FF"
     },
     {
+      "id": '',
       "name": "Mark Zuckerberg",
       "email": "mark.zuckerberg@tech.com",
       "password": "Meta@2024",
@@ -55,6 +62,7 @@ export class UserService {
       "color": "#FFBB2B"
     },
     {
+      "id": '',
       "name": "Sundar Pichai",
       "email": "sundar.pichai@tech.com",
       "password": "Google#2024",
@@ -62,6 +70,7 @@ export class UserService {
       "color": "#1FD7C1"
     },
     {
+      "id": '',
       "name": "Satya Nadella",
       "email": "satya.nadella@tech.com",
       "password": "Azure@2024",
@@ -69,6 +78,7 @@ export class UserService {
       "color": "#462F8A"
     },
     {
+      "id": '',
       "name": "Sheryl Sandberg",
       "email": "sheryl.sandberg@tech.com",
       "password": "Facebook2024!",
@@ -76,6 +86,7 @@ export class UserService {
       "color": "#FF4646"
     },
     {
+      "id": '',
       "name": "Larry Page",
       "email": "larry.page@tech.com",
       "password": "Alphabet#01",
@@ -83,6 +94,7 @@ export class UserService {
       "color": "#00BEE8"
     },
     {
+      "id": '',
       "name": "Sergey Brin",
       "email": "sergey.brin@tech.com",
       "password": "GoogleX@24",
@@ -90,6 +102,7 @@ export class UserService {
       "color": "#FF7A00"
     },
     {
+      "id": '',
       "name": "Jack Dorsey",
       "email": "jack.dorsey@tech.com",
       "password": "Twitter2024#",
@@ -97,6 +110,7 @@ export class UserService {
       "color": "#9327FF"
     },
     {
+      "id": '',
       "name": "Susan Wojcicki",
       "email": "susan.wojcicki@tech.com",
       "password": "YouTube@24",
@@ -104,6 +118,7 @@ export class UserService {
       "color": "#6E52FF"
     },
     {
+      "id": '',
       "name": "Reed Hastings",
       "email": "reed.hastings@tech.com",
       "password": "Netflix2024!",
@@ -111,6 +126,7 @@ export class UserService {
       "color": "#FC71FF"
     },
     {
+      "id": '',
       "name": "Marissa Mayer",
       "email": "marissa.mayer@tech.com",
       "password": "Yahoo@24!",
@@ -118,6 +134,7 @@ export class UserService {
       "color": "#FFBB2B"
     },
     {
+      "id": '',
       "name": "Steve Jobs",
       "email": "steve.jobs@tech.com",
       "password": "Apple1984!",
@@ -127,4 +144,11 @@ export class UserService {
   ];
 
   constructor() {}
+
+  async addLocalUsersToFirebase() {
+    for (let i = 0; i < this.exampleUsers.length; i++) {
+      const user = this.exampleUsers[i];
+        await this.fireService.addUser(user);
+    }
+  }
 }

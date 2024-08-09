@@ -16,18 +16,19 @@ export class AppComponent implements OnDestroy {
 
   fireService = inject(FirebaseService);
   unsubTaskList;
+  unsubUsersList;
 
   onLogin: boolean = false;
 
   constructor(private router: Router) {
     this.subRouterEvents();
-    this.unsubTaskList = this.fireService.getTaskList();
+    this.unsubTaskList = this.fireService.getTasksList();
+    this.unsubUsersList = this.fireService.getUsersList();
   }
 
   subRouterEvents(){
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
-        //console.log('On Route:', event.url);
         this.checkPath(event.url);
       }
     });
@@ -49,5 +50,6 @@ export class AppComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.unsubTaskList();
+    this.unsubUsersList();
   }
 }

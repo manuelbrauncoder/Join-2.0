@@ -7,6 +7,7 @@
 }
 
 main {
+  background-color: $color-bg-white;
   margin: 96px 0 0 232px;
   padding: 80px 64px 80px 64px;
 }
@@ -20,12 +21,11 @@ main {
 }
 
 .task-container {
-  @include dFlex($g: 26px, $jc: flex-start);
+  @include dFlex($g: 26px, $jc: flex-start, $ai: flex-start);
   flex-wrap: wrap;
 }
 
 .tasks-column {
-  border: 1px solid lightgray;
   width: 250px;
   .header {
     @include dFlex($jc: space-between);
@@ -42,7 +42,6 @@ main {
   }
   .tasks {
     min-height: 300px;
-    border: 1px solid lightblue;
     @include dFlex($fd: column, $g: 8px)
   }
 }

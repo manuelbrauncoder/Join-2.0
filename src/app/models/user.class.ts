@@ -1,4 +1,5 @@
 export class User{
+    id: string;
     name: string;
     email: string;
     password: string;
@@ -6,6 +7,7 @@ export class User{
     color: string;
 
     constructor(obj?: Partial<User>){
+        this.id = obj?.id ?? '';
         this.name = obj?.name ?? '';
         this.email = obj?.email ?? '';
         this.password = obj?.password ?? '';

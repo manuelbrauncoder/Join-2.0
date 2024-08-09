@@ -10,16 +10,19 @@ import {
   transferArrayItem,
   DragDropModule,
 } from '@angular/cdk/drag-drop';
+import { BoardTaskCardComponent } from '../board-task-card/board-task-card.component';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [CdkDrag, CdkDragHandle, CdkDropListGroup, CdkDropList],
+  imports: [CdkDrag, CdkDragHandle, CdkDropListGroup, CdkDropList, BoardTaskCardComponent],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss',
 })
 export class BoardComponent {
   taskService = inject(TaskService);
+  userService = inject(UserService);
 
   drop(event: CdkDragDrop<any[]>, newStatus: string) {
     if (event.previousContainer === event.container) {
@@ -31,13 +34,8 @@ export class BoardComponent {
       const task = event.previousContainer.data[event.previousIndex];
       task.status = newStatus;
       console.log('new status:', task.status);
-      
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
+      console.log('moved task:', task);
+      this.taskService.fireService.updateTask(task);
     }
   }
 
