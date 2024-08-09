@@ -1,5 +1,5 @@
 <main>
-  @if (!onRootPath) {
+  @if (!onLogin) {
     <app-header></app-header>
     
     }
@@ -7,7 +7,7 @@
     <div class="router-container">
       <router-outlet />
     </div>
-    @if (!onRootPath) {
+    @if (!onLogin) {
     <app-nav-bar></app-nav-bar>
     
     }
