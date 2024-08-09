@@ -1,5 +1,41 @@
-@import '../../styles.scss';
+@import "../../styles.scss";
 
-main{
-    margin: 96px 0 0 232px;
+main {
+  margin: 96px 0 0 232px;
+  padding: 80px 64px 80px 64px;
+}
+
+.headline {
+  @include dFlex($jc: space-between);
+  width: 100%;
+  .search {
+    @include dFlex($g: 32px);
+  }
+}
+
+.task-container {
+  @include dFlex($g: 26px, $jc: flex-start);
+  flex-wrap: wrap;
+}
+
+.tasks-column {
+  border: 1px solid lightgray;
+  width: 250px;
+  .header {
+    @include dFlex($jc: space-between);
+    h3 {
+      font-family: Inter;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 24px;
+      color: #42526E;
+    }
+    img{
+        cursor: pointer;
+    }
+  }
+  .tasks {
+    height: 300px;
+    border: 1px solid lightblue;
+  }
 }

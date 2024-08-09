@@ -1,13 +1,21 @@
 export class Task {
     title: string;
+    description: string;
     subtasks: SubTask[];
     assignedTo: String[];
+    priority: 'urgent' | 'medium' | 'low';
+    dueDate: number;
+    category: 'Technical Task' | 'User Story';
 
 
     constructor(obj?: Partial<Task>) {
         this.title = obj?.title ?? '';
+        this.description = obj?.description ?? '';
         this.subtasks = obj?.subtasks?.map(subtask => new SubTask(subtask)) ?? [];
         this.assignedTo = obj?.assignedTo ?? [];
+        this.priority = obj?.priority ?? 'medium';
+        this.dueDate = obj?.dueDate ?? 0;
+        this.category = obj?.category ?? 'User Story';
     }
 }
 
