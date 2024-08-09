@@ -1,6 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { Firestore, collectionData, collection, doc, addDoc, DocumentChange, DocumentData, query, orderBy, onSnapshot } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Firestore, collection, doc, addDoc, DocumentChange, DocumentData, query, orderBy, onSnapshot, deleteDoc } from '@angular/fire/firestore';
 import { Task } from '../models/task.class';
 
 @Injectable({
@@ -14,6 +13,11 @@ export class FirebaseService {
 
   constructor() { }
 
+  /**
+   * Task without id; id is generated in firebase
+   * @param task 
+   * @returns a clean json for saving in firebase
+   */
   getCleanTaskJson(task: Task){
     return {
       title: task.title,
@@ -22,7 +26,8 @@ export class FirebaseService {
       assignedTo: task.assignedTo,
       priority: task.priority,
       dueDate: task.dueDate,
-      category: task.category
+      category: task.category,
+      status: task.status
     }
   }
 
@@ -56,6 +61,14 @@ export class FirebaseService {
     })
   }
 
+  async deleteData(id: string, collection: string){
+    let docRef = doc(this.getCollectionRef(collection), id);
+    await deleteDoc(docRef).catch((err) => {
+      console.log('Error deleting Data', err);
+      
+    })
+  }
+
   /**
    * log changes in firebase
    * call in onSnapshot
@@ -73,6 +86,10 @@ export class FirebaseService {
     }
   }
 
+  /**
+   * safe tasks from firebase in tasks
+   * @returns a snapshot from tasks
+   */
   getTaskList(){
     const q = query(this.getCollectionRef('tasks'), orderBy('title'));
     return onSnapshot(q, (list) => {
@@ -87,16 +104,23 @@ export class FirebaseService {
     })
   }
 
+  /**
+   * 
+   * @param obj task
+   * @param taskId firebse document id
+   * @returns a Task Object
+   */
   setTaskObject(obj: any, taskId: string): Task {
     return {
-      id: taskId || 'noid?',
+      id: taskId || '',
       title: obj.title || '',
       description: obj.description || '',
       subtasks: obj.subtasks || [],
       assignedTo: obj.assignedTo || [],
       priority: obj.priority || 'medium',
       dueDate: obj.dueDate || 0,
-      category: obj.category || 'Technical Task'
+      category: obj.category || 'Technical Task',
+      status: obj.status || 'todo'
     }
   }
 }

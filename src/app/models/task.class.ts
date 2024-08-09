@@ -7,6 +7,7 @@ export class Task {
     priority: 'urgent' | 'medium' | 'low';
     dueDate: number;
     category: 'Technical Task' | 'User Story';
+    status: 'todo' | 'progress' | 'feedback' | 'done';
 
 
     constructor(obj?: Partial<Task>) {
@@ -18,6 +19,7 @@ export class Task {
         this.priority = obj?.priority ?? 'medium';
         this.dueDate = obj?.dueDate ?? 0;
         this.category = obj?.category ?? 'User Story';
+        this.status = obj?.status ?? 'todo';
     }
 }
 

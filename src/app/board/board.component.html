@@ -1,53 +1,67 @@
-
 <main>
-    <div class="headline">
-        <h1 class="v2-t1">Board</h1>
+  <div class="headline">
+    <h1 class="v2-t1">Board</h1>
     <div class="search">
-        <input type="text" class="input-field" placeholder="Find Task">
-        <button (click)="taskService.addLocalTasksToFirebase()" class="primary">Add task +</button>
+      <input type="text" class="input-field" placeholder="Find Task" />
+      <button (click)="taskService.addLocalTasksToFirebase()" class="primary">
+        Add task +
+      </button>
     </div>
-    </div>
-    
-    <div class="task-container">
-        <div class="tasks-column">
-            <div class="header">
-                <h3>To do</h3>
-                <img src="assets/img/board-plus-btn.png" alt="">  
-            </div>
-            <div class="tasks">
+  </div>
 
-            </div>
-        </div>
-        <div class="tasks-column">
-            <div class="header">
-                <h3>In progress</h3>
-                <img src="assets/img/board-plus-btn.png" alt="">
-                
-            </div>
-            <div class="tasks">
-                    
-            </div>
-        </div>
-        <div class="tasks-column">
-            <div class="header">
-                <h3>Await feedback</h3>
-                <img src="assets/img/board-plus-btn.png" alt="">
-                
-            </div>
-            <div class="tasks">
-                    
-            </div>
-        </div>
-        <div class="tasks-column">
-            <div class="header">
-                <h3>Done</h3>
-                <img src="assets/img/board-plus-btn.png" alt="">
-                
-            </div>
-            <div class="tasks">
-                    
-            </div>
-        </div>
-    </div>
+  <div class="task-container">
+    <div class="tasks-column">
+      <div class="header">
+        <h3>To do</h3>
+        <img src="assets/img/board-plus-btn.png" alt="" />
+      </div>
+      <div id="todoList" [cdkDropListConnectedTo]="['feedbackList', 'progressList', 'doneList']" cdkDropList [cdkDropListData]="filterTasks('todo')" cdkDropListSortingDisabled (cdkDropListDropped)="drop($event, 'todo')" class="tasks">
+        @for (task of taskService.fireService.tasks; track $index) {
+            @if (task.status === 'todo') {
+                <div class="test-item" cdkDrag>{{ task.title }}</div>
 
+            }
+        }
+      </div>
+    </div>
+    <div class="tasks-column">
+      <div class="header">
+        <h3>In progress</h3>
+        <img src="assets/img/board-plus-btn.png" alt="" />
+      </div>
+      <div id="progressList" [cdkDropListConnectedTo]="['feedbackList', 'doneList', 'todoList']" cdkDropList [cdkDropListData]="filterTasks('progress')" cdkDropListSortingDisabled (cdkDropListDropped)="drop($event, 'progress')" class="tasks">
+        @for (task of taskService.fireService.tasks; track $index) {
+            @if (task.status === 'progress') {
+                <div class="test-item" cdkDrag>{{ task.title }}</div>
+            }
+        }
+      </div>
+    </div>
+    <div class="tasks-column">
+      <div class="header">
+        <h3>Await feedback</h3>
+        <img src="assets/img/board-plus-btn.png" alt="" />
+      </div>
+      <div id="feedbackList" [cdkDropListConnectedTo]="['doneList', 'progressList', 'todoList']" cdkDropList [cdkDropListData]="filterTasks('feedback')" cdkDropListSortingDisabled (cdkDropListDropped)="drop($event, 'feedback')" class="tasks">
+        @for (task of taskService.fireService.tasks; track $index) {
+            @if (task.status === 'feedback') {
+                <div class="test-item" cdkDrag>{{ task.title }}</div>
+            }
+        }
+      </div>
+    </div>
+    <div class="tasks-column">
+      <div class="header">
+        <h3>Done</h3>
+        <img src="assets/img/board-plus-btn.png" alt="" />
+      </div>
+      <div id="doneList" [cdkDropListConnectedTo]="['feedbackList', 'progressList', 'todoList']" cdkDropList [cdkDropListData]="filterTasks('done')" cdkDropListSortingDisabled (cdkDropListDropped)="drop($event, 'done')" class="tasks">
+        @for (task of taskService.fireService.tasks; track $index) {
+            @if (task.status === 'done') {
+                <div class="test-item" cdkDrag>{{ task.title }}</div>
+            }
+        }
+      </div>
+    </div>
+  </div>
 </main>

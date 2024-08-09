@@ -1,5 +1,11 @@
 @import "../../styles.scss";
 
+.test-item{
+  width: 80%;
+  height: 50px;
+  background-color: lightcoral;
+}
+
 main {
   margin: 96px 0 0 232px;
   padding: 80px 64px 80px 64px;
@@ -35,7 +41,8 @@ main {
     }
   }
   .tasks {
-    height: 300px;
+    min-height: 300px;
     border: 1px solid lightblue;
+    @include dFlex($fd: column, $g: 8px)
   }
 }

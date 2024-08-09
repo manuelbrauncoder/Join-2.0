@@ -24,6 +24,7 @@ export class TaskService {
       priority: 'urgent',
       dueDate: 1693891200000,
       category: 'Technical Task',
+      status: 'todo'
     },
     {
       id: '',
@@ -39,6 +40,7 @@ export class TaskService {
       priority: 'medium',
       dueDate: 1694486400000,
       category: 'User Story',
+      status: 'todo'
     },
     {
       id: '',
@@ -46,13 +48,14 @@ export class TaskService {
       description:
         'Improve the performance of the database by indexing key tables.',
       subtasks: [
-        { title: 'Identify slow queries', done: false },
-        { title: 'Implement indexing', done: false },
+        { title: 'Identify slow queries', done: true },
+        { title: 'Implement indexing', done: true },
       ],
       assignedTo: ['Jeff Bezos', 'Larry Page'],
       priority: 'urgent',
       dueDate: 1695177600000,
       category: 'Technical Task',
+      status: 'feedback'
     },
     {
       id: '',
@@ -63,6 +66,7 @@ export class TaskService {
       priority: 'medium',
       dueDate: 1695772800000,
       category: 'User Story',
+      status: 'done'
     },
     {
       id: '',
@@ -77,6 +81,7 @@ export class TaskService {
       priority: 'urgent',
       dueDate: 1696281600000,
       category: 'Technical Task',
+      status: 'todo'
     },
     {
       id: '',
@@ -91,6 +96,7 @@ export class TaskService {
       priority: 'medium',
       dueDate: 1696896000000,
       category: 'Technical Task',
+      status: 'progress'
     },
     {
       id: '',
@@ -106,6 +112,7 @@ export class TaskService {
       priority: 'medium',
       dueDate: 1697500800000,
       category: 'User Story',
+      status: 'todo'
     },
     {
       id: '',
@@ -117,6 +124,7 @@ export class TaskService {
       priority: 'low',
       dueDate: 1698105600000,
       category: 'Technical Task',
+      status: 'feedback'
     },
     {
       id: '',
@@ -125,25 +133,27 @@ export class TaskService {
         'Design and distribute a customer satisfaction survey for feedback.',
       subtasks: [
         { title: 'Draft survey questions', done: true },
-        { title: 'Distribute survey', done: false },
+        { title: 'Distribute survey', done: true },
       ],
       assignedTo: ['Sheryl Sandberg'],
       priority: 'medium',
       dueDate: 1698710400000,
       category: 'User Story',
+      status: 'feedback'
     },
     {
       id: '',
       title: 'Data Migration to New Server',
       description: 'Migrate all user data to the new, more powerful server.',
       subtasks: [
-        { title: 'Backup current data', done: true },
+        { title: 'Backup current data', done: false },
         { title: 'Transfer data to new server', done: false },
       ],
       assignedTo: ['Larry Page', 'Sergey Brin'],
       priority: 'urgent',
       dueDate: 1699315200000,
       category: 'Technical Task',
+      status: 'progress'
     },
     {
       id: '',
@@ -157,6 +167,7 @@ export class TaskService {
       priority: 'urgent',
       dueDate: 1699920000000,
       category: 'User Story',
+      status: 'progress'
     },
     {
       id: '',
@@ -170,6 +181,7 @@ export class TaskService {
       priority: 'urgent',
       dueDate: 1700524800000,
       category: 'Technical Task',
+      status: 'todo'
     },
     {
       id: '',
@@ -180,6 +192,7 @@ export class TaskService {
       priority: 'medium',
       dueDate: 1701129600000,
       category: 'Technical Task',
+      status: 'done'
     },
     {
       id: '',
@@ -194,6 +207,7 @@ export class TaskService {
       priority: 'urgent',
       dueDate: 1701734400000,
       category: 'Technical Task',
+      status: 'feedback'
     },
     {
       id: '',
@@ -201,12 +215,13 @@ export class TaskService {
       description: 'Create a seamless onboarding process for new customers.',
       subtasks: [
         { title: 'Map customer journey', done: true },
-        { title: 'Develop onboarding content', done: false },
+        { title: 'Develop onboarding content', done: true },
       ],
       assignedTo: ['Mark Zuckerberg', 'Reed Hastings'],
       priority: 'medium',
       dueDate: 1702339200000,
       category: 'User Story',
+      status: 'done'
     },
   ];
 
