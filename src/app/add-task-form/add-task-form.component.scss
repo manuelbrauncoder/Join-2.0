@@ -31,6 +31,21 @@ form{
     }
 }
 
+.options{
+    @include dFlex($fd: column, $ai: flex-start, $jc: flex-start, $g: 4px);
+    max-height: 300px;
+    overflow-y: auto;
+    width: 100%;
+    .option{
+        @extend .v2-t6;
+    }
+}
+
+.assignedTo{
+    @include dFlex($jc: flex-start, $g: 4px);
+    width: 100%;
+}
+
 .divider{
     margin: 0;
     height: 200px;
@@ -61,13 +76,32 @@ form{
 
 .prioBtn{
     @extend .v2-t6;
-    @include dFlex();
+    @include dFlex($g: 8px);
     box-shadow: 0px 0px 4px 0px #0000001A;
     background-color: white;
     padding: 16px 10px;
     border-radius: 10px;
     border: unset;
     width: 136px;
+    height: 56px;
     cursor: pointer;
+    &:hover{
+        box-shadow:  0px 9px 15px 3px rgba(0, 0, 0, 0.1019607843);
+    }
+}
+
+.prio-urgent{
+    color: white;
+    background-color: $color-red-urgent;
+}
+
+.prio-medium{
+    color: white;
+    background-color: $color-orange-medium;
+}
+
+.prio-low{
+    color: white;
+    background-color: $color-green-low;
 }
 

@@ -35,7 +35,7 @@
           <app-board-task-card [task]="task"></app-board-task-card>
           <div class="placeholder" *cdkDragPlaceholder></div>
         </div>
-        } @empty {<app-board-task-card-empty></app-board-task-card-empty>}
+        } @empty {<app-board-task-card-empty [status]="'todo'"></app-board-task-card-empty>}
       </div>
     </div>
     <div class="tasks-column">
@@ -65,7 +65,7 @@
           <div class="placeholder" *cdkDragPlaceholder></div>
         </div>
 
-        } @empty {<app-board-task-card-empty></app-board-task-card-empty>}
+        } @empty {<app-board-task-card-empty  [status]="'progress'"></app-board-task-card-empty>}
       </div>
     </div>
     <div class="tasks-column">
@@ -95,7 +95,7 @@
           <div class="placeholder" *cdkDragPlaceholder></div>
         </div>
 
-        } @empty {<app-board-task-card-empty></app-board-task-card-empty>}
+        } @empty {<app-board-task-card-empty  [status]="'feedback'"></app-board-task-card-empty>}
       </div>
     </div>
     <div class="tasks-column">
@@ -126,7 +126,7 @@
         </div>
 
         } @empty {
-        <app-board-task-card-empty></app-board-task-card-empty>
+        <app-board-task-card-empty  [status]="'done'"></app-board-task-card-empty>
         }
       </div>
     </div>

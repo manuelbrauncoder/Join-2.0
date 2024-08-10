@@ -1,47 +1,60 @@
 <main>
     <h1>Add Task</h1>
-    <form>
+    <form id="taskForm" name="taskForm" (submit)="saveTask()">
         <div class="first">
             <label for="title">Title<span class="required">*</span></label>
-            <input name="title" type="text" class="input-field" placeholder="Enter a title">
+            <input [(ngModel)]="task.title" name="title" type="text" class="input-field" placeholder="Enter a title">
             <label for="description">Description</label>
             <div class="textarea-wrapper">
-                <textarea class="text-area" name="description" id="" placeholder="Enter a Description"></textarea>
+                <textarea [(ngModel)]="task.description" class="text-area" name="description" id="" placeholder="Enter a Description"></textarea>
             </div>
             <div class="custom-select">
                 <label for="assignedTo">Assigned to</label>
                 <div class="search-wrapper">
-                    <input type="text" class="input-field">
+                    <input name="assignedTo" type="text" class="input-field">
                 </div>
-                <div name="assignedTo" class="options">
-                    <!-- mit @for user darstellen
-                     @if sichtbar wenn ins suchfeld geclickt wurde -->
+                <div class="options">
+                    @for (user of userService.fireService.users; track $index) {
+                        <div (click)="asignUserToTask(user.name)" class="option">
+                            <span>{{ user.name }}</span>
+                        </div>
+                    }
                 </div>
+                <div class="assignedTo">
+                    @for (assignedUser of task.assignedTo; track $index) {
+                        <span class="assignedToBubble">{{ assignedUser | initials }}</span> 
+                    }
+                </div>
+                    
+                    
+                    <!-- color für user hinzufügen, fn existiert schon in board card?
+                      -->
+                
             </div>
         </div>
         <hr class="divider">
         <div class="second">
             <label for="date">Due date<span class="required">*</span></label>
             <div class="input-wrapper">
-                <input class="input-field" name="date" type="date">
+                <input [(ngModel)]="dueDate" class="input-field" name="date" type="date">
             </div>
             <div class="prio">
                 <label for="prio">Prio</label>
                 <div>
-                    <button class="prioBtn">Urgent<img src="assets/img/prio-urgent.png" alt=""></button>
-                    <button class="prioBtn">Medium<img src="assets/img/prio-medium.png" alt=""></button>
-                    <button class="prioBtn">Low<img src="assets/img/prio-low.png" alt=""></button>
+                    <button [ngClass]="{'prio-urgent': task.priority === 'urgent'}" type="button" (click)="changeTaskPrio('urgent')" class="prioBtn">Urgent<img [src]="task.priority === 'urgent' ? 'assets/img/prio-urgent-active.png' : 'assets/img/prio-urgent.png'" alt=""></button>
+                    <button [ngClass]="{'prio-medium': task.priority === 'medium'}" type="button" (click)="changeTaskPrio('medium')" class="prioBtn">Medium<img [src]="task.priority === 'medium' ? 'assets/img/prio-medium-active.png' : 'assets/img/prio-medium.png'" alt=""></button>
+                    <button [ngClass]="{'prio-low': task.priority === 'low'}" type="button" (click)="changeTaskPrio('low')" class="prioBtn">Low<img [src]="task.priority === 'low' ? 'assets/img/prio-low-active.png' : 'assets/img/prio-low.png'" alt=""></button>
                 </div>
             </div>
             <div class="custom-select">
                 <label for="category">Category<span class="required">*</span></label>
                 <div class="input-wrapper">
-                    <input name="category" class="input-field" type="text">
+                    <input name="category" class="input-field" type="text" [(ngModel)]="task.category">
                 </div>
                 <div class="options">
                     <!-- hide -->
-                    <span>Technical Task</span>
-                    <span>User Story</span>
+                    <span (click)="changeTaskCategory('Technical Task')">Technical Task</span>
+                    <span (click)="changeTaskCategory('User Story')">User Story</span>
                 </div>
             </div>
         </div>
@@ -51,7 +64,7 @@
             <span class="required">*</span>
             <span>This field is required</span>
         </div>
-        <button class="secondary">Clear X</button>
-        <button class="primary">Create Task</button>
+        <button type="button" class="secondary">Clear X</button>
+        <button form="taskForm" type="submit" class="primary">Create Task</button>
     </div>
 </main>
