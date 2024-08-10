@@ -10,6 +10,7 @@ main{
     min-height: 260px;
     cursor: grab;
     .category{
+        color: white;
         padding: 4px 16px;
         border-radius: 8px;
     }
@@ -23,7 +24,45 @@ main{
     h3{
         color: $color-icon;
     }
+    
     .users{
-        @include dFlex();
+        width: 100%;
+        @include dFlex($jc: space-between);
+        >div{
+            @include dFlex();
+            span{
+                display: none;
+                &:nth-child(-n+4) {
+                    display: flex;
+                }
+            
+            }
+        }
     }
+}
+
+.progress-bar{
+    @include dFlex($jc: space-between);
+    width: 100%;
+}
+
+progress {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 8px;
+    width: 128px;
+    border-radius: 8px;
+    margin-bottom: 4px;
+}
+progress::-webkit-progress-bar {
+    background-color: #F4F4F4;
+    height: 8px;
+    border-radius: 8px;
+}
+
+progress::-webkit-progress-value {
+    background-color: #4589FF;
+    height: 8px;
+    border-radius: 8px;
 }

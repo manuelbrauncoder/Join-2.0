@@ -1,19 +1,32 @@
 <main>
-    <span [ngClass]="task.category === 'User Story' ? 'user-story' : 'technical-task'" class="v2-body category">{{ task.category }}</span>
-    <h2>{{ task.title }}</h2>
-    <h3 class="v2-body">{{ task.description }}</h3>
-    @if (task.subtasks.length > 0) {
-        <div class="progress-bar">
-            <!-- progress bar!! -->
-            <span>{{ getSubtasksDoneSum() }}/{{ task.subtasks.length }} Subtasks</span>
-        </div>
-    }
-    
-    <div class="users">
-        @for (user of task.assignedTo; track $index) {
-            <span [ngStyle]="{'background-color': getColorForUser(user)}" class="assignedToBubble">{{ user | initials }}</span>
-        }
-        <!-- assigned to users, max 4 / prio image -->
-         <!-- geht color for user -->
+  <span
+    [ngClass]="task.category === 'User Story' ? 'user-story' : 'technical-task'"
+    class="v2-body category"
+    >{{ task.category }}</span
+  >
+  <h2>{{ task.title }}</h2>
+  <h3 class="v2-body">{{ task.description }}</h3>
+  @if (task.subtasks.length > 0) {
+  <div class="progress-bar">
+    <progress max="100" [value]="setProgressValue()"></progress>
+    <span class="v2-t7">{{ getSubtasksDoneSum() }}/{{ task.subtasks.length }} Subtasks</span>
+  </div>
+  }
+
+  <div class="users">
+    <div>
+      @for (user of task.assignedTo; track $index) {
+      <span
+        [ngStyle]="{ 'background-color': taskService.getColorForUser(user) }"
+        class="assignedToBubble"
+        >{{ user | initials }}</span
+      >
+      }
     </div>
+    <img
+      class="prioIcon"
+      [src]="taskService.getPrioIcon(task.priority)"
+      alt=""
+    />
+  </div>
 </main>

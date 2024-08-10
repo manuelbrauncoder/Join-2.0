@@ -8,8 +8,6 @@ import { FirebaseService } from './firebase.service';
 export class TaskService {
   fireService = inject(FirebaseService);
 
-  
-
   exampleTasks: Task[] = [
     {
       id: '',
@@ -24,7 +22,7 @@ export class TaskService {
       priority: 'urgent',
       dueDate: 1693891200000,
       category: 'Technical Task',
-      status: 'todo'
+      status: 'todo',
     },
     {
       id: '',
@@ -40,7 +38,7 @@ export class TaskService {
       priority: 'medium',
       dueDate: 1694486400000,
       category: 'User Story',
-      status: 'todo'
+      status: 'todo',
     },
     {
       id: '',
@@ -55,7 +53,7 @@ export class TaskService {
       priority: 'urgent',
       dueDate: 1695177600000,
       category: 'Technical Task',
-      status: 'feedback'
+      status: 'feedback',
     },
     {
       id: '',
@@ -66,7 +64,7 @@ export class TaskService {
       priority: 'medium',
       dueDate: 1695772800000,
       category: 'User Story',
-      status: 'done'
+      status: 'done',
     },
     {
       id: '',
@@ -81,7 +79,7 @@ export class TaskService {
       priority: 'urgent',
       dueDate: 1696281600000,
       category: 'Technical Task',
-      status: 'todo'
+      status: 'todo',
     },
     {
       id: '',
@@ -96,7 +94,7 @@ export class TaskService {
       priority: 'medium',
       dueDate: 1696896000000,
       category: 'Technical Task',
-      status: 'progress'
+      status: 'progress',
     },
     {
       id: '',
@@ -112,7 +110,7 @@ export class TaskService {
       priority: 'medium',
       dueDate: 1697500800000,
       category: 'User Story',
-      status: 'todo'
+      status: 'todo',
     },
     {
       id: '',
@@ -124,7 +122,7 @@ export class TaskService {
       priority: 'low',
       dueDate: 1698105600000,
       category: 'Technical Task',
-      status: 'feedback'
+      status: 'feedback',
     },
     {
       id: '',
@@ -139,7 +137,7 @@ export class TaskService {
       priority: 'medium',
       dueDate: 1698710400000,
       category: 'User Story',
-      status: 'feedback'
+      status: 'feedback',
     },
     {
       id: '',
@@ -153,7 +151,7 @@ export class TaskService {
       priority: 'urgent',
       dueDate: 1699315200000,
       category: 'Technical Task',
-      status: 'progress'
+      status: 'progress',
     },
     {
       id: '',
@@ -167,7 +165,7 @@ export class TaskService {
       priority: 'urgent',
       dueDate: 1699920000000,
       category: 'User Story',
-      status: 'progress'
+      status: 'progress',
     },
     {
       id: '',
@@ -181,7 +179,7 @@ export class TaskService {
       priority: 'urgent',
       dueDate: 1700524800000,
       category: 'Technical Task',
-      status: 'todo'
+      status: 'todo',
     },
     {
       id: '',
@@ -192,7 +190,7 @@ export class TaskService {
       priority: 'medium',
       dueDate: 1701129600000,
       category: 'Technical Task',
-      status: 'done'
+      status: 'done',
     },
     {
       id: '',
@@ -207,7 +205,7 @@ export class TaskService {
       priority: 'urgent',
       dueDate: 1701734400000,
       category: 'Technical Task',
-      status: 'feedback'
+      status: 'feedback',
     },
     {
       id: '',
@@ -221,7 +219,7 @@ export class TaskService {
       priority: 'medium',
       dueDate: 1702339200000,
       category: 'User Story',
-      status: 'done'
+      status: 'done',
     },
   ];
 
@@ -230,7 +228,27 @@ export class TaskService {
   async addLocalTasksToFirebase() {
     for (let i = 0; i < this.exampleTasks.length; i++) {
       const task = this.exampleTasks[i];
-        await this.fireService.addTask(task);
+      await this.fireService.addTask(task);
+    }
+  }
+
+  getColorForUser(assignedToUser: string) {
+    const user = this.fireService.users.find(
+      (user) => user.name.toLowerCase() === assignedToUser.toLowerCase()
+    );
+    return user ? user.color : '#29abe2';
+  }
+
+  getPrioIcon(prio: string) {
+    switch (prio) {
+      case 'low':
+        return 'assets/img/prio-low.png';
+      case 'medium':
+        return 'assets/img/prio-medium.png';
+      case 'urgent':
+        return 'assets/img/prio-urgent.png';
+      default:
+        return 'assets/img/prio-medium.png';
     }
   }
 }

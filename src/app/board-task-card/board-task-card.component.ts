@@ -2,7 +2,7 @@ import { Component, inject, Input } from '@angular/core';
 import { Task } from '../models/task.class';
 import { CommonModule } from '@angular/common';
 import { InitialsPipe } from '../pipes/initials.pipe';
-import { FirebaseService } from '../services/firebase.service';
+import { TaskService } from '../services/task.service';
 
 @Component({
   selector: 'app-board-task-card',
@@ -13,7 +13,7 @@ import { FirebaseService } from '../services/firebase.service';
 })
 export class BoardTaskCardComponent {
 
-  fireService = inject(FirebaseService);
+  taskService = inject(TaskService);
 
   @Input()task: Task = {
     id: '',
@@ -37,11 +37,11 @@ export class BoardTaskCardComponent {
     return counter;
   }
 
-  getColorForUser(assignedToUser: string) {
-    const user = this.fireService.users.find(
-      (user) => user.name.toLowerCase() === assignedToUser.toLowerCase()
-    );
-    return user ? user.color : '#29abe2'
+  setProgressValue(){
+    let all = this.task.subtasks.length;
+    let done = this.getSubtasksDoneSum();
+    let percent = (done / all) * 100;    
+    return percent;
   }
 
 }

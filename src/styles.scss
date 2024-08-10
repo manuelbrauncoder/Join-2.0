@@ -16,6 +16,7 @@ $color-bg-white: #f6f7f8;
 $color-grey: #d1d1d1;
 $color-user-story: #0038ff;
 $color-technical-task: #1fd7c1;
+$color-required-red: #ff8190;
 
 // Fonts
 
@@ -100,6 +101,22 @@ $color-technical-task: #1fd7c1;
   padding: 12px 21px;
   border-radius: 10px;
   outline: none;
+  &::placeholder{
+    color: $color-grey
+  }
+}
+
+.text-area{
+  @extend .v2-t6;
+  color: $color-grey;
+  border: 1px solid $color-grey;
+  border-radius: 10px;
+  outline: none;
+  padding: 12px 21px;
+  min-height: 120px;
+  &::placeholder{
+    color: $color-grey
+  }
 }
 
 .user-story {

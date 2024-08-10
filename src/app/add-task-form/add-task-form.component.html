@@ -1,1 +1,57 @@
-<p>add-task-form works!</p>
+<main>
+    <h1>Add Task</h1>
+    <form>
+        <div class="first">
+            <label for="title">Title<span class="required">*</span></label>
+            <input name="title" type="text" class="input-field" placeholder="Enter a title">
+            <label for="description">Description</label>
+            <div class="textarea-wrapper">
+                <textarea class="text-area" name="description" id="" placeholder="Enter a Description"></textarea>
+            </div>
+            <div class="custom-select">
+                <label for="assignedTo">Assigned to</label>
+                <div class="search-wrapper">
+                    <input type="text" class="input-field">
+                </div>
+                <div name="assignedTo" class="options">
+                    <!-- mit @for user darstellen
+                     @if sichtbar wenn ins suchfeld geclickt wurde -->
+                </div>
+            </div>
+        </div>
+        <hr class="divider">
+        <div class="second">
+            <label for="date">Due date<span class="required">*</span></label>
+            <div class="input-wrapper">
+                <input class="input-field" name="date" type="date">
+            </div>
+            <div class="prio">
+                <label for="prio">Prio</label>
+                <div>
+                    <button class="prioBtn">Urgent<img src="assets/img/prio-urgent.png" alt=""></button>
+                    <button class="prioBtn">Medium<img src="assets/img/prio-medium.png" alt=""></button>
+                    <button class="prioBtn">Low<img src="assets/img/prio-low.png" alt=""></button>
+                </div>
+            </div>
+            <div class="custom-select">
+                <label for="category">Category<span class="required">*</span></label>
+                <div class="input-wrapper">
+                    <input name="category" class="input-field" type="text">
+                </div>
+                <div class="options">
+                    <!-- hide -->
+                    <span>Technical Task</span>
+                    <span>User Story</span>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="btns">
+        <div>
+            <span class="required">*</span>
+            <span>This field is required</span>
+        </div>
+        <button class="secondary">Clear X</button>
+        <button class="primary">Create Task</button>
+    </div>
+</main>

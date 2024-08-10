@@ -15,13 +15,27 @@
         <h3>To do</h3>
         <img src="assets/img/board-plus-btn.png" alt="" />
       </div>
-      <div id="todoList" [cdkDropListConnectedTo]="['feedbackList', 'progressList', 'doneList']" cdkDropList [cdkDropListData]="filterTasks('todo')" cdkDropListSortingDisabled (cdkDropListDropped)="drop($event, 'todo')" class="tasks">
-        @for (task of taskService.fireService.tasks; track $index) {
-            @if (task.status === 'todo') {
-                <app-board-task-card cdkDrag [task]="task"></app-board-task-card>
-
-            }
-        }
+      <div
+        id="todoList"
+        [cdkDropListConnectedTo]="['feedbackList', 'progressList', 'doneList']"
+        cdkDropList
+        [cdkDropListData]="filterTasks('todo')"
+        cdkDropListSortingDisabled
+        (cdkDropListDropped)="drop($event, 'todo')"
+        class="tasks"
+      >
+        @for (task of taskService.fireService.tasks | filterTasks: 'todo'; track
+        $index) {
+        <div
+          class="drag-container"
+          cdkDragBoundary=".task-container"
+          [cdkDragStartDelay]="500"
+          cdkDrag
+        >
+          <app-board-task-card [task]="task"></app-board-task-card>
+          <div class="placeholder" *cdkDragPlaceholder></div>
+        </div>
+        } @empty {<app-board-task-card-empty></app-board-task-card-empty>}
       </div>
     </div>
     <div class="tasks-column">
@@ -29,12 +43,29 @@
         <h3>In progress</h3>
         <img src="assets/img/board-plus-btn.png" alt="" />
       </div>
-      <div id="progressList" [cdkDropListConnectedTo]="['feedbackList', 'doneList', 'todoList']" cdkDropList [cdkDropListData]="filterTasks('progress')" cdkDropListSortingDisabled (cdkDropListDropped)="drop($event, 'progress')" class="tasks">
-        @for (task of taskService.fireService.tasks; track $index) {
-            @if (task.status === 'progress') {
-                <app-board-task-card cdkDrag [task]="task"></app-board-task-card>
-            }
-        }
+      <div
+        id="progressList"
+        [cdkDropListConnectedTo]="['feedbackList', 'doneList', 'todoList']"
+        cdkDropList
+        [cdkDropListData]="filterTasks('progress')"
+        cdkDropListSortingDisabled
+        (cdkDropListDropped)="drop($event, 'progress')"
+        class="tasks"
+      >
+        @for (task of taskService.fireService.tasks | filterTasks: 'progress';
+        track $index) {
+
+        <div
+          class="drag-container"
+          cdkDragBoundary=".task-container"
+          [cdkDragStartDelay]="500"
+          cdkDrag
+        >
+          <app-board-task-card [task]="task"></app-board-task-card>
+          <div class="placeholder" *cdkDragPlaceholder></div>
+        </div>
+
+        } @empty {<app-board-task-card-empty></app-board-task-card-empty>}
       </div>
     </div>
     <div class="tasks-column">
@@ -42,12 +73,29 @@
         <h3>Await feedback</h3>
         <img src="assets/img/board-plus-btn.png" alt="" />
       </div>
-      <div id="feedbackList" [cdkDropListConnectedTo]="['doneList', 'progressList', 'todoList']" cdkDropList [cdkDropListData]="filterTasks('feedback')" cdkDropListSortingDisabled (cdkDropListDropped)="drop($event, 'feedback')" class="tasks">
-        @for (task of taskService.fireService.tasks; track $index) {
-            @if (task.status === 'feedback') {
-                <app-board-task-card cdkDrag [task]="task"></app-board-task-card>
-            }
-        }
+      <div
+        id="feedbackList"
+        [cdkDropListConnectedTo]="['doneList', 'progressList', 'todoList']"
+        cdkDropList
+        [cdkDropListData]="filterTasks('feedback')"
+        cdkDropListSortingDisabled
+        (cdkDropListDropped)="drop($event, 'feedback')"
+        class="tasks"
+      >
+        @for (task of taskService.fireService.tasks | filterTasks: 'feedback';
+        track $index) {
+
+        <div
+          class="drag-container"
+          cdkDragBoundary=".task-container"
+          [cdkDragStartDelay]="500"
+          cdkDrag
+        >
+          <app-board-task-card [task]="task"></app-board-task-card>
+          <div class="placeholder" *cdkDragPlaceholder></div>
+        </div>
+
+        } @empty {<app-board-task-card-empty></app-board-task-card-empty>}
       </div>
     </div>
     <div class="tasks-column">
@@ -55,11 +103,30 @@
         <h3>Done</h3>
         <img src="assets/img/board-plus-btn.png" alt="" />
       </div>
-      <div id="doneList" [cdkDropListConnectedTo]="['feedbackList', 'progressList', 'todoList']" cdkDropList [cdkDropListData]="filterTasks('done')" cdkDropListSortingDisabled (cdkDropListDropped)="drop($event, 'done')" class="tasks">
-        @for (task of taskService.fireService.tasks; track $index) {
-            @if (task.status === 'done') {
-                <app-board-task-card cdkDrag [task]="task"></app-board-task-card>
-            }
+      <div
+        id="doneList"
+        [cdkDropListConnectedTo]="['feedbackList', 'progressList', 'todoList']"
+        cdkDropList
+        [cdkDropListData]="filterTasks('done')"
+        cdkDropListSortingDisabled
+        (cdkDropListDropped)="drop($event, 'done')"
+        class="tasks"
+      >
+        @for (task of taskService.fireService.tasks | filterTasks: 'done'; track
+        $index) {
+
+        <div
+          class="drag-container"
+          cdkDragBoundary=".task-container"
+          [cdkDragStartDelay]="500"
+          cdkDrag
+        >
+          <app-board-task-card [task]="task"></app-board-task-card>
+          <div class="placeholder" *cdkDragPlaceholder></div>
+        </div>
+
+        } @empty {
+        <app-board-task-card-empty></app-board-task-card-empty>
         }
       </div>
     </div>

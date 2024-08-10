@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Task } from '../models/task.class';
 
 @Component({
   selector: 'app-add-task-form',
@@ -8,5 +9,11 @@ import { Component } from '@angular/core';
   styleUrl: './add-task-form.component.scss'
 })
 export class AddTaskFormComponent {
+    task = new Task();
 
+  constructor(){ }
+
+  changeTaskPrio(prio: 'urgent' | 'medium' | 'low'){
+    this.task.priority = prio;
+  }
 }

@@ -1,0 +1,73 @@
+@import '../../styles.scss';
+
+
+
+main{
+    border: 1px dotted $color-grey;
+    //max-width: 1116px;
+    h1{
+        margin-bottom: 32px;
+        @extend .v2-t1;
+    }
+}
+
+form{
+    @include dFlex($ai: flex-start, $jc: flex-start, $g: 32px);
+    border: 1px dotted $color-grey;
+}
+
+.first{
+    @include dFlex($fd: column, $ai: flex-start, $g: 32px);
+}
+
+.second{
+    @include dFlex($fd: column, $ai: flex-start, $g: 32px);
+}
+
+.custom-select{
+    @include dFlex($fd: column, $ai: flex-start, $g: 8px);
+    .options{
+        @include dFlex($fd: column, $ai: flex-start, $g: 8px);
+    }
+}
+
+.divider{
+    margin: 0;
+    height: 200px;
+    width: 2px;
+    border-radius: 100vw;
+    background-color: $color-grey;
+}
+
+.btns{
+    margin-top: 160px;
+    border: 1px dotted $color-grey;
+    @include dFlex($jc: flex-end, $g: 16px);
+    >div{
+        margin-right: auto;
+    }
+}
+
+.required{
+    color: $color-required-red;
+}
+
+.prio{
+    @include dFlex($fd: column);
+    >div{
+        @include dFlex($g: 16px);
+    }
+}
+
+.prioBtn{
+    @extend .v2-t6;
+    @include dFlex();
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    background-color: white;
+    padding: 16px 10px;
+    border-radius: 10px;
+    border: unset;
+    width: 136px;
+    cursor: pointer;
+}
+
