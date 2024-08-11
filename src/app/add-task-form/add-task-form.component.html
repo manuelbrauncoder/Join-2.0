@@ -2,16 +2,21 @@
     <h1>Add Task</h1>
     <form id="taskForm" name="taskForm" (submit)="saveTask()">
         <div class="first">
+            <!-- title -->
             <label for="title">Title<span class="required">*</span></label>
             <input [(ngModel)]="task.title" name="title" type="text" class="input-field" placeholder="Enter a title">
+            
+            <!-- description -->
             <label for="description">Description</label>
             <div class="textarea-wrapper">
                 <textarea [(ngModel)]="task.description" class="text-area" name="description" id="" placeholder="Enter a Description"></textarea>
             </div>
+
+            <!-- assigned To -->
             <div class="custom-select">
                 <label for="assignedTo">Assigned to</label>
                 <div class="search-wrapper">
-                    <input name="assignedTo" type="text" class="input-field">
+                    <input name="assignedTo" type="text" class="input-field" placeholder="Select contacts to assign">
                 </div>
                 <div class="options">
                     @for (user of userService.fireService.users; track $index) {
@@ -22,22 +27,23 @@
                 </div>
                 <div class="assignedTo">
                     @for (assignedUser of task.assignedTo; track $index) {
-                        <span class="assignedToBubble">{{ assignedUser | initials }}</span> 
+                        <span [ngStyle]="{'background-color': taskService.getColorForUser(assignedUser)}" class="assignedToBubble assignedToUser">{{ assignedUser | initials }}</span> 
                     }
                 </div>
-                    
-                    
-                    <!-- color für user hinzufügen, fn existiert schon in board card?
-                      -->
+                   
                 
             </div>
         </div>
         <hr class="divider">
         <div class="second">
+
+            <!-- Due date -->
             <label for="date">Due date<span class="required">*</span></label>
             <div class="input-wrapper">
                 <input [(ngModel)]="dueDate" class="input-field" name="date" type="date">
             </div>
+
+            <!-- priority -->
             <div class="prio">
                 <label for="prio">Prio</label>
                 <div>
@@ -46,6 +52,8 @@
                     <button [ngClass]="{'prio-low': task.priority === 'low'}" type="button" (click)="changeTaskPrio('low')" class="prioBtn">Low<img [src]="task.priority === 'low' ? 'assets/img/prio-low-active.png' : 'assets/img/prio-low.png'" alt=""></button>
                 </div>
             </div>
+
+            <!-- category -->
             <div class="custom-select">
                 <label for="category">Category<span class="required">*</span></label>
                 <div class="input-wrapper">
@@ -57,8 +65,30 @@
                     <span (click)="changeTaskCategory('User Story')">User Story</span>
                 </div>
             </div>
+
+            <!-- subtasks -->
+            <div class="subtasks-field">
+                <div class="input-wrapper">
+                    <input name="subTaskInput" [(ngModel)]="subTaskInput" type="text" class="input-field" placeholder="Add new subtask">
+                    <img (click)="addSubtask()" src="assets/img/plus-icon.png" alt="">
+                    <div class="add-sub-icons">
+                        <img src="assets/img/check-icon.png" alt="">
+                        <img src="assets/img/close-icon.png" alt="">
+                    </div>
+                    
+                </div>
+                <div class="subtasks">
+                    @for (subtask of task.subtasks; track $index) {
+                        <div class="subtask-wrapper">
+                            <li><span>{{ subtask.title }}</span></li>
+                        </div>
+                    }
+                </div>
+            </div>
         </div>
     </form>
+
+    <!-- buttons -->
     <div class="btns">
         <div>
             <span class="required">*</span>

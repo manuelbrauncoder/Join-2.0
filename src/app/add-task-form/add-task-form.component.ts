@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Task } from '../models/task.class';
+import { SubTask, Task } from '../models/task.class';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TaskService } from '../services/task.service';
@@ -19,9 +19,29 @@ export class AddTaskFormComponent {
     task = new Task();
     dueDate: Date | null = null;
     showOptions: boolean = false;
+    subTaskInput: string = '';
 
 
   constructor(){ }
+
+  addSubtask(){
+    
+   let subtask = new SubTask({title: this.subTaskInput, done: 'false'})
+   this.task.subtasks.push(subtask);
+   this.subTaskInput = '';
+   console.log(this.task);
+   
+  }
+
+  // Klasse Subtask evtl entfernen. Kann so nicht zu Firebase geladen werden
+  // evtl so handhaben wie bei assignedto: ein array aus objekten statt string
+
+  // getCleanSubtaskJson(task: Task){
+  //   return {
+  //     title: subtask.title,
+  //     done: 'false'
+  //   }
+  // }
 
   asignUserToTask(user: string){
     this.task.assignedTo.push(user);

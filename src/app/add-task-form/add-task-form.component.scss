@@ -16,6 +16,10 @@ form{
     border: 1px dotted $color-grey;
 }
 
+input, textarea{
+    width: 440px;
+}
+
 .first{
     @include dFlex($fd: column, $ai: flex-start, $g: 32px);
 }
@@ -44,6 +48,10 @@ form{
 .assignedTo{
     @include dFlex($jc: flex-start, $g: 4px);
     width: 100%;
+}
+
+.assignedToUser{
+    margin: 0;
 }
 
 .divider{
