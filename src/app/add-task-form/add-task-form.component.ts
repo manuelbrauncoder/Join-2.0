@@ -22,17 +22,31 @@ export class AddTaskFormComponent {
 
     taskCategoryOptions: boolean = false;
 
-
-
-
   constructor(){ 
     this.task.category = '';
   }
 
+  /**
+   * toggle options for category
+   */
   toggleCategoryOptions(){
     this.taskCategoryOptions = !this.taskCategoryOptions;
   }
 
+  clearAllInputs(){
+    this.task.title = '';
+    this.task.description = '';
+    this.task.dueDate = 0;
+    this.task.priority = 'medium';
+    this.clearSubtaskInput();
+    this.task.subtasks = [];
+    this.task.assignedTo = [];
+    this.task.category = '';
+  }
+
+  /**
+   * clearSubtaskInput
+   */
   clearSubtaskInput(){
     this.subTaskInput = '';
   }
@@ -52,7 +66,15 @@ export class AddTaskFormComponent {
    * @param user 
    */
   asignUserToTask(user: string){
-    this.task.assignedTo.push(user);
+    if (!this.task.assignedTo.includes(user)) {
+      this.task.assignedTo.push(user);
+    } else {
+      let index = this.task.assignedTo.indexOf(user);
+      this.task.assignedTo.splice(index, 1);
+    }
+
+
+    //this.task.assignedTo.push(user);
   }
 
   changeTaskPrio(prio: 'urgent' | 'medium' | 'low'){

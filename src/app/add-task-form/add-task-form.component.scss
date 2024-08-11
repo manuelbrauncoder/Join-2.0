@@ -20,6 +20,36 @@ input, textarea{
     width: 440px;
 }
 
+.textarea-wrapper{
+    position: relative;
+}
+
+textarea{
+    resize: vertical;
+    max-height: 200px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    display: block;
+    background: url(../../assets/img/calendar-icon.png) no-repeat;
+    width: 20px;
+    height: 20px;
+    border-width: thin;
+    cursor: pointer;
+}
+
+::-webkit-resizer {
+    display: none;
+  }
+
+  .textarea-icon{
+    position: absolute;
+    bottom: 10px;
+    right: 8px;
+  }
+
 
 
 .input-wrapper{
@@ -30,7 +60,7 @@ input, textarea{
     cursor: pointer;
     position: absolute;
     top: 50%;
-    right: 8px;
+    right: 14px;
     transform: translateY(-50%);
 }
 
@@ -45,7 +75,7 @@ input, textarea{
 .category-drop-down-arrow{
     position: absolute;
     top: 12px;
-    right: 8px;
+    right: 14px;
 }
 
 .add-sub-icons{
@@ -66,19 +96,25 @@ input, textarea{
 
 .custom-select{
     @include dFlex($fd: column, $ai: flex-start, $g: 8px);
-    .options{
-        @include dFlex($fd: column, $ai: flex-start, $g: 8px);
-    }
 }
 
 .options{
+    background-color: white;
     cursor: pointer;
     @include dFlex($fd: column, $ai: flex-start, $jc: flex-start, $g: 4px);
     max-height: 300px;
     overflow-y: auto;
     width: 100%;
     .option{
+        @include dFlex($jc: flex-start, $g: 16px);
+        width: 100%;
+        padding: 7px 16px;
+        border-radius: 10px;
         @extend .v2-t6;
+        &:hover{
+            background-color: #EEEEEE;
+            ;
+        }
     }
 }
 
@@ -116,6 +152,9 @@ input, textarea{
     @include dFlex($fd: column);
     >div{
         @include dFlex($g: 16px);
+    }
+    label{
+        margin-right: auto;
     }
 }
 

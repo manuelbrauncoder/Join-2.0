@@ -22,6 +22,11 @@
           id=""
           placeholder="Enter a Description"
         ></textarea>
+        <img
+          class="textarea-icon"
+          src="assets/img/textarea-resize-icon.png"
+          alt=""
+        />
       </div>
 
       <!-- assigned To -->
@@ -38,7 +43,15 @@
         <div class="options">
           @for (user of userService.fireService.users; track $index) {
           <div (click)="asignUserToTask(user.name)" class="option">
+            <span
+              [ngStyle]="{
+                'background-color': taskService.getColorForUser(user.name)
+              }"
+              class="assignedToBubble"
+              >{{ user.name | initials }}</span
+            >
             <span>{{ user.name }}</span>
+            <img src="assets/img/check-icon-uncheck.png" alt="">
           </div>
           }
         </div>
@@ -65,6 +78,7 @@
           class="input-field"
           name="date"
           type="date"
+          placeholder="tt.mm.jjjj"
         />
       </div>
 
@@ -123,7 +137,10 @@
       <!-- category -->
       <div class="custom-select">
         <label for="category">Category<span class="required">*</span></label>
-        <div class="input-wrapper category-input-wrapper" (click)="toggleCategoryOptions()">
+        <div
+          class="input-wrapper category-input-wrapper"
+          (click)="toggleCategoryOptions()"
+        >
           <input
             placeholder="Select task category"
             name="category"
@@ -131,14 +148,23 @@
             type="text"
             [(ngModel)]="task.category"
           />
-          <img [ngStyle]="{'transform': taskCategoryOptions ? 'rotate(180deg)' : 'rotate(0deg)'}" class="category-drop-down-arrow" src="assets/img/arrow-drop-down.png" alt="" />
+          <img
+            [ngStyle]="{
+              transform: taskCategoryOptions ? 'rotate(180deg)' : 'rotate(0deg)'
+            }"
+            class="category-drop-down-arrow"
+            src="assets/img/arrow-drop-down.png"
+            alt=""
+          />
         </div>
         <div class="options">
           @if (taskCategoryOptions) {
-          <span (click)="changeTaskCategory('Technical Task')"
+          <span class="option" (click)="changeTaskCategory('Technical Task')"
             >Technical Task</span
           >
-          <span (click)="changeTaskCategory('User Story')">User Story</span>
+          <span class="option" (click)="changeTaskCategory('User Story')"
+            >User Story</span
+          >
           }
         </div>
       </div>
@@ -192,7 +218,9 @@
       <span class="required">*</span>
       <span>This field is required</span>
     </div>
-    <button type="button" class="secondary">Clear X</button>
+    <button type="button" class="secondary" (click)="clearAllInputs()">
+      Clear X
+    </button>
     <button form="taskForm" type="submit" class="primary">Create Task</button>
   </div>
 </main>
