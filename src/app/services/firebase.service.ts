@@ -110,6 +110,7 @@ export class FirebaseService {
     });
   }
 
+
   async updateTask(task: Task) {
     let docRef = doc(this.getCollectionRef('tasks'), task.id);
     await updateDoc(docRef, this.getCleanTaskJson(task)).catch((err) => {

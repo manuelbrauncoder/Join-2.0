@@ -20,6 +20,42 @@ input, textarea{
     width: 440px;
 }
 
+
+
+.input-wrapper{
+    position: relative;
+}
+
+.input-icon {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+}
+
+.category-input{
+    pointer-events: none;
+}
+
+.category-input-wrapper{
+    cursor: pointer;
+}
+
+.category-drop-down-arrow{
+    position: absolute;
+    top: 12px;
+    right: 8px;
+}
+
+.add-sub-icons{
+    @include dFlex();
+    span{
+        @extend .v2-t6;
+        color: $color-grey;
+    }
+}
+
 .first{
     @include dFlex($fd: column, $ai: flex-start, $g: 32px);
 }
@@ -36,6 +72,7 @@ input, textarea{
 }
 
 .options{
+    cursor: pointer;
     @include dFlex($fd: column, $ai: flex-start, $jc: flex-start, $g: 4px);
     max-height: 300px;
     overflow-y: auto;

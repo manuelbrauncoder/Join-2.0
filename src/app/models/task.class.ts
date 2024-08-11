@@ -6,7 +6,7 @@ export class Task {
     assignedTo: string[];
     priority: 'urgent' | 'medium' | 'low';
     dueDate: number;
-    category: 'Technical Task' | 'User Story';
+    category: 'Technical Task' | 'User Story' | '';
     status: 'todo' | 'progress' | 'feedback' | 'done';
 
 

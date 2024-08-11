@@ -18,21 +18,39 @@ export class AddTaskFormComponent {
     userService = inject(UserService);
     task = new Task();
     dueDate: Date | null = null;
-    showOptions: boolean = false;
     subTaskInput: string = '';
 
+    taskCategoryOptions: boolean = false;
 
-  constructor(){ }
 
-  addSubtask(){
-    
-   let subtask = new SubTask({title: this.subTaskInput, done: 'false'})
-   this.task.subtasks.push(subtask);
-   this.subTaskInput = '';
-   console.log(this.task);
-   
+
+
+  constructor(){ 
+    this.task.category = '';
   }
 
+  toggleCategoryOptions(){
+    this.taskCategoryOptions = !this.taskCategoryOptions;
+  }
+
+  clearSubtaskInput(){
+    this.subTaskInput = '';
+  }
+
+  /**
+   * add subtask to task.subtasks
+   * clear input
+   */
+  addSubtask(){
+   let subtask = new SubTask({title: this.subTaskInput, done: 'false'})
+   this.task.subtasks.push(subtask);
+   this.subTaskInput = '';   
+  }
+
+  /**
+   * push selected user to task.assignedTo
+   * @param user 
+   */
   asignUserToTask(user: string){
     this.task.assignedTo.push(user);
   }
@@ -41,10 +59,18 @@ export class AddTaskFormComponent {
     this.task.priority = prio;
   }
 
+  /**
+   * change the task category
+   * @param cat 
+   */
   changeTaskCategory(cat: 'User Story' | 'Technical Task'){
     this.task.category = cat;
+    this.taskCategoryOptions = false;
   }
 
+  /**
+   * safe date as timestamp, handle wrong format
+   */
   handleDueDate(){
     if (this.dueDate) {
       const date = typeof this.dueDate === 'string' ? new Date(this.dueDate) : this.dueDate;
@@ -58,8 +84,13 @@ export class AddTaskFormComponent {
     }
   }
 
+  /**
+   * save Task in firebase
+   */
   async saveTask() {
     this.handleDueDate();
     await this.taskService.fireService.addTask(this.task);
   }
 }
+
+

@@ -153,78 +153,81 @@ export class TaskService {
       category: 'Technical Task',
       status: 'progress',
     },
-    {
-      id: '',
-      title: 'User Interface Redesign',
-      description: 'Redesign the user interface to improve user experience.',
-      subtasks: [
-        { title: 'Collect user feedback', done: true },
-        { title: 'Create new UI mockups', done: false },
-      ],
-      assignedTo: ['Susan Wojcicki'],
-      priority: 'urgent',
-      dueDate: 1699920000000,
-      category: 'User Story',
-      status: 'progress',
-    },
-    {
-      id: '',
-      title: 'Security Audit',
-      description: 'Conduct a full security audit of the application.',
-      subtasks: [
-        { title: 'Review access logs', done: false },
-        { title: 'Update security protocols', done: false },
-      ],
-      assignedTo: ['Jeff Bezos', 'Bill Gates'],
-      priority: 'urgent',
-      dueDate: 1700524800000,
-      category: 'Technical Task',
-      status: 'todo',
-    },
-    {
-      id: '',
-      title: 'Cloud Migration Plan',
-      description: 'Develop a plan to migrate the infrastructure to the cloud.',
-      subtasks: [],
-      assignedTo: ['Sundar Pichai', 'Satya Nadella'],
-      priority: 'medium',
-      dueDate: 1701129600000,
-      category: 'Technical Task',
-      status: 'done',
-    },
-    {
-      id: '',
-      title: 'Develop AI Recommendation System',
-      description:
-        'Build an AI-based recommendation system for personalized user experience.',
-      subtasks: [
-        { title: 'Research AI models', done: false },
-        { title: 'Develop prototype', done: false },
-      ],
-      assignedTo: ['Elon Musk', 'Larry Page', 'Sergey Brin'],
-      priority: 'urgent',
-      dueDate: 1701734400000,
-      category: 'Technical Task',
-      status: 'feedback',
-    },
-    {
-      id: '',
-      title: 'Customer Onboarding Process',
-      description: 'Create a seamless onboarding process for new customers.',
-      subtasks: [
-        { title: 'Map customer journey', done: true },
-        { title: 'Develop onboarding content', done: true },
-      ],
-      assignedTo: ['Mark Zuckerberg', 'Reed Hastings'],
-      priority: 'medium',
-      dueDate: 1702339200000,
-      category: 'User Story',
-      status: 'done',
-    },
+    // {
+    //   id: '',
+    //   title: 'User Interface Redesign',
+    //   description: 'Redesign the user interface to improve user experience.',
+    //   subtasks: [
+    //     { title: 'Collect user feedback', done: true },
+    //     { title: 'Create new UI mockups', done: false },
+    //   ],
+    //   assignedTo: ['Susan Wojcicki'],
+    //   priority: 'urgent',
+    //   dueDate: 1699920000000,
+    //   category: 'User Story',
+    //   status: 'progress',
+    // },
+    // {
+    //   id: '',
+    //   title: 'Security Audit',
+    //   description: 'Conduct a full security audit of the application.',
+    //   subtasks: [
+    //     { title: 'Review access logs', done: false },
+    //     { title: 'Update security protocols', done: false },
+    //   ],
+    //   assignedTo: ['Jeff Bezos', 'Bill Gates'],
+    //   priority: 'urgent',
+    //   dueDate: 1700524800000,
+    //   category: 'Technical Task',
+    //   status: 'todo',
+    // },
+    // {
+    //   id: '',
+    //   title: 'Cloud Migration Plan',
+    //   description: 'Develop a plan to migrate the infrastructure to the cloud.',
+    //   subtasks: [],
+    //   assignedTo: ['Sundar Pichai', 'Satya Nadella'],
+    //   priority: 'medium',
+    //   dueDate: 1701129600000,
+    //   category: 'Technical Task',
+    //   status: 'done',
+    // },
+    // {
+    //   id: '',
+    //   title: 'Develop AI Recommendation System',
+    //   description:
+    //     'Build an AI-based recommendation system for personalized user experience.',
+    //   subtasks: [
+    //     { title: 'Research AI models', done: false },
+    //     { title: 'Develop prototype', done: false },
+    //   ],
+    //   assignedTo: ['Elon Musk', 'Larry Page', 'Sergey Brin'],
+    //   priority: 'urgent',
+    //   dueDate: 1701734400000,
+    //   category: 'Technical Task',
+    //   status: 'feedback',
+    // },
+    // {
+    //   id: '',
+    //   title: 'Customer Onboarding Process',
+    //   description: 'Create a seamless onboarding process for new customers.',
+    //   subtasks: [
+    //     { title: 'Map customer journey', done: true },
+    //     { title: 'Develop onboarding content', done: true },
+    //   ],
+    //   assignedTo: ['Mark Zuckerberg', 'Reed Hastings'],
+    //   priority: 'medium',
+    //   dueDate: 1702339200000,
+    //   category: 'User Story',
+    //   status: 'done',
+    // },
   ];
 
   constructor() {}
 
+  /**
+   * save Example tasks in firebase collection
+   */
   async addLocalTasksToFirebase() {
     for (let i = 0; i < this.exampleTasks.length; i++) {
       const task = this.exampleTasks[i];
@@ -232,6 +235,22 @@ export class TaskService {
     }
   }
 
+  /**
+   * delete all tasks in firebase collection
+   */
+  async deleteAllTasks(){
+    while (this.fireService.tasks.length > 0) {
+      const id = this.fireService.tasks[0].id;
+      await this.fireService.deleteData(id, 'tasks');
+    }
+  }
+
+  
+/**
+ * 
+ * @param assignedToUser 
+ * @returns the color in user.color or a default color
+ */
   getColorForUser(assignedToUser: string) {
     const user = this.fireService.users.find(
       (user) => user.name.toLowerCase() === assignedToUser.toLowerCase()
@@ -239,6 +258,11 @@ export class TaskService {
     return user ? user.color : '#29abe2';
   }
 
+  /**
+   * 
+   * @param prio 
+   * @returns the img source for the priority
+   */
   getPrioIcon(prio: string) {
     switch (prio) {
       case 'low':

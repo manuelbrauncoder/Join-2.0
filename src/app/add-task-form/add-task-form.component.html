@@ -1,100 +1,198 @@
 <main>
-    <h1>Add Task</h1>
-    <form id="taskForm" name="taskForm" (submit)="saveTask()">
-        <div class="first">
-            <!-- title -->
-            <label for="title">Title<span class="required">*</span></label>
-            <input [(ngModel)]="task.title" name="title" type="text" class="input-field" placeholder="Enter a title">
-            
-            <!-- description -->
-            <label for="description">Description</label>
-            <div class="textarea-wrapper">
-                <textarea [(ngModel)]="task.description" class="text-area" name="description" id="" placeholder="Enter a Description"></textarea>
-            </div>
+  <h1>Add Task</h1>
+  <form id="taskForm" name="taskForm" (submit)="saveTask()">
+    <div class="first">
+      <!-- title -->
+      <label for="title">Title<span class="required">*</span></label>
+      <input
+        [(ngModel)]="task.title"
+        name="title"
+        type="text"
+        class="input-field"
+        placeholder="Enter a title"
+      />
 
-            <!-- assigned To -->
-            <div class="custom-select">
-                <label for="assignedTo">Assigned to</label>
-                <div class="search-wrapper">
-                    <input name="assignedTo" type="text" class="input-field" placeholder="Select contacts to assign">
-                </div>
-                <div class="options">
-                    @for (user of userService.fireService.users; track $index) {
-                        <div (click)="asignUserToTask(user.name)" class="option">
-                            <span>{{ user.name }}</span>
-                        </div>
-                    }
-                </div>
-                <div class="assignedTo">
-                    @for (assignedUser of task.assignedTo; track $index) {
-                        <span [ngStyle]="{'background-color': taskService.getColorForUser(assignedUser)}" class="assignedToBubble assignedToUser">{{ assignedUser | initials }}</span> 
-                    }
-                </div>
-                   
-                
-            </div>
+      <!-- description -->
+      <label for="description">Description</label>
+      <div class="textarea-wrapper">
+        <textarea
+          [(ngModel)]="task.description"
+          class="text-area"
+          name="description"
+          id=""
+          placeholder="Enter a Description"
+        ></textarea>
+      </div>
+
+      <!-- assigned To -->
+      <div class="custom-select">
+        <label for="assignedTo">Assigned to</label>
+        <div class="search-wrapper">
+          <input
+            name="assignedTo"
+            type="text"
+            class="input-field"
+            placeholder="Select contacts to assign"
+          />
         </div>
-        <hr class="divider">
-        <div class="second">
-
-            <!-- Due date -->
-            <label for="date">Due date<span class="required">*</span></label>
-            <div class="input-wrapper">
-                <input [(ngModel)]="dueDate" class="input-field" name="date" type="date">
-            </div>
-
-            <!-- priority -->
-            <div class="prio">
-                <label for="prio">Prio</label>
-                <div>
-                    <button [ngClass]="{'prio-urgent': task.priority === 'urgent'}" type="button" (click)="changeTaskPrio('urgent')" class="prioBtn">Urgent<img [src]="task.priority === 'urgent' ? 'assets/img/prio-urgent-active.png' : 'assets/img/prio-urgent.png'" alt=""></button>
-                    <button [ngClass]="{'prio-medium': task.priority === 'medium'}" type="button" (click)="changeTaskPrio('medium')" class="prioBtn">Medium<img [src]="task.priority === 'medium' ? 'assets/img/prio-medium-active.png' : 'assets/img/prio-medium.png'" alt=""></button>
-                    <button [ngClass]="{'prio-low': task.priority === 'low'}" type="button" (click)="changeTaskPrio('low')" class="prioBtn">Low<img [src]="task.priority === 'low' ? 'assets/img/prio-low-active.png' : 'assets/img/prio-low.png'" alt=""></button>
-                </div>
-            </div>
-
-            <!-- category -->
-            <div class="custom-select">
-                <label for="category">Category<span class="required">*</span></label>
-                <div class="input-wrapper">
-                    <input name="category" class="input-field" type="text" [(ngModel)]="task.category">
-                </div>
-                <div class="options">
-                    <!-- hide -->
-                    <span (click)="changeTaskCategory('Technical Task')">Technical Task</span>
-                    <span (click)="changeTaskCategory('User Story')">User Story</span>
-                </div>
-            </div>
-
-            <!-- subtasks -->
-            <div class="subtasks-field">
-                <div class="input-wrapper">
-                    <input name="subTaskInput" [(ngModel)]="subTaskInput" type="text" class="input-field" placeholder="Add new subtask">
-                    <img (click)="addSubtask()" src="assets/img/plus-icon.png" alt="">
-                    <div class="add-sub-icons">
-                        <img src="assets/img/check-icon.png" alt="">
-                        <img src="assets/img/close-icon.png" alt="">
-                    </div>
-                    
-                </div>
-                <div class="subtasks">
-                    @for (subtask of task.subtasks; track $index) {
-                        <div class="subtask-wrapper">
-                            <li><span>{{ subtask.title }}</span></li>
-                        </div>
-                    }
-                </div>
-            </div>
+        <div class="options">
+          @for (user of userService.fireService.users; track $index) {
+          <div (click)="asignUserToTask(user.name)" class="option">
+            <span>{{ user.name }}</span>
+          </div>
+          }
         </div>
-    </form>
-
-    <!-- buttons -->
-    <div class="btns">
-        <div>
-            <span class="required">*</span>
-            <span>This field is required</span>
+        <div class="assignedTo">
+          @for (assignedUser of task.assignedTo; track $index) {
+          <span
+            [ngStyle]="{
+              'background-color': taskService.getColorForUser(assignedUser)
+            }"
+            class="assignedToBubble assignedToUser"
+            >{{ assignedUser | initials }}</span
+          >
+          }
         </div>
-        <button type="button" class="secondary">Clear X</button>
-        <button form="taskForm" type="submit" class="primary">Create Task</button>
+      </div>
     </div>
+    <hr class="divider" />
+    <div class="second">
+      <!-- Due date -->
+      <label for="date">Due date<span class="required">*</span></label>
+      <div class="input-wrapper">
+        <input
+          [(ngModel)]="dueDate"
+          class="input-field"
+          name="date"
+          type="date"
+        />
+      </div>
+
+      <!-- priority -->
+      <div class="prio">
+        <label for="prio">Prio</label>
+        <div>
+          <button
+            [ngClass]="{ 'prio-urgent': task.priority === 'urgent' }"
+            type="button"
+            (click)="changeTaskPrio('urgent')"
+            class="prioBtn"
+          >
+            Urgent<img
+              [src]="
+                task.priority === 'urgent'
+                  ? 'assets/img/prio-urgent-active.png'
+                  : 'assets/img/prio-urgent.png'
+              "
+              alt=""
+            />
+          </button>
+          <button
+            [ngClass]="{ 'prio-medium': task.priority === 'medium' }"
+            type="button"
+            (click)="changeTaskPrio('medium')"
+            class="prioBtn"
+          >
+            Medium<img
+              [src]="
+                task.priority === 'medium'
+                  ? 'assets/img/prio-medium-active.png'
+                  : 'assets/img/prio-medium.png'
+              "
+              alt=""
+            />
+          </button>
+          <button
+            [ngClass]="{ 'prio-low': task.priority === 'low' }"
+            type="button"
+            (click)="changeTaskPrio('low')"
+            class="prioBtn"
+          >
+            Low<img
+              [src]="
+                task.priority === 'low'
+                  ? 'assets/img/prio-low-active.png'
+                  : 'assets/img/prio-low.png'
+              "
+              alt=""
+            />
+          </button>
+        </div>
+      </div>
+
+      <!-- category -->
+      <div class="custom-select">
+        <label for="category">Category<span class="required">*</span></label>
+        <div class="input-wrapper category-input-wrapper" (click)="toggleCategoryOptions()">
+          <input
+            placeholder="Select task category"
+            name="category"
+            class="input-field category-input"
+            type="text"
+            [(ngModel)]="task.category"
+          />
+          <img [ngStyle]="{'transform': taskCategoryOptions ? 'rotate(180deg)' : 'rotate(0deg)'}" class="category-drop-down-arrow" src="assets/img/arrow-drop-down.png" alt="" />
+        </div>
+        <div class="options">
+          @if (taskCategoryOptions) {
+          <span (click)="changeTaskCategory('Technical Task')"
+            >Technical Task</span
+          >
+          <span (click)="changeTaskCategory('User Story')">User Story</span>
+          }
+        </div>
+      </div>
+
+      <!-- subtasks -->
+      <div class="subtasks-field">
+        <label for="subTaskInput">Subtask</label>
+        <div class="input-wrapper">
+          <input
+            name="subTaskInput"
+            [(ngModel)]="subTaskInput"
+            type="text"
+            class="input-field"
+            placeholder="Add new subtask"
+          />
+          @if (!subTaskInput) {
+          <img class="input-icon" src="assets/img/plus-icon.png" alt="" />
+
+          } @if (subTaskInput) {
+          <div class="add-sub-icons input-icon">
+            <img
+              src="assets/img/close-icon.png"
+              alt=""
+              (click)="clearSubtaskInput()"
+            />
+            <span>|</span>
+            <img
+              src="assets/img/check-icon.png"
+              alt=""
+              (click)="addSubtask()"
+            />
+          </div>
+          }
+        </div>
+        <div class="subtasks">
+          @for (subtask of task.subtasks; track $index) {
+          <div class="subtask-wrapper">
+            <li>
+              <span>{{ subtask.title }}</span>
+            </li>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- buttons -->
+  <div class="btns">
+    <div>
+      <span class="required">*</span>
+      <span>This field is required</span>
+    </div>
+    <button type="button" class="secondary">Clear X</button>
+    <button form="taskForm" type="submit" class="primary">Create Task</button>
+  </div>
 </main>

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FirebaseService } from '../../services/firebase.service';
+import { TaskService } from '../../services/task.service';
 
 @Component({
   selector: 'app-header',
@@ -9,10 +9,14 @@ import { FirebaseService } from '../../services/firebase.service';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
-  fireService = inject(FirebaseService);
+  taskService = inject(TaskService);
 
-  logTasks(){
-    console.log('tasks:', this.fireService.tasks);
-    
+ async resetTasks(){
+    if (confirm('tasks in firebase will be replaced with example tasks')) {
+     await this.taskService.deleteAllTasks();
+     await this.taskService.addLocalTasksToFirebase();
+     console.log(this.taskService.fireService.tasks);
+     
+    }
   }
 }
