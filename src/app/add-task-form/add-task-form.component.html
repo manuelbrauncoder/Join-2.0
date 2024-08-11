@@ -3,7 +3,8 @@
   <form id="taskForm" name="taskForm" (submit)="saveTask()">
     <div class="first">
       <!-- title -->
-      <label for="title">Title<span class="required">*</span></label>
+       <div class="input-wrapper">
+        <label for="title">Title<span class="required">*</span></label>
       <input
         [(ngModel)]="task.title"
         name="title"
@@ -11,10 +12,13 @@
         class="input-field"
         placeholder="Enter a title"
       />
+      <span class="hint">This field is required</span>
+       </div>
+      
 
       <!-- description -->
-      <label for="description">Description</label>
       <div class="textarea-wrapper">
+        <label for="description">Description</label>
         <textarea
           [(ngModel)]="task.description"
           class="text-area"
@@ -34,45 +38,68 @@
         <label for="assignedTo">Assigned to</label>
         <div class="search-wrapper">
           <input
+            [(ngModel)]="searchUserInput"
+            (click)="toggleUserOptions()"
             name="assignedTo"
             type="text"
             class="input-field"
             placeholder="Select contacts to assign"
           />
-        </div>
-        <div class="options">
-          @for (user of userService.fireService.users; track $index) {
-          <div (click)="asignUserToTask(user.name)" class="option">
-            <span
-              [ngStyle]="{
-                'background-color': taskService.getColorForUser(user.name)
-              }"
-              class="assignedToBubble"
-              >{{ user.name | initials }}</span
-            >
-            <span>{{ user.name }}</span>
-            <img src="assets/img/check-icon-uncheck.png" alt="">
-          </div>
-          }
-        </div>
-        <div class="assignedTo">
-          @for (assignedUser of task.assignedTo; track $index) {
-          <span
+          <img
             [ngStyle]="{
-              'background-color': taskService.getColorForUser(assignedUser)
+              transform: userOptions ? 'rotate(180deg)' : 'rotate(0deg)'
             }"
-            class="assignedToBubble assignedToUser"
-            >{{ assignedUser | initials }}</span
-          >
-          }
+            class="category-drop-down-arrow"
+            src="assets/img/arrow-drop-down.png"
+            alt=""
+          />
         </div>
+
+        @if (userOptions) {
+            <div class="options">
+                @for (user of filteredUsers(); track $index) {
+                <div (click)="asignUserToTask(user.name)" class="option">
+                  <span
+                    [ngStyle]="{
+                      'background-color': taskService.getColorForUser(user.name)
+                    }"
+                    class="assignedToBubble"
+                    >{{ user.name | initials }}</span
+                  >
+                  <span>{{ user.name }}</span>
+                  @if (isUserChecked(user.name)) {
+                      <img src="assets/img/check-icon-check.png" alt="">
+                  } @else {
+                      <img src="assets/img/check-icon-uncheck.png" alt="">
+                  }
+                </div>
+                }
+              </div>
+        }
+        
+
+        @if (!userOptions) {
+            <div class="assignedTo">
+                @for (assignedUser of task.assignedTo; track $index) {
+                <span
+                  [ngStyle]="{
+                    'background-color': taskService.getColorForUser(assignedUser)
+                  }"
+                  class="assignedToBubble assignedToUser"
+                  >{{ assignedUser | initials }}</span
+                >
+                }
+              </div>
+        }
+        
+
       </div>
     </div>
     <hr class="divider" />
     <div class="second">
       <!-- Due date -->
-      <label for="date">Due date<span class="required">*</span></label>
       <div class="input-wrapper">
+        <label for="date">Due date<span class="required">*</span></label>
         <input
           [(ngModel)]="dueDate"
           class="input-field"
@@ -80,6 +107,7 @@
           type="date"
           placeholder="tt.mm.jjjj"
         />
+        <span class="hint">This field is required</span>
       </div>
 
       <!-- priority -->
@@ -167,6 +195,7 @@
           >
           }
         </div>
+        <span class="hint">This field is required</span>
       </div>
 
       <!-- subtasks -->

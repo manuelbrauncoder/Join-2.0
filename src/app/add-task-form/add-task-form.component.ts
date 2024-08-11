@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { TaskService } from '../services/task.service';
 import { UserService } from '../services/user.service';
 import { InitialsPipe } from '../pipes/initials.pipe';
+import { User } from '../models/user.class';
 
 @Component({
   selector: 'app-add-task-form',
@@ -18,12 +19,30 @@ export class AddTaskFormComponent {
     userService = inject(UserService);
     task = new Task();
     dueDate: Date | null = null;
-    subTaskInput: string = '';
+    subTaskInput: string = '';  // input for new subtasks
+    searchUserInput: string = ''; 
 
     taskCategoryOptions: boolean = false;
+    userOptions: boolean = false;
+
+    filteredUsers(): User[]{
+      if(!this.searchUserInput) {
+        return this.userService.fireService.users;
+      }
+      return this.userService.fireService.users.filter(user => user.name.toLowerCase().includes(this.searchUserInput));
+    }
 
   constructor(){ 
     this.task.category = '';
+  }
+
+  
+
+  /**
+   * toggle options for user to asign
+   */
+  toggleUserOptions(){
+    this.userOptions = !this.userOptions;
   }
 
   /**
@@ -72,9 +91,10 @@ export class AddTaskFormComponent {
       let index = this.task.assignedTo.indexOf(user);
       this.task.assignedTo.splice(index, 1);
     }
+  }
 
-
-    //this.task.assignedTo.push(user);
+  isUserChecked(user: string){
+    return this.task.assignedTo.includes(user);
   }
 
   changeTaskPrio(prio: 'urgent' | 'medium' | 'low'){
