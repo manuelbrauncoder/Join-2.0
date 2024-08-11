@@ -12,7 +12,7 @@ import {
   deleteDoc,
   updateDoc,
 } from '@angular/fire/firestore';
-import { Task } from '../models/task.class';
+import { SubTask, Task } from '../models/task.class';
 import { User } from '../models/user.class';
 
 @Injectable({
@@ -35,13 +35,20 @@ export class FirebaseService {
     return {
       title: task.title,
       description: task.description,
-      subtasks: task.subtasks,
+      subtasks: task.subtasks.map(subtask => this.getCleanSubtaskJson(subtask)),
       assignedTo: task.assignedTo,
       priority: task.priority,
       dueDate: task.dueDate,
       category: task.category,
       status: task.status,
     };
+  }
+
+  getCleanSubtaskJson(subtask: any){
+    return {
+      title: subtask.title,
+      done: subtask.done
+    }
   }
 
   getCleanUserJson(user: User) {

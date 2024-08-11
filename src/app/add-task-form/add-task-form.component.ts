@@ -33,16 +33,6 @@ export class AddTaskFormComponent {
    
   }
 
-  // Klasse Subtask evtl entfernen. Kann so nicht zu Firebase geladen werden
-  // evtl so handhaben wie bei assignedto: ein array aus objekten statt string
-
-  // getCleanSubtaskJson(task: Task){
-  //   return {
-  //     title: subtask.title,
-  //     done: 'false'
-  //   }
-  // }
-
   asignUserToTask(user: string){
     this.task.assignedTo.push(user);
   }
