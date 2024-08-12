@@ -13,7 +13,7 @@ import {
   updateDoc,
 } from '@angular/fire/firestore';
 import { SubTask, Task } from '../models/task.class';
-import { User } from '../models/user.class';
+import { LetterGroup, User } from '../models/user.class';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +24,32 @@ export class FirebaseService {
   tasks: Task[] = [];
   users: User[] = [];
 
+  letterUser: any = [];
+
   constructor() {}
+
+  getInitialLetters() {
+    this.letterUser = [];
+    let letterMap = new Map<string, User[]>();
+    this.users.forEach((user) => {
+      let firstLetter = user.name.charAt(0).toLowerCase();
+      if (!letterMap.has(firstLetter)) {
+        letterMap.set(firstLetter, []);
+      }
+      letterMap.get(firstLetter)?.push(user);
+    });
+    this.letterUser = Array.from(letterMap, ([letter, users]) => new LetterGroup ({
+      letter,
+      users,
+    }));
+  }
+
+  createLetterUserObject(letter: string, user: User) {
+    return {
+      firstLetter: letter,
+      letterUsers: user,
+    };
+  }
 
   /**
    * Task without id; id is generated in firebase
@@ -35,7 +60,9 @@ export class FirebaseService {
     return {
       title: task.title,
       description: task.description,
-      subtasks: task.subtasks.map(subtask => this.getCleanSubtaskJson(subtask)),
+      subtasks: task.subtasks.map((subtask) =>
+        this.getCleanSubtaskJson(subtask)
+      ),
       assignedTo: task.assignedTo,
       priority: task.priority,
       dueDate: task.dueDate,
@@ -44,11 +71,11 @@ export class FirebaseService {
     };
   }
 
-  getCleanSubtaskJson(subtask: any){
+  getCleanSubtaskJson(subtask: any) {
     return {
       title: subtask.title,
-      done: subtask.done
-    }
+      done: subtask.done,
+    };
   }
 
   getCleanUserJson(user: User) {
@@ -57,8 +84,8 @@ export class FirebaseService {
       email: user.email,
       password: user.password,
       phone: user.phone,
-      color: user.color
-    }
+      color: user.color,
+    };
   }
 
   /**
@@ -110,7 +137,6 @@ export class FirebaseService {
     });
   }
 
-
   async updateTask(task: Task) {
     let docRef = doc(this.getCollectionRef('tasks'), task.id);
     await updateDoc(docRef, this.getCleanTaskJson(task)).catch((err) => {
@@ -123,7 +149,7 @@ export class FirebaseService {
    * call in onSnapshot
    * @param change
    */
-  logChanges(change: DocumentChange<DocumentData>) {
+  logTaskChanges(change: DocumentChange<DocumentData>) {
     if (change.type === 'added') {
       console.log('New Data ', change.doc.data());
     }
@@ -132,6 +158,22 @@ export class FirebaseService {
     }
     if (change.type === 'removed') {
       console.log('Removed Data: ', change.doc.data());
+    }
+  }
+
+  logUserChanges(change: DocumentChange<DocumentData>) {
+    if (change.type === 'added') {
+      console.log('New Data ', change.doc.data());
+      this.getInitialLetters();
+      console.log(this.letterUser);
+    }
+    if (change.type === 'modified') {
+      console.log('Modified Data: ', change.doc.data());
+      this.getInitialLetters();
+    }
+    if (change.type === 'removed') {
+      console.log('Removed Data: ', change.doc.data());
+      this.getInitialLetters();
     }
   }
 
@@ -148,14 +190,14 @@ export class FirebaseService {
         this.tasks.push(task);
       });
       list.docChanges().forEach((change) => {
-        this.logChanges(change);
+        this.logTaskChanges(change);
       });
     });
   }
 
   getUsersList() {
     console.log('get users');
-    
+
     const q = query(this.getCollectionRef('users'), orderBy('name'));
     return onSnapshot(q, (list) => {
       this.users = [];
@@ -164,8 +206,8 @@ export class FirebaseService {
         this.users.push(user);
       });
       list.docChanges().forEach((change) => {
-        this.logChanges(change);
-      })
+        this.logUserChanges(change);
+      });
     });
   }
 

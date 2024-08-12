@@ -17,11 +17,11 @@ $color-grey: #d1d1d1;
 $color-user-story: #0038ff;
 $color-technical-task: #1fd7c1;
 $color-required-red: #ff8190;
-$color-red-urgent: #FF3D00;
+$color-red-urgent: #ff3d00;
 $color-orange-medium: #ffa800;
 $color-green-low: #7ae229;
 $color-input-focus-blue: #005dff;
-
+$color-link-blue: #007CEE;
 
 // Fonts
 
@@ -30,6 +30,13 @@ $color-input-focus-blue: #005dff;
   font-size: 16px;
   font-weight: 400;
   line-height: 19.2px;
+}
+
+.v2-t5 {
+  font-family: Inter;
+  font-size: 27px;
+  font-weight: 400;
+  line-height: 32.4px;
 }
 
 .v2-t6 {
@@ -60,7 +67,7 @@ $color-input-focus-blue: #005dff;
   line-height: 25.2px;
 }
 
-.form-hint{
+.form-hint {
   font-family: "Poppins";
   font-size: 12px;
   font-weight: 400;
@@ -95,12 +102,12 @@ $color-input-focus-blue: #005dff;
   cursor: pointer;
   @include dFlex($g: 4px);
   @extend .btn-font;
-  &:hover{
+  &:hover {
     background-color: $color-lightblue;
     box-shadow: 0px 4px 4px 0px #00000040;
   }
-  &:active{
-   background-color: #091931;
+  &:active {
+    background-color: #091931;
   }
 }
 
@@ -113,15 +120,15 @@ $color-input-focus-blue: #005dff;
   cursor: pointer;
   @include dFlex($g: 4px);
   @extend .btn-font;
-  &:hover{
+  &:hover {
     color: $color-lightblue;
     border-color: $color-lightblue;
     box-shadow: 0px 4px 4px 0px #00000040;
   }
-  &:hover .path{
+  &:hover .path {
     stroke: $color-lightblue;
   }
-  &:active{
+  &:active {
     color: $color-main;
     border-color: $color-main;
   }
@@ -134,19 +141,19 @@ $color-input-focus-blue: #005dff;
   padding: 12px 21px;
   border-radius: 10px;
   outline: none;
-  &::placeholder{
-    color: $color-grey
+  &::placeholder {
+    color: $color-grey;
   }
-  &:focus{
+  &:focus {
     border-color: $color-lightblue;
   }
 }
 
-.input-field-error{
+.input-field-error {
   border-color: $color-required-red;
 }
 
-.text-area{
+.text-area {
   @extend .v2-t6;
   color: $color-grey;
   border: 1px solid $color-grey;
@@ -154,10 +161,10 @@ $color-input-focus-blue: #005dff;
   outline: none;
   padding: 12px 21px;
   min-height: 120px;
-  &::placeholder{
-    color: $color-grey
+  &::placeholder {
+    color: $color-grey;
   }
-  &:focus{
+  &:focus {
     border-color: $color-lightblue;
   }
 }

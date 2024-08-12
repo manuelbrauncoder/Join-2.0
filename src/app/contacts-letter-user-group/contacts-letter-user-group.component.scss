@@ -1,0 +1,44 @@
+@import '../../styles.scss';
+
+
+main{
+    width: 100%;
+    padding: 15px 24px;
+    @include dFlex($fd: column, $ai: flex-start);
+}
+
+.divider-horizontal{
+    height: 2px;
+    border-radius: 100vw;
+    background-color: $color-grey;
+    width: 100%;
+    margin: 0;
+    margin-bottom: 24px;
+}
+
+.users{
+    width: 100%;
+    @include dFlex($ai: flex-start, $fd: column, $g: 24px);
+}
+
+.email{
+    color: $color-link-blue;
+}
+
+.user-group{
+    padding: 15px 24px;
+    width: 100%;
+    @include dFlex($g: 35px, $jc: flex-start);
+    border-radius: 10px;
+    cursor: pointer;
+    h3{
+        margin: 0;
+        @extend .v2-t6;
+    }
+    >div{
+        @include dFlex($fd: column, $ai: flex-start, $g: 5px);
+    }
+    &:hover{
+        background-color: $color-grey;
+    }
+}

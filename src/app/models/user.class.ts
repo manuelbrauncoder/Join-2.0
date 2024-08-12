@@ -15,3 +15,13 @@ export class User{
         this.color = obj?.color ?? '#9747FF';
     }
 }
+
+export class LetterGroup{
+    letter: string;
+    users: User[];
+
+    constructor(obj?: Partial<LetterGroup>){
+        this.letter = obj?.letter ?? '';
+        this.users = obj?.users ?? [];
+    }
+}
