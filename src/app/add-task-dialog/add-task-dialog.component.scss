@@ -1,6 +1,7 @@
 @import "../../styles.scss";
 
 :host {
+  z-index: 3;
   display: block;
   background: #fff;
   border-radius: 24px;

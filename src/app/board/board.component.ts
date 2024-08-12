@@ -49,8 +49,6 @@ export class BoardComponent {
     const dialogRef = this.dialog.open<string>(AddTaskDialogComponent, {
       hasBackdrop: true
     });
-  
-    //dialogRef.backdropClick.subscribe(()=>{dialogRef.close()})
   }
 
   filteredTasks(): Task[] {

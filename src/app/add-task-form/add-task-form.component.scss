@@ -1,12 +1,24 @@
 @import "../../styles.scss";
 
-
-
 .headline {
   @include dFlex($jc: space-between);
   h1 {
     margin-bottom: 32px;
     @extend .v2-t1;
+  }
+}
+
+.closeDialog {
+  @include dFlex();
+  background-color: unset;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 100%;
+  width: 32px;
+  height: 32px;
+  border: unset;
+  &:hover {
+    background-color: #eeeeee;
   }
 }
 
@@ -168,10 +180,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   }
 }
 
-.moveUp{
-    vertical-align: super;
-    position: relative;
-    top: 5px;
+.moveUp {
+  vertical-align: super;
+  position: relative;
+  top: 5px;
 }
 
 .submitBtn:disabled {
@@ -228,65 +240,63 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background-color: $color-green-low;
 }
 
-.subtasks{
-    margin-top: 4px;
+.subtasks {
+  margin-top: 4px;
 }
 
-.subtask-wrapper{
-    position: relative;
-    @include dFlex($jc: flex-start);
-    height: 35px;
-    input{
-        @extend .v2-t6;
-        color: $color-grey;
-        border: unset;
-        padding: 7px 16px;
-        height: 100%;
-        &:focus{
-            outline: none; 
-            border-bottom: 1px solid $color-input-focus-blue;
-        }
-    }
-    &:hover .subtask-icons{
-        visibility: visible;
-    }
-}
-
-.bullet{
-    font-size: 32px;
-    font-weight: 900;
-    vertical-align: super;
-    position: relative;
-    top: -9px;
-    margin-right: 8px;
-}
-
-.subtask{
-    cursor: pointer;
-    display: flex;
+.subtask-wrapper {
+  position: relative;
+  @include dFlex($jc: flex-start);
+  height: 35px;
+  input {
+    @extend .v2-t6;
+    color: $color-grey;
+    border: unset;
     padding: 7px 16px;
-    border-radius: 10px;
-    width: 100%;
-    &:hover{
-        background-color: #eeeeee;
+    height: 100%;
+    &:focus {
+      outline: none;
+      border-bottom: 1px solid $color-input-focus-blue;
     }
-    
+  }
+  &:hover .subtask-icons {
+    visibility: visible;
+  }
 }
 
-.subtask-icons{
-    visibility: hidden;
-    position: absolute;
-    right: 14px;
-    top: 50%;
-    transform: translateY(-50%);
+.bullet {
+  font-size: 32px;
+  font-weight: 900;
+  vertical-align: super;
+  position: relative;
+  top: -9px;
+  margin-right: 8px;
 }
 
-.subtask-icon{
-    padding: 2px;
-    border-radius: 100%;
-    cursor: pointer;
-    &:hover{
-        
-        background-color: #eeeeee;
-    }
+.subtask {
+  cursor: pointer;
+  display: flex;
+  padding: 7px 16px;
+  border-radius: 10px;
+  width: 100%;
+  &:hover {
+    background-color: #eeeeee;
+  }
+}
+
+.subtask-icons {
+  visibility: hidden;
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.subtask-icon {
+  padding: 2px;
+  border-radius: 100%;
+  cursor: pointer;
+  &:hover {
+    background-color: #eeeeee;
+  }
 }
