@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { SubTask, Task } from '../models/task.class';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
@@ -22,6 +22,8 @@ export class AddTaskFormComponent {
   subTaskInput: string = ''; // input for new subtasks
   subTaskEditInput: string = '';
   searchUserInput: string = '';
+  @Input() openInDialog: boolean = false;
+  @Output() dialogOpen = new EventEmitter<boolean>();
 
   editingSubtaskIndex: number | null = null; // if null, editmode not showing
 
@@ -29,10 +31,12 @@ export class AddTaskFormComponent {
   userOptions: boolean = false;
   showCategoryHint: boolean = false;
 
-  
-
   constructor() {
     this.task.category = '';
+  }
+
+  closeDialog(value: boolean){
+    this.dialogOpen.emit(value);
   }
 
   /**
@@ -196,6 +200,9 @@ export class AddTaskFormComponent {
       this.handleDueDate();
       await this.taskService.fireService.addTask(this.task);
       this.clearAllInputs();
+      if (this.openInDialog) {
+        this.closeDialog(false);
+      }
     }
   }
 }

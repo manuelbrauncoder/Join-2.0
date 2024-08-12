@@ -16,6 +16,8 @@ import { BoardTaskCardEmptyComponent } from '../board-task-card-empty/board-task
 import { FilterTasksPipe } from '../pipes/filter-tasks.pipe';
 import { Task } from '../models/task.class';
 import { FormsModule } from '@angular/forms';
+import {Dialog, DialogModule} from '@angular/cdk/dialog';
+import { AddTaskDialogComponent } from '../add-task-dialog/add-task-dialog.component';
 
 @Component({
   selector: 'app-board',
@@ -30,7 +32,8 @@ import { FormsModule } from '@angular/forms';
     FilterTasksPipe,
     CdkDragPlaceholder,
     CdkDragPreview,
-    FormsModule
+    FormsModule,
+    DialogModule
   ],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss',
@@ -38,8 +41,17 @@ import { FormsModule } from '@angular/forms';
 export class BoardComponent {
   taskService = inject(TaskService);
   userService = inject(UserService);
+  public dialog = inject(Dialog);
 
   searchInput: string = '';
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open<string>(AddTaskDialogComponent, {
+      hasBackdrop: true
+    });
+  
+    //dialogRef.backdropClick.subscribe(()=>{dialogRef.close()})
+  }
 
   filteredTasks(): Task[] {
     if (!this.searchInput) {

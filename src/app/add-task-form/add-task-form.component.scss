@@ -1,7 +1,9 @@
 @import "../../styles.scss";
 
-main {
-  //max-width: 1116px;
+
+
+.headline {
+  @include dFlex($jc: space-between);
   h1 {
     margin-bottom: 32px;
     @extend .v2-t1;
@@ -115,10 +117,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .options {
+  z-index: 2;
+  position: absolute;
+  top: 75px;
+  left: 0;
   background-color: white;
   cursor: pointer;
   @include dFlex($fd: column, $ai: flex-start, $jc: flex-start, $g: 4px);
-  max-height: 300px;
+  max-height: 250px;
   overflow-y: auto;
   width: 100%;
   .option {
