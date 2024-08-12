@@ -20,6 +20,7 @@ $color-required-red: #ff8190;
 $color-red-urgent: #FF3D00;
 $color-orange-medium: #ffa800;
 $color-green-low: #7ae229;
+$color-input-focus-blue: #005dff;
 
 
 // Fonts
@@ -39,24 +40,32 @@ $color-green-low: #7ae229;
 }
 
 .v2-t1 {
-  font-family: Inter;
+  font-family: "Inter";
   font-size: 61px;
   font-weight: 700;
   line-height: 73.2px;
 }
 
 .v2-t7 {
-  font-family: Inter;
+  font-family: "Inter";
   font-size: 12px;
   font-weight: 400;
   line-height: 14.4px;
 }
 
 .btn-font {
-  font-family: Inter;
+  font-family: "Inter";
   font-size: 21px;
   font-weight: 700;
   line-height: 25.2px;
+}
+
+.form-hint{
+  font-family: "Poppins";
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.4px;
+  text-align: left;
 }
 
 // Mixins
@@ -83,7 +92,7 @@ $color-green-low: #7ae229;
   padding: 12px 20px;
   border-radius: 8px;
   cursor: pointer;
-  @include dFlex($g: 10px);
+  @include dFlex($g: 4px);
   @extend .btn-font;
 }
 
@@ -94,7 +103,7 @@ $color-green-low: #7ae229;
   border-radius: 8px;
   border: 1px solid $color-main;
   cursor: pointer;
-  @include dFlex($g: 10px);
+  @include dFlex($g: 4px);
   @extend .btn-font;
 }
 
@@ -108,6 +117,13 @@ $color-green-low: #7ae229;
   &::placeholder{
     color: $color-grey
   }
+  &:focus{
+    border-color: $color-lightblue;
+  }
+}
+
+.input-field-error{
+  border-color: $color-required-red;
 }
 
 .text-area{
@@ -120,6 +136,9 @@ $color-green-low: #7ae229;
   min-height: 120px;
   &::placeholder{
     color: $color-grey
+  }
+  &:focus{
+    border-color: $color-lightblue;
   }
 }
 

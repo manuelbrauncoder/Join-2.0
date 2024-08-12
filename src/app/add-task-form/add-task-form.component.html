@@ -1,29 +1,40 @@
 <main>
   <h1>Add Task</h1>
-  <form id="taskForm" name="taskForm" (submit)="saveTask()">
+  <form
+    (ngSubmit)="onSubmit(taskForm)"
+    id="taskForm"
+    name="taskForm"
+    #taskForm="ngForm"
+  >
     <div class="first">
       <!-- title -->
-       <div class="input-wrapper">
+      <div class="input-wrapper">
         <label for="title">Title<span class="required">*</span></label>
-      <input
-        [(ngModel)]="task.title"
-        name="title"
-        type="text"
-        class="input-field"
-        placeholder="Enter a title"
-      />
-      <span class="hint">This field is required</span>
-       </div>
-      
+        <input
+          [ngClass]="{ 'input-field-error': !title.valid && title.touched }"
+          #title="ngModel"
+          id="title"
+          [(ngModel)]="task.title"
+          name="title"
+          type="text"
+          class="input-field"
+          placeholder="Enter a title"
+          required=""
+          minlength="4"
+        />
+        @if (!title.valid && title.touched) {
+        <span class="hint">This field is required</span>
+        }
+      </div>
 
       <!-- description -->
       <div class="textarea-wrapper">
         <label for="description">Description</label>
         <textarea
+          id="description"
           [(ngModel)]="task.description"
           class="text-area"
           name="description"
-          id=""
           placeholder="Enter a Description"
         ></textarea>
         <img
@@ -38,81 +49,84 @@
         <label for="assignedTo">Assigned to</label>
         <div class="search-wrapper">
           <input
+            id="assignedTo"
             [(ngModel)]="searchUserInput"
-            (click)="toggleUserOptions()"
+            (click)="showUserOptions()"
             name="assignedTo"
             type="text"
             class="input-field"
             placeholder="Select contacts to assign"
           />
           <img
+            (click)="toggleUserOptions()"
             [ngStyle]="{
               transform: userOptions ? 'rotate(180deg)' : 'rotate(0deg)'
             }"
-            class="category-drop-down-arrow"
+            class="category-drop-down-arrow icon-hover"
             src="assets/img/arrow-drop-down.png"
             alt=""
           />
         </div>
 
         @if (userOptions) {
-            <div class="options">
-                @for (user of filteredUsers(); track $index) {
-                <div (click)="asignUserToTask(user.name)" class="option">
-                  <span
-                    [ngStyle]="{
-                      'background-color': taskService.getColorForUser(user.name)
-                    }"
-                    class="assignedToBubble"
-                    >{{ user.name | initials }}</span
-                  >
-                  <span>{{ user.name }}</span>
-                  @if (isUserChecked(user.name)) {
-                      <img src="assets/img/check-icon-check.png" alt="">
-                  } @else {
-                      <img src="assets/img/check-icon-uncheck.png" alt="">
-                  }
-                </div>
-                }
-              </div>
+        <div class="options">
+          @for (user of filteredUsers(); track $index) {
+          <div (click)="asignUserToTask(user.name)" class="option">
+            <span
+              [ngStyle]="{
+                'background-color': taskService.getColorForUser(user.name)
+              }"
+              class="assignedToBubble"
+              >{{ user.name | initials }}</span
+            >
+            <span>{{ user.name }}</span>
+            @if (isUserChecked(user.name)) {
+            <img src="assets/img/check-icon-check.png" alt="" />
+            } @else {
+            <img src="assets/img/check-icon-uncheck.png" alt="" />
+            }
+          </div>
+          }
+        </div>
+        } @if (!userOptions) {
+        <div class="assignedTo">
+          @for (assignedUser of task.assignedTo; track $index) {
+          <span
+            [ngStyle]="{
+              'background-color': taskService.getColorForUser(assignedUser)
+            }"
+            class="assignedToBubble assignedToUser"
+            >{{ assignedUser | initials }}</span
+          >
+          }
+        </div>
         }
-        
-
-        @if (!userOptions) {
-            <div class="assignedTo">
-                @for (assignedUser of task.assignedTo; track $index) {
-                <span
-                  [ngStyle]="{
-                    'background-color': taskService.getColorForUser(assignedUser)
-                  }"
-                  class="assignedToBubble assignedToUser"
-                  >{{ assignedUser | initials }}</span
-                >
-                }
-              </div>
-        }
-        
-
       </div>
     </div>
-    <hr class="divider" />
+    <div class="divider"></div>
     <div class="second">
       <!-- Due date -->
       <div class="input-wrapper">
         <label for="date">Due date<span class="required">*</span></label>
         <input
+          id="date"
+          [ngClass]="{ 'input-field-error': !date.valid && date.touched }"
           [(ngModel)]="dueDate"
           class="input-field"
           name="date"
           type="date"
           placeholder="tt.mm.jjjj"
+          required
+          #date="ngModel"
         />
+        @if (!date.valid && date.touched) {
         <span class="hint">This field is required</span>
+        }
       </div>
 
       <!-- priority -->
       <div class="prio">
-        <label for="prio">Prio</label>
+        <label>Prio</label>
         <div>
           <button
             [ngClass]="{ 'prio-urgent': task.priority === 'urgent' }"
@@ -170,21 +184,31 @@
           (click)="toggleCategoryOptions()"
         >
           <input
+            id="category"
+            [ngClass]="{
+              'input-field-error': !category.valid && showCategoryHint
+            }"
             placeholder="Select task category"
             name="category"
             class="input-field category-input"
             type="text"
             [(ngModel)]="task.category"
+            required
+            #category="ngModel"
+            minlength="6"
           />
           <img
             [ngStyle]="{
               transform: taskCategoryOptions ? 'rotate(180deg)' : 'rotate(0deg)'
             }"
-            class="category-drop-down-arrow"
+            class="category-drop-down-arrow icon-hover"
             src="assets/img/arrow-drop-down.png"
             alt=""
           />
         </div>
+        @if (!category.valid && showCategoryHint) {
+        <span class="hint">This field is required</span>
+        }
         <div class="options">
           @if (taskCategoryOptions) {
           <span class="option" (click)="changeTaskCategory('Technical Task')"
@@ -195,14 +219,14 @@
           >
           }
         </div>
-        <span class="hint">This field is required</span>
       </div>
 
       <!-- subtasks -->
       <div class="subtasks-field">
-        <label for="subTaskInput">Subtask</label>
+        <label for="subTaskInput">Subtasks</label>
         <div class="input-wrapper">
           <input
+            id="subTaskInput"
             name="subTaskInput"
             [(ngModel)]="subTaskInput"
             type="text"
@@ -210,7 +234,11 @@
             placeholder="Add new subtask"
           />
           @if (!subTaskInput) {
-          <img class="input-icon" src="assets/img/plus-icon.png" alt="" />
+          <img
+            class="input-icon icon-hover"
+            src="assets/img/plus-icon.png"
+            alt=""
+          />
 
           } @if (subTaskInput) {
           <div class="add-sub-icons input-icon">
@@ -218,22 +246,54 @@
               src="assets/img/close-icon.png"
               alt=""
               (click)="clearSubtaskInput()"
+              class="icon-hover"
             />
             <span>|</span>
             <img
               src="assets/img/check-icon.png"
               alt=""
               (click)="addSubtask()"
+              class="icon-hover"
             />
           </div>
           }
         </div>
         <div class="subtasks">
-          @for (subtask of task.subtasks; track $index) {
+          @for (subtask of task.subtasks; track $index; let index = $index) {
           <div class="subtask-wrapper">
-            <li>
-              <span>{{ subtask.title }}</span>
-            </li>
+            @if (editingSubtaskIndex !== index) {
+            <span class="v2-body subtask"><span class="bullet">.</span>{{ subtask.title }}</span>
+            } @if (editingSubtaskIndex === index) {
+            <input
+              [(ngModel)]="subTaskEditInput"
+              type="text"
+              [ngModelOptions]="{ standalone: true }"
+            />
+            }
+            <div class="subtask-icons" [ngStyle]="editingSubtaskIndex === index ? { 'visibility': 'visible' } : {} ">
+              <img
+                (click)="deleteSubtask(index)"
+                class="subtask-icon"
+                src="assets/img/delete-icon.png"
+                alt=""
+              />
+              <img src="assets/img/divider-vertical.png" alt="" />
+              @if (editingSubtaskIndex !== index) {
+              <img
+                (click)="openSubtaskEditMode(index)"
+                class="subtask-icon"
+                src="assets/img/edit-icon.png"
+                alt=""
+              />
+              } @if (editingSubtaskIndex === index) {
+              <img
+                (click)="saveEditedSubtask(index)"
+                class="subtask-icon"
+                src="assets/img/check-icon.png"
+                alt=""
+              />
+              }
+            </div>
           </div>
           }
         </div>
@@ -244,12 +304,19 @@
   <!-- buttons -->
   <div class="btns">
     <div>
-      <span class="required">*</span>
+      <span class="required moveUp">*</span>
       <span>This field is required</span>
     </div>
     <button type="button" class="secondary" (click)="clearAllInputs()">
-      Clear X
+      Clear <img src="assets/img/btn-clear.png" alt="" />
     </button>
-    <button form="taskForm" type="submit" class="primary">Create Task</button>
+    <button
+      [disabled]="!taskForm.valid"
+      form="taskForm"
+      type="submit"
+      class="primary submitBtn"
+    >
+      Create Task <img src="assets/img/btn-check.png" alt="" />
+    </button>
   </div>
 </main>

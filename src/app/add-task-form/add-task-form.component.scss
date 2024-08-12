@@ -1,7 +1,6 @@
 @import "../../styles.scss";
 
 main {
-  border: 1px dotted $color-grey;
   //max-width: 1116px;
   h1 {
     margin-bottom: 32px;
@@ -10,17 +9,15 @@ main {
 }
 
 .hint {
-  //font-family: Poppins;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 14.4px;
-  text-align: left;
+  @extend .form-hint;
+  position: absolute;
+  bottom: -16px;
+  left: 0;
   color: $color-required-red;
 }
 
 form {
   @include dFlex($ai: flex-start, $jc: flex-start, $g: 32px);
-  border: 1px dotted $color-grey;
 }
 
 input,
@@ -85,9 +82,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .category-drop-down-arrow {
+  cursor: pointer;
   position: absolute;
   top: 12px;
   right: 14px;
+}
+
+.icon-hover:hover {
+  border-radius: 100%;
+  background-color: #eeeeee;
 }
 
 .add-sub-icons {
@@ -107,7 +110,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .custom-select {
-  @include dFlex($fd: column, $ai: flex-start);
+  position: relative;
+  @include dFlex($fd: column, $ai: flex-start, $g: 4px);
 }
 
 .options {
@@ -143,7 +147,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .divider {
   margin: 0;
-  height: 200px;
+  margin-block: auto;
+  height: 380px;
   width: 2px;
   border-radius: 100vw;
   background-color: $color-grey;
@@ -151,10 +156,23 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .btns {
   margin-top: 160px;
-  border: 1px dotted $color-grey;
   @include dFlex($jc: flex-end, $g: 16px);
   > div {
     margin-right: auto;
+  }
+}
+
+.moveUp{
+    vertical-align: super;
+    position: relative;
+    top: 5px;
+}
+
+.submitBtn:disabled {
+  cursor: not-allowed;
+  background-color: #2a3647b8;
+  &:hover {
+    transform: none;
   }
 }
 
@@ -168,6 +186,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     @include dFlex($g: 16px);
   }
   label {
+    margin-bottom: 2px;
     margin-right: auto;
   }
 }
@@ -201,4 +220,67 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .prio-low {
   color: white;
   background-color: $color-green-low;
+}
+
+.subtasks{
+    margin-top: 4px;
+}
+
+.subtask-wrapper{
+    position: relative;
+    @include dFlex($jc: flex-start);
+    height: 35px;
+    input{
+        @extend .v2-t6;
+        color: $color-grey;
+        border: unset;
+        padding: 7px 16px;
+        height: 100%;
+        &:focus{
+            outline: none; 
+            border-bottom: 1px solid $color-input-focus-blue;
+        }
+    }
+    &:hover .subtask-icons{
+        visibility: visible;
+    }
+}
+
+.bullet{
+    font-size: 32px;
+    font-weight: 900;
+    vertical-align: super;
+    position: relative;
+    top: -9px;
+    margin-right: 8px;
+}
+
+.subtask{
+    cursor: pointer;
+    display: flex;
+    padding: 7px 16px;
+    border-radius: 10px;
+    width: 100%;
+    &:hover{
+        background-color: #eeeeee;
+    }
+    
+}
+
+.subtask-icons{
+    visibility: hidden;
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.subtask-icon{
+    padding: 2px;
+    border-radius: 100%;
+    cursor: pointer;
+    &:hover{
+        
+        background-color: #eeeeee;
+    }
 }
