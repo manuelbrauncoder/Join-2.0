@@ -10,6 +10,26 @@ main {
   background-color: $color-bg-white;
   margin: 96px 0 0 232px;
   padding: 80px 64px 80px 64px;
+  min-height: calc(100vh - 96px);
+}
+
+.input-wrapper{
+  position: relative;
+  input{
+    width: 300px;
+  }
+  img:nth-of-type(2){
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  img:nth-of-type(1){
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+  } 
 }
 
 .headline {

@@ -2,9 +2,15 @@
   <div class="headline">
     <h1 (click)="userService.addLocalUsersToFirebase()" class="v2-t1">Board</h1>
     <div class="search">
-      <input type="text" class="input-field" placeholder="Find Task" />
-      <button (click)="taskService.addLocalTasksToFirebase()" class="primary">
-        Add task +
+      <div class="input-wrapper">
+        <input [(ngModel)]="searchInput" type="text" class="input-field" placeholder="Find Task" />
+        <img src="assets/img/divider-vertical.png" alt="">
+        <img src="assets/img/icon-search.png" alt="">
+
+      </div>
+      <button class="primary">
+        Add task 
+        <img src="assets/img/plus-icon-white.png" alt="">
       </button>
     </div>
   </div>
@@ -24,7 +30,7 @@
         (cdkDropListDropped)="drop($event, 'todo')"
         class="tasks"
       >
-        @for (task of taskService.fireService.tasks | filterTasks: 'todo'; track
+        @for (task of filteredTasks() | filterTasks: 'todo'; track
         $index) {
         <div
           class="drag-container"
@@ -52,7 +58,7 @@
         (cdkDropListDropped)="drop($event, 'progress')"
         class="tasks"
       >
-        @for (task of taskService.fireService.tasks | filterTasks: 'progress';
+        @for (task of filteredTasks() | filterTasks: 'progress';
         track $index) {
 
         <div
@@ -82,7 +88,7 @@
         (cdkDropListDropped)="drop($event, 'feedback')"
         class="tasks"
       >
-        @for (task of taskService.fireService.tasks | filterTasks: 'feedback';
+        @for (task of filteredTasks() | filterTasks: 'feedback';
         track $index) {
 
         <div
@@ -112,7 +118,7 @@
         (cdkDropListDropped)="drop($event, 'done')"
         class="tasks"
       >
-        @for (task of taskService.fireService.tasks | filterTasks: 'done'; track
+        @for (task of filteredTasks() | filterTasks: 'done'; track
         $index) {
 
         <div

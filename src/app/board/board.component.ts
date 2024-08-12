@@ -14,6 +14,8 @@ import { BoardTaskCardComponent } from '../board-task-card/board-task-card.compo
 import { UserService } from '../services/user.service';
 import { BoardTaskCardEmptyComponent } from '../board-task-card-empty/board-task-card-empty.component';
 import { FilterTasksPipe } from '../pipes/filter-tasks.pipe';
+import { Task } from '../models/task.class';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-board',
@@ -27,7 +29,8 @@ import { FilterTasksPipe } from '../pipes/filter-tasks.pipe';
     BoardTaskCardEmptyComponent,
     FilterTasksPipe,
     CdkDragPlaceholder,
-    CdkDragPreview
+    CdkDragPreview,
+    FormsModule
   ],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss',
@@ -35,6 +38,17 @@ import { FilterTasksPipe } from '../pipes/filter-tasks.pipe';
 export class BoardComponent {
   taskService = inject(TaskService);
   userService = inject(UserService);
+
+  searchInput: string = '';
+
+  filteredTasks(): Task[] {
+    if (!this.searchInput) {
+      return this.taskService.fireService.tasks;
+    }
+    return this.taskService.fireService.tasks.filter((task) =>
+      task.title.toLowerCase().includes(this.searchInput)
+    );
+  }
 
   drop(event: CdkDragDrop<any[]>, newStatus: string) {
     if (event.previousContainer === event.container) {
