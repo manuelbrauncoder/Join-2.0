@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { LetterGroup } from '../models/user.class';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { LetterGroup, User } from '../models/user.class';
 import { InitialsPipe } from '../pipes/initials.pipe';
 import { CommonModule } from '@angular/common';
 
@@ -16,5 +16,11 @@ export class ContactsLetterUserGroupComponent {
     letter: '',
     users: []
   };
+
+  @Output() selectedUser = new EventEmitter<User>();
+
+  selectUser(value: User){
+    this.selectedUser.emit(value);
+  }
 
 }

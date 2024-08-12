@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { User } from '../models/user.class';
 
 @Component({
   selector: 'app-contacts-detail-view',
@@ -8,5 +9,13 @@ import { Component } from '@angular/core';
   styleUrl: './contacts-detail-view.component.scss'
 })
 export class ContactsDetailViewComponent {
-
+  
+  @Input() currentUser: User = {
+    name: '',
+    id: '',
+    phone: '',
+    email: '',
+    password: '',
+    color: ''
+  }
 }

@@ -3,15 +3,15 @@
   <hr class="divider-horizontal">
   <div class="users">
     @for (user of userGroup.users; track $index; let index = $index) {
-    <div class="user-group">
+    <div (click)="selectUser(user)" class="user-group">
         <span [ngStyle]="{'background-color': user.color}" class="assignedToBubble">{{ user.name | initials }}</span>
         <div>
           <h3 class="v2-t6">{{ user.name }}</h3>
           <span class="v2-body email">{{ user.email }}</span>
         </div>
     </div>
-     
-
     }
   </div>
 </main>
+
+

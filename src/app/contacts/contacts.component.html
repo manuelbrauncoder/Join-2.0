@@ -6,7 +6,7 @@
         <div class="list">
             @for (letterGroup of userService.fireService.letterUser; track $index; let index = $index) {
                 <div class="letter-user">
-                    <app-contacts-letter-user-group [userGroup]="letterGroup"></app-contacts-letter-user-group>
+                    <app-contacts-letter-user-group (selectedUser)="setSelectedUser($event)" [userGroup]="letterGroup"></app-contacts-letter-user-group>
                 </div>
             }
         </div>
@@ -17,6 +17,12 @@
             <img src="assets/img/divider-vertical-blue.png" alt="">
             <span class="v2-t5">Better with a team</span>
         </header>
+        @if (showUserDetail) {
+            <div class="detail">
+                <app-contacts-detail-view [currentUser]="selectedUser"></app-contacts-detail-view>
+            </div>
+        }
+        
     </section>
     
 </main>

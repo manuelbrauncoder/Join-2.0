@@ -151,7 +151,7 @@ export class FirebaseService {
    */
   logTaskChanges(change: DocumentChange<DocumentData>) {
     if (change.type === 'added') {
-      console.log('New Data ', change.doc.data());
+      //console.log('New Data ', change.doc.data());
     }
     if (change.type === 'modified') {
       console.log('Modified Data: ', change.doc.data());
@@ -163,9 +163,8 @@ export class FirebaseService {
 
   logUserChanges(change: DocumentChange<DocumentData>) {
     if (change.type === 'added') {
-      console.log('New Data ', change.doc.data());
+      //console.log('New Data ', change.doc.data());
       this.getInitialLetters();
-      console.log(this.letterUser);
     }
     if (change.type === 'modified') {
       console.log('Modified Data: ', change.doc.data());
@@ -196,8 +195,6 @@ export class FirebaseService {
   }
 
   getUsersList() {
-    console.log('get users');
-
     const q = query(this.getCollectionRef('users'), orderBy('name'));
     return onSnapshot(q, (list) => {
       this.users = [];
