@@ -186,14 +186,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   top: 5px;
 }
 
-.submitBtn:disabled {
-  cursor: not-allowed;
-  background-color: #2a3647b8;
-  &:hover {
-    transform: none;
-  }
-}
-
 .required {
   color: $color-required-red;
 }

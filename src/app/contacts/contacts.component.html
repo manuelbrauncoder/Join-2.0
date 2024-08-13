@@ -1,7 +1,7 @@
 <main>
     <section class="list-view">
         <header>
-            <button class="primary addContactBtn">Add new contact <img src="assets/img/add-contact.png" alt=""></button>
+            <button (click)="toggleOverlay()" class="primary addContactBtn">Add new contact <img src="assets/img/add-contact.png" alt=""></button>
         </header>
         <div class="list">
             @for (letterGroup of userService.fireService.letterUser; track $index; let index = $index) {
@@ -28,3 +28,12 @@
     </section>
     
 </main>
+
+@if (showContactOverlay) {
+    <div @toggleOverlay class="overlay">
+        <app-contacts-form></app-contacts-form>
+    </div>
+
+    <div (click)="toggleOverlay()" class="background"></div>
+}
+

@@ -5,31 +5,42 @@ import { User } from '../models/user.class';
 import { ContactsDetailViewComponent } from '../contacts-detail-view/contacts-detail-view.component';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
+import { ContactsFormComponent } from "../contacts-form/contacts-form.component";
 
-const hidden = { transform: 'translateX(120%)' };
-const visible = { transform: 'translateX(0)' };
+const detailHidden = { transform: 'translateX(120%)' };
+const detailVisible = { transform: 'translateX(0)' };
+
+const overLayHidden = { transform: 'translate(120%, -50%)' };
+const overlayVisible = { transform: 'translate(-50%, -50%)' };
+
 const timing = '225ms ease-in';
 
 @Component({
   selector: 'app-contacts',
   animations: [
     trigger('openClose', [
-      transition(':enter', [style(hidden), animate(timing, style(visible))]),
-      transition(':leave', [style(visible), animate(timing, style(hidden))]),
+      transition(':enter', [style(detailHidden), animate(timing, style(detailVisible))]),
+      transition(':leave', [style(detailVisible), animate(timing, style(detailHidden))]),
+    ]),
+    trigger('toggleOverlay', [
+      transition(':enter', [style(overLayHidden), animate(timing, style(overlayVisible))]),
+      transition(':leave', [style(overlayVisible), animate(timing, style(overLayHidden))]),
     ]),
   ],
   standalone: true,
   imports: [
     ContactsLetterUserGroupComponent,
     ContactsDetailViewComponent,
-    CommonModule
-  ],
+    CommonModule,
+    ContactsFormComponent
+],
   templateUrl: './contacts.component.html',
   styleUrl: './contacts.component.scss',
 })
 export class ContactsComponent {
   userService = inject(UserService);
   showUserDetail: boolean = false;
+  showContactOverlay: boolean = false;
 
   selectedUser: User = {
     name: '',
@@ -40,9 +51,19 @@ export class ContactsComponent {
     color: '',
   };
 
+  /**
+   * toggle the add or edit contact overlay
+   */
+  toggleOverlay(){
+    this.showContactOverlay = !this.showContactOverlay;
+  }
+
+  /**
+   * select the user for detail view
+   * @param user 
+   */
   setSelectedUser(user: User) {
     this.selectedUser = user;
-    console.log(this.selectedUser);
     this.showUserDetail = true;
   }
 }

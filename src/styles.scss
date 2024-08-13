@@ -116,6 +116,14 @@ line-height: 56.4px;
   &:active {
     background-color: #091931;
   }
+  &:disabled {
+    cursor: not-allowed;
+    background-color: #2a3647b8;
+    &:hover {
+      transform: none;
+      box-shadow: unset;
+    }
+  }
 }
 
 .secondary {
