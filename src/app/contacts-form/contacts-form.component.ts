@@ -32,4 +32,3 @@ export class ContactsFormComponent {
 
 // neuem user rnd color zuweisen
 // nachdem ein user gelöscht oder bearbeitet wurde: zugewiesene user in tasks aktualisieren!
-// im board: dialog entfernen und so wie hier umsetzen

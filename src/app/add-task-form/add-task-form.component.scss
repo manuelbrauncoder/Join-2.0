@@ -1,5 +1,11 @@
 @import "../../styles.scss";
 
+.opened-in-dialog{
+  background-color: white;
+  border-radius: 30px;
+  padding: 64px;
+}
+
 .headline {
   @include dFlex($jc: space-between);
   h1 {

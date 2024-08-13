@@ -1,4 +1,4 @@
-<main>
+<main [ngClass]="{'opened-in-dialog': openInDialog}">
   <div class="headline">
     <h1>Add Task</h1>
     @if (openInDialog) {

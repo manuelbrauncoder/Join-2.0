@@ -22,8 +22,8 @@ export class AddTaskFormComponent {
   subTaskInput: string = ''; // input for new subtasks
   subTaskEditInput: string = '';
   searchUserInput: string = '';
-  @Input() openInDialog: boolean = false;
-  @Output() dialogOpen = new EventEmitter<boolean>();
+  @Input() openInDialog: boolean = false; // true: open in overlay, false: open in add Task View 
+  @Output() dialogOpen = new EventEmitter<boolean>(); // for closing overlay
 
   editingSubtaskIndex: number | null = null; // if null, editmode not showing
 

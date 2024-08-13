@@ -8,7 +8,7 @@
         <img src="assets/img/icon-search.png" alt="">
 
       </div>
-      <button (click)="openDialog()" class="primary">
+      <button (click)="toggleOverlay()" class="primary">
         Add task 
         <img src="assets/img/plus-icon-white.png" alt="">
       </button>
@@ -138,3 +138,11 @@
     </div>
   </div>
 </main>
+
+@if (showAddTaskOverlay) {
+  <div @toggleOverlay class="overlay">
+    <app-add-task-form (dialogOpen)="hideOverlay(false)" [openInDialog]="true"></app-add-task-form>
+  </div>
+
+  <div (click)="toggleOverlay()" class="background"></div>
+}

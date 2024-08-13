@@ -151,7 +151,7 @@ line-height: 56.4px;
 
 .input-field {
   @extend .v2-t6;
-  color: $color-grey;
+  color: black;
   border: 1px solid $color-grey;
   padding: 12px 21px;
   border-radius: 10px;
@@ -170,7 +170,7 @@ line-height: 56.4px;
 
 .text-area {
   @extend .v2-t6;
-  color: $color-grey;
+  color: black;
   border: 1px solid $color-grey;
   border-radius: 10px;
   outline: none;
@@ -202,4 +202,22 @@ line-height: 56.4px;
   @include dFlex();
   background-color: $color-main;
   margin-left: -7px;
+}
+
+.overlay{
+  z-index: 3;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  background-color: rgba(208, 207, 207, 0.688);
 }
