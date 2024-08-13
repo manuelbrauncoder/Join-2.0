@@ -21,7 +21,9 @@ main{
 }
 
 .detail-view{
-    padding: 32px 24px;
+    flex-grow: 1;
+    background-color: $color-bg-white;
+    padding: 32px 54px;
     header{
         height: 60px;
         @include dFlex($g: 30px);

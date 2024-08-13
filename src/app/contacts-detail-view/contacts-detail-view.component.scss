@@ -1,0 +1,63 @@
+@import "../../styles.scss";
+
+main {
+  @include dFlex($fd: column, $ai: flex-start, $jc: flex-start, $g: 21px);
+  margin-top: 32px;
+  background-color: $color-bg-white;
+}
+
+header {
+  @include dFlex($g: 54px, $jc: flex-start);
+  span {
+    @extend .assignedToBubble;
+    font-size: 47px;
+    font-weight: 500;
+    line-height: 56.4px;
+    width: 120px;
+    height: 120px;
+  }
+  > div {
+    @include dFlex($fd: column, $g: 8px, $jc: flex-start, $ai: flex-start);
+    h2 {
+      margin: 0;
+      @extend .v2-t2;
+    }
+    > div {
+        display: flex;
+      button {
+        margin-right: 8px;
+        @extend .v2-body;
+        border: unset;
+        background-color: unset;
+        @include dFlex($g: 13px);
+        cursor: pointer;
+        &:hover{
+            color: $color-link-blue;
+            svg{
+                fill: $color-link-blue;
+                rect,path{
+                    fill: $color-link-blue;
+                }
+            }
+        }
+      }
+    }
+  }
+}
+
+.contactInfo {
+  @extend .v2-t6;
+}
+
+.info {
+  h3 {
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19.2px;
+  }
+  span {
+    @extend .v2-body;
+    color: $color-link-blue;
+  }
+}
