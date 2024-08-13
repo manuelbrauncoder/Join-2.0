@@ -1,8 +1,13 @@
 <main>
   <div class="headline">
     <img src="assets/img/join-logo.png" alt="" />
-    <h1 class="v2-t1">Add contact</h1>
-    <h2 class="v2-t5">Tasks are better with a team!</h2>
+
+    @if (editMode) { <h1 class="v2-t1">Edit contact</h1> }
+    @if (!editMode) { <h1 class="v2-t1">Add contact</h1> }
+    
+    
+    @if (!editMode) { <h2 class="v2-t5">Tasks are better with a team!</h2> }
+    
     <hr class="blue-line" />
   </div>
   <div class="user">
@@ -65,8 +70,10 @@
         </div>
         <div class="btns">
           <button (click)="closeOverlay()" type="button" class="secondary">
-            Cancel
-            <svg
+            @if (!editMode) {Cancel}
+            @if (editMode) {Delete}
+            @if (!editMode) {
+                <svg
               width="25"
               height="24"
               viewBox="0 0 25 24"
@@ -82,9 +89,13 @@
                 stroke-linejoin="round"
               />
             </svg>
+            }
+            
           </button>
           <button class="primary" [disabled]="!contactForm.valid">
-            Create contact <img src="assets/img/btn-check" alt="" />
+            @if (!editMode) {Create contact}
+            @if (editMode) {Save}
+            <img src="assets/img/btn-check.png" alt="" />
           </button>
         </div>
       </form>
