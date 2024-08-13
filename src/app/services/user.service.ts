@@ -8,6 +8,7 @@ import { FirebaseService } from './firebase.service';
 export class UserService {
   fireService = inject(FirebaseService);
   users: User[] = [];
+  showDetailView: boolean = false;
   colors: string[] = [
     '#FF7A00',
     '#9327FF',

@@ -19,7 +19,7 @@
         </header>
 
 
-        @if (showUserDetail) {
+        @if (userService.showDetailView) {
             <div @openClose class="detail">
                 <app-contacts-detail-view [currentUser]="selectedUser"></app-contacts-detail-view>
             </div>

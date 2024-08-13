@@ -39,8 +39,8 @@ const timing = '225ms ease-in';
 })
 export class ContactsComponent {
   userService = inject(UserService);
-  showUserDetail: boolean = false;
   showContactOverlay: boolean = false;
+  showEditMode: boolean = false;
 
   selectedUser: User = {
     name: '',
@@ -55,6 +55,7 @@ export class ContactsComponent {
     this.showContactOverlay = event;
   }
 
+
   /**
    * toggle the add or edit contact overlay
    */
@@ -68,6 +69,6 @@ export class ContactsComponent {
    */
   setSelectedUser(user: User) {
     this.selectedUser = user;
-    this.showUserDetail = true;
+    this.userService.showDetailView = true;
   }
 }

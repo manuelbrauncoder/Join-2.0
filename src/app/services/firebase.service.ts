@@ -33,15 +33,18 @@ export class FirebaseService {
     let letterMap = new Map<string, User[]>();
     this.users.forEach((user) => {
       let firstLetter = user.name.charAt(0).toLowerCase();
-      if (!letterMap.has(firstLetter)) {
-        letterMap.set(firstLetter, []);
+      let usersList = letterMap.get(firstLetter);
+      if (!usersList) {
+        usersList = [];
+        letterMap.set(firstLetter, usersList);
       }
-      letterMap.get(firstLetter)?.push(user);
+      usersList.push(user);
     });
-    this.letterUser = Array.from(letterMap, ([letter, users]) => new LetterGroup ({
+    this.letterUser = Array.from(letterMap, ([letter, users]) => new LetterGroup({
       letter,
       users,
     }));
+    this.letterUser.sort((a: LetterGroup, b: LetterGroup) => a.letter.localeCompare(b.letter));
   }
 
   createLetterUserObject(letter: string, user: User) {
@@ -121,6 +124,10 @@ export class FirebaseService {
     });
   }
 
+  /**
+   * add User to firebse collection "users"
+   * @param user 
+   */
   async addUser(user: any) {
     await addDoc(
       this.getCollectionRef('users'),
@@ -130,6 +137,11 @@ export class FirebaseService {
     });
   }
 
+  /**
+   * delete data
+   * @param id for document
+   * @param collection "tasks" or "users"
+   */
   async deleteData(id: string, collection: string) {
     let docRef = doc(this.getCollectionRef(collection), id);
     await deleteDoc(docRef).catch((err) => {
@@ -137,11 +149,26 @@ export class FirebaseService {
     });
   }
 
+  /**
+   * update Task
+   * @param task 
+   */
   async updateTask(task: Task) {
     let docRef = doc(this.getCollectionRef('tasks'), task.id);
     await updateDoc(docRef, this.getCleanTaskJson(task)).catch((err) => {
       console.log('Error updating Task', err);
     });
+  }
+
+  /**
+   * update User
+   * @param user 
+   */
+  async updateUser(user: User) {
+    let docRef = doc(this.getCollectionRef('users'), user.id);
+    await updateDoc(docRef, this.getCleanUserJson(user)).catch((err) => {
+      console.log('Error updating User', err);
+    })
   }
 
   /**

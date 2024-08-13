@@ -13,10 +13,12 @@ import { UserService } from '../services/user.service';
 })
 export class ContactsFormComponent implements OnInit {
   @Output() overlayClosed = new EventEmitter<boolean>();
+  @Output() editOverlayClosed = new EventEmitter<boolean>();
   @Input() editMode: boolean = false;
   userService = inject(UserService);
   @Input() currentUser = new User();
   user = new User();
+
 
   ngOnInit(): void {
     this.copyUser();
@@ -28,20 +30,35 @@ export class ContactsFormComponent implements OnInit {
     }
   }
 
+  closeEditMode(){
+    this.editOverlayClosed.emit(false);
+  }
+
   closeOverlay() {
     this.overlayClosed.emit(false);
   }
 
-  async onSubmit(ngForm: NgForm) { // edit mode? updateUser verwenden!!
-    if (ngForm.valid && ngForm.submitted) {
+  async onSubmit(ngForm: NgForm) { 
+    if (ngForm.valid && ngForm.submitted && !this.editMode) {
       console.log('form submitted', this.user);
       await this.userService.fireService.addUser(this.user);
       this.closeOverlay();
+    } else if(ngForm.valid && ngForm.submitted && this.editMode){
+      console.log('user updated');
+      await this.userService.fireService.updateUser(this.user);
+      this.closeEditMode();
+      this.userService.showDetailView = false;
     }
+  }
+
+  async deleteUser() {
+    await this.userService.fireService.deleteData(this.user.id, 'users');
+    this.closeEditMode();
+    this.userService.showDetailView = false;
   }
 }
 
-// Weiter mit: editierten User speichern!!
+
 
 
 // neuem user rnd color zuweisen
