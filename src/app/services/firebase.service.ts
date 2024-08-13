@@ -28,7 +28,7 @@ export class FirebaseService {
 
   constructor() {}
 
-  getInitialLetters() {
+  getLetterObjects() {
     this.letterUser = [];
     let letterMap = new Map<string, User[]>();
     this.users.forEach((user) => {
@@ -191,15 +191,15 @@ export class FirebaseService {
   logUserChanges(change: DocumentChange<DocumentData>) {
     if (change.type === 'added') {
       //console.log('New Data ', change.doc.data());
-      this.getInitialLetters();
+      this.getLetterObjects();
     }
     if (change.type === 'modified') {
       console.log('Modified Data: ', change.doc.data());
-      this.getInitialLetters();
+      this.getLetterObjects();
     }
     if (change.type === 'removed') {
       console.log('Removed Data: ', change.doc.data());
-      this.getInitialLetters();
+      this.getLetterObjects();
     }
   }
 

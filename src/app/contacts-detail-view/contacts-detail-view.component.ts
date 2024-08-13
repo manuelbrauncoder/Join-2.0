@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ContactsFormComponent } from '../contacts-form/contacts-form.component';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { UserService } from '../services/user.service';
+import { TaskService } from '../services/task.service';
 
 const overLayHidden = { transform: 'translate(120%, -50%)' };
 const overlayVisible = { transform: 'translate(-50%, -50%)' };
@@ -32,6 +33,7 @@ const timing = '225ms ease-in';
 })
 export class ContactsDetailViewComponent {
   userService = inject(UserService);
+  taskService = inject(TaskService);
 
   showEditOverlay: boolean = false;
 
@@ -53,6 +55,7 @@ export class ContactsDetailViewComponent {
   }
 
   async deleteUser() {
+    await this.taskService.deleteUserInTask(this.currentUser.name);
     await this.userService.fireService.deleteData(this.currentUser.id, 'users');
     this.userService.showDetailView = false;
   }

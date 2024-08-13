@@ -238,19 +238,18 @@ export class TaskService {
   /**
    * delete all tasks in firebase collection
    */
-  async deleteAllTasks(){
+  async deleteAllTasks() {
     while (this.fireService.tasks.length > 0) {
       const id = this.fireService.tasks[0].id;
       await this.fireService.deleteData(id, 'tasks');
     }
   }
 
-  
-/**
- * 
- * @param assignedToUser 
- * @returns the color in user.color or a default color
- */
+  /**
+   *
+   * @param assignedToUser
+   * @returns the color in user.color or a default color
+   */
   getColorForUser(assignedToUser: string) {
     const user = this.fireService.users.find(
       (user) => user.name.toLowerCase() === assignedToUser.toLowerCase()
@@ -259,8 +258,8 @@ export class TaskService {
   }
 
   /**
-   * 
-   * @param prio 
+   *
+   * @param prio
    * @returns the img source for the priority
    */
   getPrioIcon(prio: string) {
@@ -273,6 +272,44 @@ export class TaskService {
         return 'assets/img/prio-urgent.png';
       default:
         return 'assets/img/prio-medium.png';
+    }
+  }
+
+  /**
+   * search deleted User in Tasks
+   * --> Delete User in Task
+   * @param name
+   */
+  async deleteUserInTask(name: string) {
+    for (let i = 0; i < this.fireService.tasks.length; i++) {
+      const task = this.fireService.tasks[i];
+      for (let k = 0; k < task.assignedTo.length; k++) {
+        const assignedUsers = task.assignedTo[k];
+        if (name.toLowerCase() === assignedUsers.toLowerCase()) {
+          this.fireService.tasks[i].assignedTo.splice(k, 1);
+          await this.fireService.updateTask(task);
+        }
+      }
+    }
+  }
+
+  /**
+   * search oldName in tasks
+   * replace with newName
+   * @param oldName
+   * @param newName
+   */
+  async updateUserInTask(oldName: string, newName: string) {
+    debugger;
+    for (let i = 0; i < this.fireService.tasks.length; i++) {
+      const task = this.fireService.tasks[i];
+      for (let k = 0; k < task.assignedTo.length; k++) {
+        const assignedToUser = task.assignedTo[k];
+        if (oldName.toLowerCase() === assignedToUser.toLowerCase()) {
+          this.fireService.tasks[i].assignedTo.splice(k, 1, newName);
+          await this.fireService.updateTask(task);
+        }
+      }
     }
   }
 }

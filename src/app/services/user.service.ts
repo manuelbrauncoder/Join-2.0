@@ -152,4 +152,11 @@ export class UserService {
         await this.fireService.addUser(user);
     }
   }
+
+  async deleteAllUsers() {
+    while (this.fireService.users.length > 0) {
+      const id = this.fireService.users[0].id;
+      await this.fireService.deleteData(id, 'users');
+    }
+  }
 }
