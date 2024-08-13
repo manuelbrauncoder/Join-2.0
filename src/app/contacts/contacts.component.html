@@ -17,8 +17,10 @@
             <img src="assets/img/divider-vertical-blue.png" alt="">
             <span class="v2-t5">Better with a team</span>
         </header>
+
+
         @if (showUserDetail) {
-            <div class="detail">
+            <div @openClose class="detail">
                 <app-contacts-detail-view [currentUser]="selectedUser"></app-contacts-detail-view>
             </div>
         }
