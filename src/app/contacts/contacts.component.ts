@@ -51,6 +51,10 @@ export class ContactsComponent {
     color: '',
   };
 
+  hideOverlay(event: boolean){
+    this.showContactOverlay = event;
+  }
+
   /**
    * toggle the add or edit contact overlay
    */

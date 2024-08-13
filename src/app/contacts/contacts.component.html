@@ -31,7 +31,7 @@
 
 @if (showContactOverlay) {
     <div @toggleOverlay class="overlay">
-        <app-contacts-form></app-contacts-form>
+        <app-contacts-form (overlayClosed)="hideOverlay($event)"></app-contacts-form>
     </div>
 
     <div (click)="toggleOverlay()" class="background"></div>
