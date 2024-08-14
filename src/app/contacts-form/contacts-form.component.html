@@ -23,9 +23,15 @@
     </button>
     }
 
+    @if(!editMode){
     <div class="person-wrapper">
-      <img src="assets/img/person.png" alt="" />
-    </div>
+      
+        <img src="assets/img/person.png" alt="" />
+      </div>
+    }
+    @if (editMode) {
+      <span [ngStyle]="{ 'background-color': user.color }" class="assignedToBubble name-bubble">{{ user.name | initials }}</span>
+    }
     <div class="form">
       <form
         id="contactForm"

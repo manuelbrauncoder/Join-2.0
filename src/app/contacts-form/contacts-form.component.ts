@@ -11,11 +11,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { TaskService } from '../services/task.service';
+import { InitialsPipe } from '../pipes/initials.pipe';
 
 @Component({
   selector: 'app-contacts-form',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, InitialsPipe],
   templateUrl: './contacts-form.component.html',
   styleUrl: './contacts-form.component.scss',
 })
@@ -76,6 +77,7 @@ export class ContactsFormComponent implements OnInit {
    * save new user in firebase
    */
   async saveNewUser() {
+    this.user.color = this.userService.getRandomColor();
     console.log('form submitted', this.user);
     await this.userService.fireService.addUser(this.user);
     this.closeOverlay();
@@ -105,5 +107,3 @@ export class ContactsFormComponent implements OnInit {
     this.userService.showDetailView = false;
   }
 }
-
-// neuem user rnd color zuweisen

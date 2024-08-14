@@ -159,4 +159,8 @@ export class UserService {
       await this.fireService.deleteData(id, 'users');
     }
   }
+
+  getRandomColor(){
+    return this.colors[Math.floor(Math.random()*this.colors.length)];
+  }
 }
