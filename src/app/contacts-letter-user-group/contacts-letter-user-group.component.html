@@ -3,7 +3,7 @@
   <hr class="divider-horizontal">
   <div class="users">
     @for (user of userGroup.users; track $index; let index = $index) {
-    <div (click)="selectUser(user)" class="user-group">
+    <div tabindex="{{index}}" (click)="selectUser(user, user.id)" class="user-group">
         <span [ngStyle]="{'background-color': user.color}" class="assignedToBubble">{{ user.name | initials }}</span>
         <div>
           <h3 class="v2-t6">{{ user.name }}</h3>

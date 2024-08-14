@@ -3,6 +3,7 @@ import { RouterOutlet, Router, Event, NavigationEnd } from '@angular/router';
 import { HeaderComponent } from './shared/header/header.component';
 import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
 import { FirebaseService } from './services/firebase.service';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ export class AppComponent implements OnDestroy {
   title = 'join-2';
 
   fireService = inject(FirebaseService);
+  userService = inject(UserService);
   unsubTaskList;
   unsubUsersList;
 
@@ -30,6 +32,7 @@ export class AppComponent implements OnDestroy {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         this.checkPath(event.url);
+        this.hideUserDetailonRoute(event.url);
       }
     });
   }
@@ -43,6 +46,16 @@ export class AppComponent implements OnDestroy {
       this.onLogin = true;
     } else {
       this.onLogin = false;
+    }
+  }
+
+  /**
+   * close user detail view, to prevent empty user view on route change
+   * @param url 
+   */
+  hideUserDetailonRoute(url: string) {
+    if (url !== '/contacts') {
+      this.userService.showDetailView = false;
     }
   }
 

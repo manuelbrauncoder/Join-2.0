@@ -56,14 +56,25 @@ export class BoardComponent {
 
   searchInput: string = '';
 
+  /**
+   * hide add task overlay
+   * @param event 
+   */
   hideOverlay(event: boolean){
     this.showAddTaskOverlay = false;
   }
 
+  /**
+   * toggle add task overlay
+   */
   toggleOverlay(){
     this.showAddTaskOverlay = !this.showAddTaskOverlay;
   }
 
+  /**
+   * filter tasks by searchInput
+   * @returns all or searched
+   */
   filteredTasks(): Task[] {
     if (!this.searchInput) {
       return this.taskService.fireService.tasks;
@@ -73,6 +84,12 @@ export class BoardComponent {
     );
   }
 
+  /**
+   * Angular CdK Drag and Drop
+   * change task status if droped in new container
+   * @param event 
+   * @param newStatus 
+   */
   drop(event: CdkDragDrop<any[]>, newStatus: string) {
     if (event.previousContainer === event.container) {
       moveItemInArray(

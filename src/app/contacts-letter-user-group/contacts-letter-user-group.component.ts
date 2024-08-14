@@ -19,8 +19,13 @@ export class ContactsLetterUserGroupComponent {
 
   @Output() selectedUser = new EventEmitter<User>();
 
-  selectUser(value: User){
+  userIdForDetails: string = '';
+
+  selectUser(value: User, id: string){
     this.selectedUser.emit(value);
+    this.userIdForDetails = id;
   }
+
+  
 
 }
