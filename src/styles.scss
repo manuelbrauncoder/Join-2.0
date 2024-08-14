@@ -21,9 +21,16 @@ $color-red-urgent: #ff3d00;
 $color-orange-medium: #ffa800;
 $color-green-low: #7ae229;
 $color-input-focus-blue: #005dff;
-$color-link-blue: #007CEE;
+$color-link-blue: #007cee;
 
 // Fonts
+
+.summary-number {
+  font-family: Inter;
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 76.8px;
+}
 
 .v2-body {
   font-family: "Inter";
@@ -33,10 +40,10 @@ $color-link-blue: #007CEE;
 }
 
 .v2-t2 {
-font-family: Inter;
-font-size: 47px;
-font-weight: 500;
-line-height: 56.4px;
+  font-family: Inter;
+  font-size: 47px;
+  font-weight: 500;
+  line-height: 56.4px;
 }
 
 .v2-t5 {
@@ -204,7 +211,7 @@ line-height: 56.4px;
   margin-left: -7px;
 }
 
-.overlay{
+.overlay {
   z-index: 3;
   position: fixed;
   top: 50%;
