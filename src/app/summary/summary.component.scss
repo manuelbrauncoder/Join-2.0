@@ -1,12 +1,48 @@
 @import "../../styles.scss";
 
+.btn-hover {
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0px 4px 4px 0px #00000040 !important;
+    background-color: $color-main !important;
+  }
+  &:hover span, h1 {
+    color: white !important;
+  }
+  &:hover .icon{
+    background-color: white !important;
+  }
+}
+
 main {
   margin: 96px 0 0 232px;
   background-color: $color-bg-white;
   height: calc(100vh - 96px);
+  @include dFlex($fd: column, $ai: flex-start, $g: 56px);
+  padding: 96px;
+}
+
+header {
+  @include dFlex($jc: flex-start, $g: 30px);
+  h1 {
+    margin: 0;
+    @extend .v2-t1;
+  }
+  hr {
+    height: 59px;
+    width: 3px;
+    background-color: $color-lightblue;
+    border-radius: 100vw;
+  }
+  h3 {
+    margin: 0;
+    @extend .v2-t5;
+    color: $color-main;
+  }
 }
 
 section {
+  @include dFlex($g: 80px);
   .summary {
     @include dFlex($g: 32px, $fd: column);
     .medium {
@@ -65,6 +101,11 @@ section {
         }
       }
       .divider {
+        width: 2px;
+        height: 100px;
+        border-radius: 100vw;
+        background-color: $color-grey;
+        margin: 0;
       }
       .date {
         @include dFlex($fd: column, $g: 13px);
@@ -75,11 +116,49 @@ section {
           line-height: 25.2px;
           text-align: left;
         }
-        & span:nth-of-type(2){
-            @extend .v2-body;
-            color: $color-main;
+        & span:nth-of-type(2) {
+          @extend .v2-body;
+          color: $color-main;
         }
       }
     }
+  }
+  .small {
+    @include dFlex($g: 32px);
+    .small-btn {
+      width: 168px;
+      height: 168px;
+      border: unset;
+      border-radius: 30px;
+      @include dFlex($fd: column, $g: 13px);
+      box-shadow: 0px 0px 4px 0px #0000001a;
+      padding: 25px;
+      background-color: white;
+      h1 {
+        margin: 0;
+        @extend .summary-number;
+        color: $color-main;
+      }
+      span {
+        @extend .v2-t6;
+        color: $color-main;
+      }
+    }
+  }
+}
+
+.greeting {
+  h3 {
+    margin: 0;
+    @extend .v2-t2;
+    color: $color-main;
+  }
+  h2 {
+    margin: 0;
+    font-family: Inter;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 76.8px;
+    color: $color-lightblue;
   }
 }

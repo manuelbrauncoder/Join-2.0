@@ -8,7 +8,7 @@
   <section>
     <div class="summary">
       <div class="medium">
-        <button class="medium-btn">
+        <button class="medium-btn btn-hover">
           <div class="icon">
             <svg
               width="33"
@@ -41,7 +41,7 @@
             <span>To-do</span>
           </div>
         </button>
-        <button class="medium-btn">
+        <button class="medium-btn btn-hover">
           <div class="icon">
             <svg
               width="38"
@@ -65,26 +65,38 @@
           </div>
         </button>
       </div>
-      <button class="large">
+      <button class="large btn-hover">
         <div class="counter">
-            <img src="assets/img/summary-urgent-icon.png" alt="">
-            <div class="counter-number">
-                <h1>{{ getNumberOfUrgentTasks() }}</h1>
-                <span>Urgent</span>
-            </div>
+          <img src="assets/img/summary-urgent-icon.png" alt="" />
+          <div class="counter-number">
+            <h1>{{ getNumberOfUrgentTasks() }}</h1>
+            <span>Urgent</span>
+          </div>
         </div>
-        <hr class="divider">
+        <hr class="divider" />
         <div class="date">
-            <span>October 16, 2022</span>
-            <span>Upcoming Deadline</span>
+          <span>October 16, 2022</span>
+          <span>Upcoming Deadline</span>
         </div>
       </button>
       <div class="small">
-        <button class="small-btn"></button>
-        <button class="small-btn"></button>
-        <button class="small-btn"></button>
+        <button class="small-btn btn-hover">
+          <h1>{{ taskService.fireService.tasks.length }}</h1>
+          <span>Tasks in board</span>
+        </button>
+        <button class="small-btn btn-hover">
+          <h1>{{ getNumberOfTasks("progress") }}</h1>
+          <span>Tasks in Progress</span>
+        </button>
+        <button class="small-btn btn-hover">
+          <h1>{{ getNumberOfTasks("feedback") }}</h1>
+          <span>Awaiting Feedback</span>
+        </button>
       </div>
     </div>
-    <h2>Good morning User</h2>
+    <div class="greeting">
+      <h3>Good morning,</h3>
+      <h2>User</h2>
+    </div>
   </section>
 </main>
