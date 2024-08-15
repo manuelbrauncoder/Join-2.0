@@ -1,5 +1,13 @@
 import { inject, Injectable, OnDestroy } from '@angular/core';
-import { Auth, user, User, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from '@angular/fire/auth';
+import {
+  Auth,
+  user,
+  User,
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut,
+} from '@angular/fire/auth';
 import {
   Firestore,
   collection,
@@ -40,15 +48,28 @@ export class FirebaseService implements OnDestroy {
   }
 
   async login(email: string, password: string) {
-  try {
-    const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
-    console.log('User logged in:', userCredential.user);
-  } catch (err: any) {
-    console.error('Error logging in:', err.code, err.message);
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        this.auth,
+        email,
+        password
+      );
+      console.log('User logged in:', userCredential.user);
+    } catch (err: any) {
+      console.error('Error logging in:', err.code, err.message);
+    }
   }
-}
 
-  
+  async logout() {
+    try {
+      await signOut(this.auth);
+      console.log('User signed out');
+      
+    } catch (error) {
+      console.log('Error signing out', error);
+      
+    }
+  }
 
   subUserLogin() {
     return this.user$.subscribe((aUser: User | null) => {

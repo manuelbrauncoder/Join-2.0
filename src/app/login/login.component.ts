@@ -16,4 +16,5 @@ export class LoginComponent {
   async guestLogin() {
     await this.fireService.login('mbraunpstein@googlemail.com', '123456');
   }
+
 }
