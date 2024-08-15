@@ -6,17 +6,51 @@
       <hr class="blue-line" />
     </div>
   </header>
-  <form action="">
+  <form
+    (ngSubmit)="onSubmit(userForm)"
+    #userForm="ngForm"
+    name="userForm"
+    id="userForm"
+  >
     <div class="input-wrapper">
-      <input placeholder="Name" type="text" class="input-field" />
+      <input
+        #name="ngModel"
+        name="name"
+        id="name"
+        [(ngModel)]="newUser.name"
+        placeholder="Name"
+        type="text"
+        class="input-field"
+        required
+        minlength="4"
+      />
       <img class="input-icon" src="assets/img/input-icon-person.png" alt="" />
     </div>
     <div class="input-wrapper">
-      <input placeholder="Email" type="email" class="input-field" />
+      <input
+        placeholder="Email"
+        type="email"
+        class="input-field"
+        [(ngModel)]="newUser.email"
+        #mail="ngModel"
+        name="mail"
+        id="mail"
+        required
+      />
       <img class="input-icon" src="assets/img/mail.png" alt="" />
     </div>
     <div class="input-wrapper">
-      <input placeholder="Password" type="password" class="input-field" />
+      <input
+        placeholder="Password"
+        type="password"
+        class="input-field"
+        [(ngModel)]="newUser.password"
+        #password="ngModel"
+        name="password"
+        id="password"
+        required
+        minlength="4"
+      />
       <img class="input-icon" src="assets/img/lock.png" alt="" />
     </div>
     <div class="input-wrapper">
@@ -24,15 +58,26 @@
         placeholder="Confirm Password"
         type="password"
         class="input-field"
+        [(ngModel)]="passwordConfirmation"
+        #passwordConfirmation="ngModel"
+        required
+        name="passwordConfirmation"
+        [ngModelOptions]="{ standalone: true }"
       />
       <img class="input-icon" src="assets/img/lock.png" alt="" />
     </div>
     <div class="checkbox-wrapper">
-      <input type="checkbox" id="checkbox" />
+      <input
+        type="checkbox"
+        id="checkbox"
+        required
+        [(ngModel)]="policyCheck"
+        #policyCheck="ngModel"
+        name="checkbox"
+        [ngModelOptions]="{ standalone: true }"
+      />
       <label for="checkbox">I accept the Privacy policy</label>
     </div>
-    <button class="primary">
-        Sign up
-    </button>
+    <button type="submit" [disabled]="!userForm.valid" class="primary">Sign up</button>
   </form>
 </main>
