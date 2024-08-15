@@ -47,7 +47,12 @@ export class FirebaseService implements OnDestroy {
     this.userSubscription.unsubscribe();
   }
 
-  async login(email: string, password: string) {
+  /**
+   * firebase auth user sign in method
+   * @param email 
+   * @param password 
+   */
+  async signIn(email: string, password: string) {
     try {
       const userCredential = await signInWithEmailAndPassword(
         this.auth,
@@ -60,7 +65,10 @@ export class FirebaseService implements OnDestroy {
     }
   }
 
-  async logout() {
+  /**
+   * firebase auth user sign out method
+   */
+  async signOut() {
     try {
       await signOut(this.auth);
       console.log('User signed out');
@@ -71,6 +79,10 @@ export class FirebaseService implements OnDestroy {
     }
   }
 
+  /**
+   * subscribe if a user is signed in
+   * @returns 
+   */
   subUserLogin() {
     return this.user$.subscribe((aUser: User | null) => {
       if (aUser === null) {

@@ -13,8 +13,8 @@ export class LoginComponent {
   fireService = inject(FirebaseService);
   router = inject(Router);
 
-  async guestLogin() {
-    await this.fireService.login('mbraunpstein@googlemail.com', '123456');
+  async signIn() {
+    await this.fireService.signIn('mbraunpstein@googlemail.com', '123456');
   }
 
 }
