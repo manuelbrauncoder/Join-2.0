@@ -1,0 +1,40 @@
+@import "../../styles.scss";
+
+.logo {
+  position: fixed;
+  top: 80px;
+  left: 77px;
+}
+
+.signup {
+  @include dFlex($g: 35px);
+  margin-left: auto;
+  span {
+    @extend .v2-t6;
+  }
+}
+
+main {
+  background-color: $color-bg-white;
+  @include dFlex($fd: column, $jc: space-between);
+  width: 100%;
+  height: 100vh;
+  padding: 48px;
+}
+
+.legals {
+  @include dFlex($g: 35px);
+  a {
+    @extend .v2-body;
+    @include link($c: $color-icon);
+  }
+}
+
+.sign-wrapper {
+  max-width: 650px;
+  max-height: fit-content;
+  padding: 48px 115px 48px 115px;
+  box-shadow: 0px 0px 14px 3px #0000000a;
+  background-color: white;
+  border-radius: 30px;
+}

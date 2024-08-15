@@ -1,1 +1,38 @@
-<p>sign-up works!</p>
+<main>
+  <header>
+    <img (click)="hideSignUp()" src="assets/img/arrow-blue-left.png" alt="" />
+    <div class="headline-wrapper">
+      <h1>Sign up</h1>
+      <hr class="blue-line" />
+    </div>
+  </header>
+  <form action="">
+    <div class="input-wrapper">
+      <input placeholder="Name" type="text" class="input-field" />
+      <img class="input-icon" src="assets/img/input-icon-person.png" alt="" />
+    </div>
+    <div class="input-wrapper">
+      <input placeholder="Email" type="email" class="input-field" />
+      <img class="input-icon" src="assets/img/mail.png" alt="" />
+    </div>
+    <div class="input-wrapper">
+      <input placeholder="Password" type="password" class="input-field" />
+      <img class="input-icon" src="assets/img/lock.png" alt="" />
+    </div>
+    <div class="input-wrapper">
+      <input
+        placeholder="Confirm Password"
+        type="password"
+        class="input-field"
+      />
+      <img class="input-icon" src="assets/img/lock.png" alt="" />
+    </div>
+    <div class="checkbox-wrapper">
+      <input type="checkbox" id="checkbox" />
+      <label for="checkbox">I accept the Privacy policy</label>
+    </div>
+    <button class="primary">
+        Sign up
+    </button>
+  </form>
+</main>

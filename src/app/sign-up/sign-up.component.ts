@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-sign-up',
@@ -8,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './sign-up.component.scss'
 })
 export class SignUpComponent {
+  @Output() signUp = new EventEmitter<boolean>();
 
+  hideSignUp(){
+    this.signUp.emit(false);
+  }
 }

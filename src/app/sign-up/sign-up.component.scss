@@ -1,0 +1,55 @@
+@import "../../styles.scss";
+
+main {
+    width: 100%;
+    @include dFlex($fd: column, $g: 32px);
+  header {
+    width: 100%;
+    @include dFlex();
+    img{
+        margin-right: auto;
+        cursor: pointer;
+    }
+    .headline-wrapper {
+        @include dFlex($fd: column);
+        margin-right: auto;
+      h1 {
+        @extend .v2-t1;
+        margin: 0;
+      }
+      hr {
+        margin: 8px 0 0 0;
+        height: 4px;
+        width: 150px;
+        border-radius: 100vw;
+        background-color: $color-lightblue;
+      }
+    }
+  }
+
+  form{
+    @include dFlex($fd: column, $g: 24px);
+
+    input{
+        width: 420px;
+    }
+  }
+}
+
+.checkbox-wrapper{
+    @include dFlex($g: 8px);
+    input{
+        width: unset !important;
+    }
+}
+
+.input-wrapper{
+    position: relative;
+}
+
+.input-icon {
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    transform: translateY(-50%);
+}
