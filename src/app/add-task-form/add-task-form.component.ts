@@ -5,7 +5,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { TaskService } from '../services/task.service';
 import { UserService } from '../services/user.service';
 import { InitialsPipe } from '../pipes/initials.pipe';
-import { User } from '../models/user.class';
+import { UserCl } from '../models/user.class';
 
 @Component({
   selector: 'app-add-task-form',
@@ -43,7 +43,7 @@ export class AddTaskFormComponent {
    * 
    * @returns all users, or filtered user
    */
-  filteredUsers(): User[] {
+  filteredUsers(): UserCl[] {
     if (!this.searchUserInput) {
       return this.userService.fireService.users;
     }

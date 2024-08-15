@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { ContactsLetterUserGroupComponent } from '../contacts-letter-user-group/contacts-letter-user-group.component';
-import { User } from '../models/user.class';
+import { UserCl } from '../models/user.class';
 import { ContactsDetailViewComponent } from '../contacts-detail-view/contacts-detail-view.component';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
@@ -42,7 +42,7 @@ export class ContactsComponent {
   showContactOverlay: boolean = false;
   showEditMode: boolean = false;
 
-  selectedUser: User = {
+  selectedUser: UserCl = {
     name: '',
     id: '',
     phone: '',
@@ -67,7 +67,7 @@ export class ContactsComponent {
    * select the user for detail view
    * @param user 
    */
-  setSelectedUser(user: User) {
+  setSelectedUser(user: UserCl) {
     this.selectedUser = user;
     this.userService.showDetailView = true;
   }

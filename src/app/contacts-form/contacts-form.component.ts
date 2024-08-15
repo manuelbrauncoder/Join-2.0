@@ -6,7 +6,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { User } from '../models/user.class';
+import { UserCl } from '../models/user.class';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { UserService } from '../services/user.service';
@@ -28,9 +28,9 @@ export class ContactsFormComponent implements OnInit {
   @Output() editOverlayClosed = new EventEmitter<boolean>();
 
   @Input() editMode: boolean = false;
-  @Input() currentUser = new User(); // user before edited
+  @Input() currentUser = new UserCl(); // user before edited
 
-  user = new User(); // user after edited
+  user = new UserCl(); // user after edited
 
   ngOnInit(): void {
     this.copyUser();
@@ -43,7 +43,7 @@ export class ContactsFormComponent implements OnInit {
    */
   copyUser() {
     if (this.editMode) {
-      this.user = new User(this.currentUser);
+      this.user = new UserCl(this.currentUser);
     }
   }
 

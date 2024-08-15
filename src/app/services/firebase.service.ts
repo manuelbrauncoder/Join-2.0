@@ -1,4 +1,5 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, OnDestroy } from '@angular/core';
+import { Auth, user, User, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from '@angular/fire/auth';
 import {
   Firestore,
   collection,
@@ -13,24 +14,57 @@ import {
   updateDoc,
 } from '@angular/fire/firestore';
 import { SubTask, Task } from '../models/task.class';
-import { LetterGroup, User } from '../models/user.class';
+import { LetterGroup, UserCl } from '../models/user.class';
+import { Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class FirebaseService {
+export class FirebaseService implements OnDestroy {
   firestore = inject(Firestore);
+  private auth = inject(Auth);
+  user$ = user(this.auth);
+  userSubscription: Subscription;
 
   tasks: Task[] = [];
-  users: User[] = [];
+  users: UserCl[] = [];
 
   letterUser: any = [];
 
-  constructor() {}
+  constructor() {
+    this.userSubscription = this.subUserLogin();
+  }
+
+  ngOnDestroy(): void {
+    this.userSubscription.unsubscribe();
+  }
+
+  login(email: string, password: string) {
+    signInWithEmailAndPassword(this.auth, email, password)
+      .then(() => {
+        console.log('user with email logged in:', email);
+        // Login successful
+      })
+      .catch((err: { code: any; message: any; }) => {
+        console.log('Error logging in', err.code, err.message);
+        // An error occurred
+      });
+  }
+
+  // test log in!!
+  
+
+  subUserLogin() {
+    return this.user$.subscribe((aUser: User | null) => {
+      if (aUser === null) {
+        console.log('Currently no user loged in', aUser);
+      }
+    });
+  }
 
   getLetterObjects() {
     this.letterUser = [];
-    let letterMap = new Map<string, User[]>();
+    let letterMap = new Map<string, UserCl[]>();
     this.users.forEach((user) => {
       let firstLetter = user.name.charAt(0).toLowerCase();
       let usersList = letterMap.get(firstLetter);
@@ -40,14 +74,20 @@ export class FirebaseService {
       }
       usersList.push(user);
     });
-    this.letterUser = Array.from(letterMap, ([letter, users]) => new LetterGroup({
-      letter,
-      users,
-    }));
-    this.letterUser.sort((a: LetterGroup, b: LetterGroup) => a.letter.localeCompare(b.letter));
+    this.letterUser = Array.from(
+      letterMap,
+      ([letter, users]) =>
+        new LetterGroup({
+          letter,
+          users,
+        })
+    );
+    this.letterUser.sort((a: LetterGroup, b: LetterGroup) =>
+      a.letter.localeCompare(b.letter)
+    );
   }
 
-  createLetterUserObject(letter: string, user: User) {
+  createLetterUserObject(letter: string, user: UserCl) {
     return {
       firstLetter: letter,
       letterUsers: user,
@@ -81,7 +121,7 @@ export class FirebaseService {
     };
   }
 
-  getCleanUserJson(user: User) {
+  getCleanUserJson(user: UserCl) {
     return {
       name: user.name,
       email: user.email,
@@ -111,10 +151,6 @@ export class FirebaseService {
     return doc(this.getCollectionRef(collRef), docId);
   }
 
-  /**
-   * add Task to firebase collection "tasks"
-   * @param task
-   */
   async addTask(task: any) {
     await addDoc(
       this.getCollectionRef('tasks'),
@@ -124,10 +160,6 @@ export class FirebaseService {
     });
   }
 
-  /**
-   * add User to firebse collection "users"
-   * @param user 
-   */
   async addUser(user: any) {
     await addDoc(
       this.getCollectionRef('users'),
@@ -137,11 +169,6 @@ export class FirebaseService {
     });
   }
 
-  /**
-   * delete data
-   * @param id for document
-   * @param collection "tasks" or "users"
-   */
   async deleteData(id: string, collection: string) {
     let docRef = doc(this.getCollectionRef(collection), id);
     await deleteDoc(docRef).catch((err) => {
@@ -149,10 +176,6 @@ export class FirebaseService {
     });
   }
 
-  /**
-   * update Task
-   * @param task 
-   */
   async updateTask(task: Task) {
     let docRef = doc(this.getCollectionRef('tasks'), task.id);
     await updateDoc(docRef, this.getCleanTaskJson(task)).catch((err) => {
@@ -160,22 +183,13 @@ export class FirebaseService {
     });
   }
 
-  /**
-   * update User
-   * @param user 
-   */
-  async updateUser(user: User) {
+  async updateUser(user: UserCl) {
     let docRef = doc(this.getCollectionRef('users'), user.id);
     await updateDoc(docRef, this.getCleanUserJson(user)).catch((err) => {
       console.log('Error updating User', err);
-    })
+    });
   }
 
-  /**
-   * log changes in firebase
-   * call in onSnapshot
-   * @param change
-   */
   logTaskChanges(change: DocumentChange<DocumentData>) {
     if (change.type === 'added') {
       //console.log('New Data ', change.doc.data());
@@ -203,10 +217,6 @@ export class FirebaseService {
     }
   }
 
-  /**
-   * safe tasks from firebase in tasks
-   * @returns a snapshot from tasks
-   */
   getTasksList() {
     const q = query(this.getCollectionRef('tasks'), orderBy('title'));
     return onSnapshot(q, (list) => {
@@ -235,7 +245,7 @@ export class FirebaseService {
     });
   }
 
-  setUserObject(obj: any, userId: string): User {
+  setUserObject(obj: any, userId: string): UserCl {
     return {
       id: userId,
       name: obj.name || '',
@@ -246,12 +256,6 @@ export class FirebaseService {
     };
   }
 
-  /**
-   *
-   * @param obj task
-   * @param taskId firebse document id
-   * @returns a Task Object
-   */
   setTaskObject(obj: any, taskId: string): Task {
     return {
       id: taskId || '',

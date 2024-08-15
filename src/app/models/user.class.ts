@@ -1,4 +1,4 @@
-export class User{
+export class UserCl{
     id: string;
     name: string;
     email: string;
@@ -6,7 +6,7 @@ export class User{
     phone: string;
     color: string;
 
-    constructor(obj?: Partial<User>){
+    constructor(obj?: Partial<UserCl>){
         this.id = obj?.id ?? '';
         this.name = obj?.name ?? '';
         this.email = obj?.email ?? '';
@@ -18,7 +18,7 @@ export class User{
 
 export class LetterGroup{
     letter: string;
-    users: User[];
+    users: UserCl[];
 
     constructor(obj?: Partial<LetterGroup>){
         this.letter = obj?.letter ?? '';

@@ -1,5 +1,5 @@
 import { Component, inject, Input } from '@angular/core';
-import { User } from '../models/user.class';
+import { UserCl } from '../models/user.class';
 import { InitialsPipe } from '../pipes/initials.pipe';
 import { CommonModule } from '@angular/common';
 import { ContactsFormComponent } from '../contacts-form/contacts-form.component';
@@ -37,7 +37,7 @@ export class ContactsDetailViewComponent {
 
   showEditOverlay: boolean = false;
 
-  @Input() currentUser: User = {
+  @Input() currentUser: UserCl = {
     name: '',
     id: '',
     phone: '',

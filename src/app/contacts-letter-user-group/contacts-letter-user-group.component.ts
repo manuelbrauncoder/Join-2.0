@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { LetterGroup, User } from '../models/user.class';
+import { LetterGroup, UserCl } from '../models/user.class';
 import { InitialsPipe } from '../pipes/initials.pipe';
 import { CommonModule } from '@angular/common';
 
@@ -17,11 +17,11 @@ export class ContactsLetterUserGroupComponent {
     users: []
   };
 
-  @Output() selectedUser = new EventEmitter<User>();
+  @Output() selectedUser = new EventEmitter<UserCl>();
 
   userIdForDetails: string = '';
 
-  selectUser(value: User, id: string){
+  selectUser(value: UserCl, id: string){
     this.selectedUser.emit(value);
     this.userIdForDetails = id;
   }

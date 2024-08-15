@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { User } from '../models/user.class';
+import { UserCl } from '../models/user.class';
 import { FirebaseService } from './firebase.service';
 
 @Injectable({
@@ -7,7 +7,7 @@ import { FirebaseService } from './firebase.service';
 })
 export class UserService {
   fireService = inject(FirebaseService);
-  users: User[] = [];
+  users: UserCl[] = [];
   showDetailView: boolean = false;
   colors: string[] = [
     '#FF7A00',
@@ -21,7 +21,7 @@ export class UserService {
     '#00BEE8',
   ];
 
-  exampleUsers: User[] = [
+  exampleUsers: UserCl[] = [
     {
       "id": '',
       "name": "Elon Musk",
