@@ -22,7 +22,7 @@ import { Subscription } from 'rxjs';
 })
 export class FirebaseService implements OnDestroy {
   firestore = inject(Firestore);
-  private auth = inject(Auth);
+  auth = inject(Auth);
   user$ = user(this.auth);
   userSubscription: Subscription;
 
@@ -39,19 +39,15 @@ export class FirebaseService implements OnDestroy {
     this.userSubscription.unsubscribe();
   }
 
-  login(email: string, password: string) {
-    signInWithEmailAndPassword(this.auth, email, password)
-      .then(() => {
-        console.log('user with email logged in:', email);
-        // Login successful
-      })
-      .catch((err: { code: any; message: any; }) => {
-        console.log('Error logging in', err.code, err.message);
-        // An error occurred
-      });
+  async login(email: string, password: string) {
+  try {
+    const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
+    console.log('User logged in:', userCredential.user);
+  } catch (err: any) {
+    console.error('Error logging in:', err.code, err.message);
   }
+}
 
-  // test log in!!
   
 
   subUserLogin() {
