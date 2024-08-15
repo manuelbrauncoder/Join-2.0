@@ -4,6 +4,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
 import { FirebaseService } from './services/firebase.service';
 import { UserService } from './services/user.service';
+import { FirebaseAuthService } from './services/firebase-auth.service';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +13,10 @@ import { UserService } from './services/user.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnDestroy {
+export class AppComponent implements OnDestroy, OnInit {
   title = 'join-2';
+
+  authService = inject(FirebaseAuthService);
 
   fireService = inject(FirebaseService);
   userService = inject(UserService);
@@ -26,6 +29,20 @@ export class AppComponent implements OnDestroy {
     this.subRouterEvents();
     this.unsubTaskList = this.fireService.getTasksList();
     this.unsubUsersList = this.fireService.getUsersList();
+  }
+
+  ngOnInit(): void {
+      this.authService.user$.subscribe(user => {
+        if (user) {
+          this.authService.currentUserSig.set({
+            email: user.email!,
+            username: user.displayName!
+          })
+        } else {
+          this.authService.currentUserSig.set(null);
+        }
+        console.log(this.authService.currentUserSig());
+      });
   }
 
   subRouterEvents(){

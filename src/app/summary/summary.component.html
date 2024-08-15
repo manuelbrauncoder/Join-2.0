@@ -96,7 +96,7 @@
     </div>
     <div class="greeting">
       <h3>Good morning,</h3>
-      <h2>User</h2>
+      <h2>{{ authService.currentUserSig()?.username }}</h2>
     </div>
   </section>
 </main>

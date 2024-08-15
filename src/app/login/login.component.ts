@@ -15,8 +15,20 @@ export class LoginComponent {
   authService = inject(FirebaseAuthService);
   router = inject(Router);
 
-  async signIn() {
-    await this.authService.signIn('mbraunpstein@googlemail.com', '123456');
+  testEmail: string = 'mbraunpstein@googlemail.com';
+  testPw: string = '123456';
+
+   signIn() {
+    this.authService.login(this.testEmail, this.testPw).subscribe({
+      next: () => {
+        console.log('User loged in');
+        this.router.navigate(['/summary'])
+      },
+      error: (err) => {
+        console.log('Error signing in', err);
+        
+      }
+    })
   }
 
 }

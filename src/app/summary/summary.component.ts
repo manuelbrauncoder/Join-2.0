@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { TaskService } from '../services/task.service';
+import { FirebaseAuthService } from '../services/firebase-auth.service';
 
 @Component({
   selector: 'app-summary',
@@ -10,6 +11,7 @@ import { TaskService } from '../services/task.service';
 })
 export class SummaryComponent {
   taskService = inject(TaskService);
+  authService = inject(FirebaseAuthService);
 
   getNumberOfTasks(status: string): number {
     let counter = 0;
