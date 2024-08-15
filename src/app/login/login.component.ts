@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
 import { FirebaseService } from '../services/firebase.service';
+import { FirebaseAuthService } from '../services/firebase-auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,10 +12,11 @@ import { FirebaseService } from '../services/firebase.service';
 })
 export class LoginComponent {
   fireService = inject(FirebaseService);
+  authService = inject(FirebaseAuthService);
   router = inject(Router);
 
   async signIn() {
-    await this.fireService.signIn('mbraunpstein@googlemail.com', '123456');
+    await this.authService.signIn('mbraunpstein@googlemail.com', '123456');
   }
 
 }
