@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { UserService } from '../../services/user.service';
+import { FirebaseAuthService } from '../../services/firebase-auth.service';
 
 @Component({
   selector: 'app-header',
@@ -12,6 +13,7 @@ import { UserService } from '../../services/user.service';
 export class HeaderComponent {
   taskService = inject(TaskService);
   userService = inject(UserService);
+  authService = inject(FirebaseAuthService);
 
  async resetTasks(){
     if (confirm('replace data in firebase with example data')) {

@@ -24,6 +24,7 @@ export class UserService {
   exampleUsers: UserCl[] = [
     {
       "id": '',
+      "uid": '',
       "name": "Elon Musk",
       "email": "elon.musk@tech.com",
       "password": "SpaceX123!",
@@ -32,6 +33,7 @@ export class UserService {
     },
     {
       "id": '',
+      "uid": '',
       "name": "Bill Gates",
       "email": "bill.gates@tech.com",
       "password": "Microsoft@98",
@@ -40,6 +42,7 @@ export class UserService {
     },
     {
       "id": '',
+      "uid": '',
       "name": "Jeff Bezos",
       "email": "jeff.bezos@tech.com",
       "password": "Amazon#2024",
@@ -48,6 +51,7 @@ export class UserService {
     },
     {
       "id": '',
+      "uid": '',
       "name": "Tim Cook",
       "email": "tim.cook@tech.com",
       "password": "Apple123!",
@@ -56,6 +60,7 @@ export class UserService {
     },
     {
       "id": '',
+      "uid": '',
       "name": "Mark Zuckerberg",
       "email": "mark.zuckerberg@tech.com",
       "password": "Meta@2024",
@@ -64,6 +69,7 @@ export class UserService {
     },
     {
       "id": '',
+      "uid": '',
       "name": "Sundar Pichai",
       "email": "sundar.pichai@tech.com",
       "password": "Google#2024",
@@ -72,6 +78,7 @@ export class UserService {
     },
     {
       "id": '',
+      "uid": '',
       "name": "Satya Nadella",
       "email": "satya.nadella@tech.com",
       "password": "Azure@2024",
@@ -80,6 +87,7 @@ export class UserService {
     },
     {
       "id": '',
+      "uid": '',
       "name": "Sheryl Sandberg",
       "email": "sheryl.sandberg@tech.com",
       "password": "Facebook2024!",
@@ -88,6 +96,7 @@ export class UserService {
     },
     {
       "id": '',
+      "uid": '',
       "name": "Larry Page",
       "email": "larry.page@tech.com",
       "password": "Alphabet#01",
@@ -96,6 +105,7 @@ export class UserService {
     },
     {
       "id": '',
+      "uid": '',
       "name": "Sergey Brin",
       "email": "sergey.brin@tech.com",
       "password": "GoogleX@24",
@@ -104,6 +114,7 @@ export class UserService {
     },
     {
       "id": '',
+      "uid": '',
       "name": "Jack Dorsey",
       "email": "jack.dorsey@tech.com",
       "password": "Twitter2024#",
@@ -112,6 +123,7 @@ export class UserService {
     },
     {
       "id": '',
+      "uid": '',
       "name": "Susan Wojcicki",
       "email": "susan.wojcicki@tech.com",
       "password": "YouTube@24",
@@ -120,6 +132,7 @@ export class UserService {
     },
     {
       "id": '',
+      "uid": '',
       "name": "Reed Hastings",
       "email": "reed.hastings@tech.com",
       "password": "Netflix2024!",
@@ -128,6 +141,7 @@ export class UserService {
     },
     {
       "id": '',
+      "uid": '',
       "name": "Marissa Mayer",
       "email": "marissa.mayer@tech.com",
       "password": "Yahoo@24!",
@@ -136,6 +150,7 @@ export class UserService {
     },
     {
       "id": '',
+      "uid": '',
       "name": "Steve Jobs",
       "email": "steve.jobs@tech.com",
       "password": "Apple1984!",

@@ -1,5 +1,6 @@
 export class UserCl{
     id: string;
+    uid: string;
     name: string;
     email: string;
     password: string;
@@ -8,6 +9,7 @@ export class UserCl{
 
     constructor(obj?: Partial<UserCl>){
         this.id = obj?.id ?? '';
+        this.uid = obj?.uid ?? '';
         this.name = obj?.name ?? '';
         this.email = obj?.email ?? '';
         this.password = obj?.password ?? '';

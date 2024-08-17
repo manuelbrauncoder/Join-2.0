@@ -6,24 +6,24 @@
       <h1>Log in</h1>
       <hr class="blue-line" />
     </div>
-    <form>
+    <form (ngSubmit)="onSubmit(loginform)" #loginform="ngForm" name="loginform" id="loginform">
         <div class="input-wrapper">
-            <input class="input-field" type="email" placeholder="Email" />
+            <input #email="ngModel" required [(ngModel)]="contactData.email" name="email" id="email" class="input-field" type="email" placeholder="Email" />
             <img src="assets/img/mail.png" alt="">
         </div>
         <div class="input-wrapper">
-            <input class="input-field" type="password" placeholder="Password" />
+            <input #password="ngModel" required minlength="6" [(ngModel)]="contactData.password" name="email" id="password" class="input-field" type="password" placeholder="Password" />
             <img src="assets/img/lock.png" alt="">
         </div>
-      <div class="checkbox-wrapper">
+      <!-- <div class="checkbox-wrapper">
         <input name="checkbox" type="checkbox" />
         <label for="checkbox">Remember me</label>
-      </div>
+      </div> -->
 
       <div class="btns">
-        <button class="primary">Log in</button>
-        <button type="button" (click)="signIn()" class="secondary">Guest Log in</button>
-        <button type="button" (click)="authService.logout()" class="secondary">Log out</button>
+        <button type="submit" [disabled]="!loginform.valid" class="primary">Log in</button>
+        <button type="button" (click)="guestLogin()" class="secondary">Guest Log in</button>
+        <!-- <button type="button" (click)="authService.logout()" class="secondary">Log out</button> -->
       </div>
     </form>
   </div>

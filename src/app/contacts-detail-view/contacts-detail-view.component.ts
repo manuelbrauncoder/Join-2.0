@@ -40,6 +40,7 @@ export class ContactsDetailViewComponent {
   @Input() currentUser: UserCl = {
     name: '',
     id: '',
+    uid: '',
     phone: '',
     email: '',
     password: '',

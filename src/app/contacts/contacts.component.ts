@@ -45,6 +45,7 @@ export class ContactsComponent {
   selectedUser: UserCl = {
     name: '',
     id: '',
+    uid: '',
     phone: '',
     email: '',
     password: '',

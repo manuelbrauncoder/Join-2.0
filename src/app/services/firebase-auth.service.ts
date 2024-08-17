@@ -27,7 +27,9 @@ export class FirebaseAuthService {
   constructor() {
   }
 
+  setUserObject(email: string, username: string){
 
+  }
 
   register(
     email: string,
@@ -38,8 +40,20 @@ export class FirebaseAuthService {
       this.auth,
       email,
       password
-    ).then((response) =>
+    ).then((response) => {
       updateProfile(response.user, { displayName: username })
+      console.log(response.user.uid);
+      this.fireService.addUser(this.fireService.getCleanUserJson({
+        id: '',
+        uid: response.user.uid,
+        name: username,
+        email: email,
+        password: '',
+        phone: '',
+        color: ''
+      }));
+      
+    }
     );
     return from(promise);
   }
@@ -55,6 +69,9 @@ export class FirebaseAuthService {
   }
 
  
+
+  // Login: hint bei falschem Passwort
+  // Wenn kein User eingelogt, redirect to login page
 
 
 }

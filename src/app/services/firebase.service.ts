@@ -90,6 +90,7 @@ export class FirebaseService {
   getCleanUserJson(user: UserCl) {
     return {
       name: user.name,
+      uid: user.uid,
       email: user.email,
       password: user.password,
       phone: user.phone,
@@ -170,7 +171,7 @@ export class FirebaseService {
 
   logUserChanges(change: DocumentChange<DocumentData>) {
     if (change.type === 'added') {
-      //console.log('New Data ', change.doc.data());
+      console.log('New Data ', change.doc.data());
       this.getLetterObjects();
     }
     if (change.type === 'modified') {
@@ -214,6 +215,7 @@ export class FirebaseService {
   setUserObject(obj: any, userId: string): UserCl {
     return {
       id: userId,
+      uid: obj.uid || '',
       name: obj.name || '',
       email: obj.email || '',
       password: obj.password || '',
