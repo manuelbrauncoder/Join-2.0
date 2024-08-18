@@ -14,6 +14,20 @@ main{
     @include dFlex($jc: space-between);
 }
 
+.close-icon {
+    @include dFlex();
+    background-color: unset;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    border: unset;
+    &:hover {
+      background-color: #eeeeee;
+    }
+  }
+
 .category{
     @extend .v2-body;
     color: white;
@@ -23,9 +37,66 @@ main{
 
 .subheadline{
     @extend .v2-t6;
-    color: $color-main;
+    color: $color-font-grey;
+    width: 92px;
 }
 
 .row{
     @include dFlex($g: 25px, $jc: flex-start);
+}
+
+.prio{
+    @include dFlex($jc: flex-start, $g: 10px);
+}
+
+.users{
+    @include dFlex($fd: column, $ai: flex-start, $g: 12px, $jc: flex-start);
+    padding-left: 24px;
+    margin-top: 12px;
+}
+
+.user{
+    @include dFlex($g: 12px, $jc: flex-start);
+}
+
+.subtasks{
+    margin-top: 12px;
+    padding-left: 24px;
+    @include dFlex($fd: column, $ai: flex-start, $g: 12px);
+}
+
+.subtask-wrapper{
+    @include dFlex($jc: flex-start, $g: 12px);
+    cursor: pointer;
+    padding: 6px 16px;
+    border-radius: 10px;
+    &:hover{
+        background-color: #eeeeee;
+    }
+}
+
+.icons{
+    width: 100%;
+    @include dFlex($jc: flex-end, $g: 8px);
+}
+
+.icon-wrapper{
+    cursor: pointer;
+    @include dFlex($g: 8px);
+    &:hover{
+        color: $color-link-blue;
+        font-weight: 700;
+        svg{
+            fill: $color-link-blue;
+            rect,path{
+                fill: $color-link-blue;
+            }
+        }
+    }
+}
+
+.divider{
+    height: 24px;
+    width: 1px;
+    background-color: $color-grey;
 }

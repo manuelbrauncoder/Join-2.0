@@ -300,7 +300,6 @@ export class TaskService {
    * @param newName
    */
   async updateUserInTask(oldName: string, newName: string) {
-    debugger;
     for (let i = 0; i < this.fireService.tasks.length; i++) {
       const task = this.fireService.tasks[i];
       for (let k = 0; k < task.assignedTo.length; k++) {

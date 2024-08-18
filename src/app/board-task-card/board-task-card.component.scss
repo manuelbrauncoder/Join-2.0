@@ -5,7 +5,7 @@ main{
     box-shadow: 0px 0px 10px 3px #00000014;
     padding: 16px;
     border-radius: 24px;
-    @include dFlex($fd: column, $g: 10px, $ai: flex-start);
+    @include dFlex($fd: column, $g: 10px, $ai: flex-start, $jc: flex-start);
     width: 252px;
     min-height: 260px;
     cursor: grab;

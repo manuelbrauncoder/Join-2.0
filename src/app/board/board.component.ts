@@ -32,6 +32,10 @@ const timing = '225ms ease-in';
       transition(':enter', [style(overLayHidden), animate(timing, style(overlayVisible))]),
       transition(':leave', [style(overlayVisible), animate(timing, style(overLayHidden))]),
     ]),
+    trigger('toggleDetailCard', [
+      transition(':enter', [style(overLayHidden), animate(timing, style(overlayVisible))]),
+      transition(':leave', [style(overlayVisible), animate(timing, style(overLayHidden))]),
+    ])
   ],
   standalone: true,
   imports: [
@@ -81,6 +85,10 @@ export class BoardComponent {
    */
   toggleOverlay(){
     this.showAddTaskOverlay = !this.showAddTaskOverlay;
+  }
+
+  hideDetailView(event: boolean){
+    this.showDetailCard = false;
   }
 
   /**
