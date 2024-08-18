@@ -1,8 +1,32 @@
 <main>
     <div class="header">
-        <span class="category">{{ task.category }}</span>
+        <span [ngClass]="task.category === 'User Story' ? 'user-story' : 'technical-task'" class="category">{{ task.category }}</span>
         <img src="assets/img/close-icon.png" alt="">
     </div>
-    <h1>{{ task.title }}</h1>
-    <span>{{ task.description }}</span>
+    <h1 class="v2-t1">{{ task.title }}</h1>
+    <span class="v2-t6">{{ task.description }}</span>
+    <div class="row">
+        <span class="subheadline">Due date:</span>
+        <span>date</span>
+        <!-- date anzeigen und formatieren! -->
+    </div>
+    <div class="row">
+        <span class="subheadline">Priority:</span>
+        <div class="prio">
+            <span>{{ task.priority }}</span>
+            <!-- >Prio icon anzeigen -->
+        </div>
+    </div>
+    <div class="column">
+        <span class="subheadline">Assigned To:</span>
+        <div class="users">
+            <!-- assigned to user anzeigen -->
+        </div>
+    </div>
+    <div class="column">
+        <span class="subheadline">Subtasks</span>
+        <div class="subtasks">
+            <!-- subtasks anzeigen -->
+        </div>
+    </div>
 </main>

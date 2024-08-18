@@ -2,4 +2,30 @@
 
 main{
     background-color: white;
+    box-shadow: 0px 0px 4px 0px #00000029;
+    padding: 48px 40px;
+    border-radius: 30px;
+    max-width: 525px;
+    @include dFlex($fd: column, $ai: flex-start, $g: 24px)
+}
+
+.header{
+    width: 100%;
+    @include dFlex($jc: space-between);
+}
+
+.category{
+    @extend .v2-body;
+    color: white;
+    padding: 4px 16px;
+    border-radius: 8px;
+}
+
+.subheadline{
+    @extend .v2-t6;
+    color: $color-main;
+}
+
+.row{
+    @include dFlex($g: 25px, $jc: flex-start);
 }

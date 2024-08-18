@@ -35,6 +35,7 @@ main {
 .headline {
   @include dFlex($jc: space-between);
   width: 100%;
+  margin-bottom: 48px;
   .search {
     @include dFlex($g: 32px);
   }
@@ -48,6 +49,7 @@ main {
 .tasks-column {
   width: 250px;
   .header {
+    margin-bottom: 16px;
     @include dFlex($jc: space-between);
     h3 {
       font-family: Inter;
