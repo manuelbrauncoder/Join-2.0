@@ -63,32 +63,21 @@ export class BoardComponent {
   searchInput: string = '';
   taskForDetail = new Task;
 
-  toggleDetailCard(){
-    this.showDetailCard = !this.showDetailCard;
+  toggleTaskDetailOverlay(){
+    this.taskService.showDetailOverlay = !this.taskService.showDetailOverlay;
+    this.taskService.taskEditMode = false;
   }
 
   openDetailCard(task: Task){
     this.taskForDetail = task;
-    this.showDetailCard = true;
-  }
-
-  /**
-   * hide add task overlay
-   * @param event 
-   */
-  hideOverlay(event: boolean){
-    this.showAddTaskOverlay = false;
+    this.taskService.showDetailOverlay = true;
   }
 
   /**
    * toggle add task overlay
    */
-  toggleOverlay(){
-    this.showAddTaskOverlay = !this.showAddTaskOverlay;
-  }
-
-  hideDetailView(event: boolean){
-    this.showDetailCard = false;
+  toggleAddTaskOverlay(){
+    this.taskService.showAddTaskOverlay = !this.taskService.showAddTaskOverlay;
   }
 
   /**

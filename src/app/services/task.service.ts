@@ -8,6 +8,10 @@ import { FirebaseService } from './firebase.service';
 export class TaskService {
   fireService = inject(FirebaseService);
 
+  showAddTaskOverlay = false; // add task window in board
+  showDetailOverlay = false; // task detail view in board
+  taskEditMode = false; // edit mode in task detail view in board
+
   exampleTasks: Task[] = [
     {
       id: '',

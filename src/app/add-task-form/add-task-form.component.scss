@@ -6,11 +6,34 @@
   padding: 64px;
 }
 
+.edit-mode{
+  background-color: white;
+  border-radius: 30px;
+  padding: 48px 40px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
 .headline {
   @include dFlex($jc: space-between);
   h1 {
     margin-bottom: 32px;
     @extend .v2-t1;
+  }
+}
+
+.close-icon {
+  @include dFlex();
+  margin-left: auto;
+  background-color: unset;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  border: unset;
+  &:hover {
+    background-color: #eeeeee;
   }
 }
 

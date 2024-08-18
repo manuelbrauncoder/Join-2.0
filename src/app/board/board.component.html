@@ -8,7 +8,7 @@
         <img src="assets/img/icon-search.png" alt="">
 
       </div>
-      <button (click)="toggleOverlay()" class="primary">
+      <button (click)="toggleAddTaskOverlay()" class="primary">
         Add task 
         <img src="assets/img/plus-icon-white.png" alt="">
       </button>
@@ -143,18 +143,22 @@
   </div>
 </main>
 
-@if (showAddTaskOverlay) {
+@if (taskService.showAddTaskOverlay) {
   <div @toggleOverlay class="overlay">
-    <app-add-task-form (dialogOpen)="hideOverlay(false)" [openInDialog]="true"></app-add-task-form>
+    <app-add-task-form [openInDialog]="true"></app-add-task-form>
   </div>
 
-  <div (click)="toggleOverlay()" class="background"></div>
+  <div (click)="toggleAddTaskOverlay()" class="background"></div>
 }
 
-@if (showDetailCard) {
+@if (taskService.showDetailOverlay) {
   <div @toggleDetailCard class="overlay">
-    <app-board-task-detail-card (closeDetailView)="hideDetailView(false)" [currentTask]="taskForDetail"></app-board-task-detail-card>
+    @if (!taskService.taskEditMode) {
+      <app-board-task-detail-card [currentTask]="taskForDetail"></app-board-task-detail-card>
+    } @else if (taskService.taskEditMode) {
+      <app-add-task-form [editmode]="true" [currentTask]="taskForDetail"></app-add-task-form>
+    }
   </div>
 
-  <div (click)="toggleDetailCard()" class="background"></div>
+  <div (click)="toggleTaskDetailOverlay()" class="background"></div>
 }

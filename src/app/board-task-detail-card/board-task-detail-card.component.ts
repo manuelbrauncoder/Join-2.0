@@ -14,11 +14,10 @@ import { InitialsPipe } from '../pipes/initials.pipe';
 export class BoardTaskDetailCardComponent implements OnInit {
   taskService = inject(TaskService);
   @Input() currentTask = new Task();
-  @Output() closeDetailView = new EventEmitter<boolean>();
   task = new Task;
 
-  hideDetailView(value: boolean){
-    this.closeDetailView.emit(value);
+  toggleAddTaskOverlay(){
+    this.taskService.showDetailOverlay = !this.taskService.showDetailOverlay;
   }
 
   ngOnInit(): void {
@@ -36,5 +35,14 @@ export class BoardTaskDetailCardComponent implements OnInit {
   toggleSubtaskDone(index: number){
     this.task.subtasks[index].done = !this.task.subtasks[index].done;
     this.taskService.fireService.updateTask(this.task);
+  }
+
+  deleteTask(){
+    this.taskService.fireService.deleteData(this.task.id, 'tasks');
+    this.toggleAddTaskOverlay();
+  }
+
+  openTaskEditMode(){
+    this.taskService.taskEditMode = true;
   }
 }

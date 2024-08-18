@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { SubTask, Task } from '../models/task.class';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
@@ -6,6 +6,7 @@ import { TaskService } from '../services/task.service';
 import { UserService } from '../services/user.service';
 import { InitialsPipe } from '../pipes/initials.pipe';
 import { UserCl } from '../models/user.class';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-task-form',
@@ -14,16 +15,21 @@ import { UserCl } from '../models/user.class';
   templateUrl: './add-task-form.component.html',
   styleUrl: './add-task-form.component.scss',
 })
-export class AddTaskFormComponent {
+export class AddTaskFormComponent implements OnInit {
   taskService = inject(TaskService);
   userService = inject(UserService);
-  task = new Task();
+  router = inject(Router);
+
+  task = new Task(); // task for ngModel
+  @Input() currentTask = new Task(); // task for editMode
+
   dueDate: Date | null = null;
-  subTaskInput: string = ''; // input for new subtasks
+  subTaskInput: string = '';
   subTaskEditInput: string = '';
   searchUserInput: string = '';
+
   @Input() openInDialog: boolean = false; // true: open in overlay, false: open in add Task View 
-  @Output() dialogOpen = new EventEmitter<boolean>(); // for closing overlay
+  @Input() editmode: boolean = false;
 
   editingSubtaskIndex: number | null = null; // if null, editmode not showing
 
@@ -35,8 +41,17 @@ export class AddTaskFormComponent {
     this.task.category = '';
   }
 
-  closeDialog(value: boolean){
-    this.dialogOpen.emit(value);
+  ngOnInit(): void {
+    this.task = new Task(this.currentTask); // copy current task to task
+  }
+
+  toggleTaskDetailOverlay(){
+    this.taskService.showDetailOverlay = !this.taskService.showDetailOverlay;
+    this.taskService.taskEditMode = false;
+  }
+
+  toggleAddTaskOverlay(){
+    this.taskService.showAddTaskOverlay = !this.taskService.showAddTaskOverlay;
   }
 
   /**
@@ -196,13 +211,17 @@ export class AddTaskFormComponent {
    * save Task in firebase
    */
   async onSubmit(ngForm: NgForm) {
-    if (ngForm.valid && ngForm.submitted) {
+    if (ngForm.valid && ngForm.submitted && !this.editmode) {
       this.handleDueDate();
       await this.taskService.fireService.addTask(this.task);
-      this.clearAllInputs();
       if (this.openInDialog) {
-        this.closeDialog(false);
+        this.toggleAddTaskOverlay();
+      } else {
+        this.router.navigate(['/board']);
       }
+    } else if(ngForm.valid && ngForm.submitted && this.editmode){
+      console.log('in edit mode');
+      // update task in firestore
     }
   }
 }

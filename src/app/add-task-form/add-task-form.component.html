@@ -1,11 +1,17 @@
-<main [ngClass]="{'opened-in-dialog': openInDialog}">
+<main [ngClass]="{'opened-in-dialog': openInDialog, 'edit-mode': editmode}">
   <div class="headline">
-    <h1>Add Task</h1>
+    @if (editmode) {
+      <img class="close-icon" (click)="toggleTaskDetailOverlay()" src="assets/img/btn-clear.png" alt="">
+    }
+    @if(!editmode){
+      <h1>Add Task</h1>
+    }
     @if (openInDialog) {
-      <button class="closeDialog" (click)="closeDialog(false)"><img src="assets/img/btn-clear.png" alt=""></button>
+      <button class="closeDialog" (click)="toggleAddTaskOverlay()"><img src="assets/img/btn-clear.png" alt=""></button>
     }
   </div>
   <form
+    [ngStyle]="{'flex-direction': editmode ? 'column' : 'row'}"
     (ngSubmit)="onSubmit(taskForm)"
     id="taskForm"
     name="taskForm"
@@ -109,7 +115,9 @@
         }
       </div>
     </div>
-    <div class="divider"></div>
+    @if (!editmode) {
+      <div class="divider"></div>
+    }
     <div class="second">
       <!-- Due date -->
       <div class="input-wrapper">
@@ -308,12 +316,12 @@
   </form>
 
   <!-- buttons -->
-  <div class="btns">
+  <div class="btns" [ngStyle]="{'margin-top': editmode ? '16px' : '160px'}">
     <div>
       <span class="required moveUp">*</span>
       <span>This field is required</span>
     </div>
-    @if (!openInDialog) {
+    @if (!openInDialog && !editmode) {
       <button type="button" class="secondary" (click)="clearAllInputs()">
         Clear <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path class="path" d="M12.2496 11.9998L17.4926 17.2428M7.00659 17.2428L12.2496 11.9998L7.00659 17.2428ZM17.4926 6.75684L12.2486 11.9998L17.4926 6.75684ZM12.2486 11.9998L7.00659 6.75684L12.2486 11.9998Z" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -322,12 +330,13 @@
       </button>
     }
     @if (openInDialog) {
-      <button class="secondary" (click)="closeDialog(false)">Cancel <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <button class="secondary" (click)="toggleAddTaskOverlay()">Cancel <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path class="path" d="M12.2496 11.9998L17.4926 17.2428M7.00659 17.2428L12.2496 11.9998L7.00659 17.2428ZM17.4926 6.75684L12.2486 11.9998L17.4926 6.75684ZM12.2486 11.9998L7.00659 6.75684L12.2486 11.9998Z" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg></button>
     }
     
-    <button
+    @if (!editmode) {
+      <button
       [disabled]="!taskForm.valid"
       form="taskForm"
       type="submit"
@@ -335,5 +344,12 @@
     >
       Create Task <img src="assets/img/btn-check.png" alt="" />
     </button>
+    }
+    
+
+    @if (editmode) {
+      <button class="primary" form="taskForm" [disabled]="!taskForm.valid" type="submit">Ok</button>
+
+    }
   </div>
 </main>
