@@ -23,7 +23,7 @@ export class AddTaskFormComponent implements OnInit {
   task = new Task(); // task for ngModel
   @Input() currentTask = new Task(); // task for editMode
 
-  dueDate: Date | null = null;
+  dueDate: Date | null | string = null;
   subTaskInput: string = '';
   subTaskEditInput: string = '';
   searchUserInput: string = '';
@@ -43,14 +43,26 @@ export class AddTaskFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.task = new Task(this.currentTask); // copy current task to task
+    this.dueDate = this.formatDateForInput();
+    if (!this.editmode) {
+      this.dueDate = null;
+    }
   }
 
-  toggleTaskDetailOverlay(){
+  formatDateForInput() {
+    const date = new Date(this.task.dueDate);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+  toggleTaskDetailOverlay() {
     this.taskService.showDetailOverlay = !this.taskService.showDetailOverlay;
     this.taskService.taskEditMode = false;
   }
 
-  toggleAddTaskOverlay(){
+  toggleAddTaskOverlay() {
     this.taskService.showAddTaskOverlay = !this.taskService.showAddTaskOverlay;
   }
 
@@ -72,9 +84,9 @@ export class AddTaskFormComponent implements OnInit {
    * push title as value in input field
    * @param index 
    */
-  openSubtaskEditMode(index: number){
+  openSubtaskEditMode(index: number) {
     this.editingSubtaskIndex = index;
-    this.subTaskEditInput = this.task.subtasks[index].title;    
+    this.subTaskEditInput = this.task.subtasks[index].title;
   }
 
   /**
@@ -82,7 +94,7 @@ export class AddTaskFormComponent implements OnInit {
    * and close edit field; null = not showing
    * @param index 
    */
-  saveEditedSubtask(index: number){
+  saveEditedSubtask(index: number) {
     this.task.subtasks[index].title = this.subTaskEditInput;
     this.editingSubtaskIndex = null;
   }
@@ -91,7 +103,7 @@ export class AddTaskFormComponent implements OnInit {
    * delete subtask with index
    * @param index 
    */
-  deleteSubtask(index: number){
+  deleteSubtask(index: number) {
     this.task.subtasks.splice(index, 1);
     this.editingSubtaskIndex = null;
   }
@@ -124,7 +136,7 @@ export class AddTaskFormComponent implements OnInit {
   clearAllInputs() {
     this.task.title = '';
     this.task.description = '';
-    this.task.dueDate = 0;
+    this.dueDate = null;
     this.task.priority = 'medium';
     this.clearSubtaskInput();
     this.task.subtasks = [];
@@ -219,9 +231,10 @@ export class AddTaskFormComponent implements OnInit {
       } else {
         this.router.navigate(['/board']);
       }
-    } else if(ngForm.valid && ngForm.submitted && this.editmode){
-      console.log('in edit mode');
-      // update task in firestore
+    } else if (ngForm.valid && ngForm.submitted && this.editmode) {
+      this.taskService.fireService.updateTask(this.task);
+      this.taskService.showDetailOverlay = false;
+      this.taskService.taskEditMode = false;
     }
   }
 }
