@@ -8,8 +8,8 @@
   <section>
     <div class="summary">
       <div class="medium">
-        <button class="medium-btn btn-hover">
-          <div class="icon">
+        <button class="medium-btn">
+          <div class="icon edit-icon">
             <svg
               width="33"
               height="32"
@@ -37,11 +37,11 @@
             </svg>
           </div>
           <div class="text">
-            <h1>{{ getNumberOfTasks("todo") }}</h1>
-            <span>To-do</span>
+            <h1 class="btn-font">{{ getNumberOfTasks("todo") }}</h1>
+            <span class="btn-font">To-do</span>
           </div>
         </button>
-        <button class="medium-btn btn-hover">
+        <button class="medium-btn">
           <div class="icon">
             <svg
               width="38"
@@ -60,37 +60,37 @@
             </svg>
           </div>
           <div class="text">
-            <h1>{{ getNumberOfTasks("done") }}</h1>
-            <span>Done</span>
+            <h1 class="btn-font">{{ getNumberOfTasks("done") }}</h1>
+            <span class="btn-font">Done</span>
           </div>
         </button>
       </div>
-      <button class="large btn-hover">
+      <button class="large">
         <div class="counter">
           <img src="assets/img/summary-urgent-icon.png" alt="" />
           <div class="counter-number">
-            <h1>{{ getNumberOfUrgentTasks() }}</h1>
-            <span>Urgent</span>
+            <h1 class="btn-font">{{ getNumberOfUrgentTasks() }}</h1>
+            <span class="btn-font">Urgent</span>
           </div>
         </div>
         <hr class="divider" />
         <div class="date">
-          <span>October 16, 2022</span>
-          <span>Upcoming Deadline</span>
+          <span class="btn-font">October 16, 2022</span>
+          <span class="btn-font">Upcoming Deadline</span>
         </div>
       </button>
       <div class="small">
-        <button class="small-btn btn-hover">
-          <h1>{{ taskService.fireService.tasks.length }}</h1>
-          <span>Tasks in board</span>
+        <button class="small-btn">
+          <h1 class="btn-font">{{ taskService.fireService.tasks.length }}</h1>
+          <span class="btn-font">Tasks in board</span>
         </button>
-        <button class="small-btn btn-hover">
-          <h1>{{ getNumberOfTasks("progress") }}</h1>
-          <span>Tasks in Progress</span>
+        <button class="small-btn">
+          <h1 class="btn-font">{{ getNumberOfTasks("progress") }}</h1>
+          <span class="btn-font">Tasks in Progress</span>
         </button>
-        <button class="small-btn btn-hover">
-          <h1>{{ getNumberOfTasks("feedback") }}</h1>
-          <span>Awaiting Feedback</span>
+        <button class="small-btn">
+          <h1 class="btn-font">{{ getNumberOfTasks("feedback") }}</h1>
+          <span class="btn-font">Awaiting Feedback</span>
         </button>
       </div>
     </div>

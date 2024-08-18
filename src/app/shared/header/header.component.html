@@ -2,6 +2,18 @@
     <h2>Kanban Project Management Tool</h2>
     <div class="btns">
         <button (click)="resetTasks()" class="help">?</button>
-        <button (click)="authService.logout()" class="user-profile">GU</button>
+        <div class="btn-wrapper">
+            <button (click)="togglePopup()" class="user-profile">
+                {{ showNameAsString() | initials }}
+            </button>
+            @if(showPopup){
+                <div class="popup">
+                    <a href="">Legal Notice</a>
+                    <a href="">Privacy Policy</a>
+                    <a (click)="logUserOut()">Log out</a>
+                </div>
+            }
+            
+        </div>
     </div>
 </header>

@@ -17,6 +17,7 @@ header{
     .btns{
         @include dFlex($g: 16px);
         .help{
+            cursor: pointer;
             color: $color-icon;
             border: 1px solid $color-icon;
             border-radius: 100%;
@@ -26,6 +27,7 @@ header{
         }
     
         .user-profile{
+            cursor: pointer;
             border: 3px solid #2A3647;
             font-family: 'Inter';
             font-size: 20px;
@@ -35,7 +37,39 @@ header{
             color: $color-lightblue;
             border-radius: 100%;
             background-color: unset;
+            &:hover{
+                background-color: $color-grey;
+            }
+            &:focus{
+                background-color: $color-grey;
+            }
         }
     }
     
+}
+
+.btn-wrapper{
+    position: relative;
+}
+
+.popup{
+    border-radius: 20px 0 20px 20px;
+    padding: 18px 26px;
+    @include dFlex($fd: column, $ai: flex-start, $g: 24px);
+    position: absolute;
+    top: 80px;
+    right: -16px;
+    background-color: $color-main;
+    a{
+        color: #cdcdcd;
+        @extend .v2-body;
+        text-decoration: none;
+        cursor: pointer;
+        text-wrap: nowrap;
+        padding: 8px 16px;
+        border-radius: 10px;
+        &:hover{
+            background-color: #42546df1;
+        }
+    }
 }

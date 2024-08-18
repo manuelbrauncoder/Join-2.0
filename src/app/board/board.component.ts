@@ -18,6 +18,7 @@ import { Task } from '../models/task.class';
 import { FormsModule } from '@angular/forms';
 import { AddTaskFormComponent } from "../add-task-form/add-task-form.component";
 import { animate, style, transition, trigger } from '@angular/animations';
+import { BoardTaskDetailCardComponent } from "../board-task-detail-card/board-task-detail-card.component";
 
 const overLayHidden = { transform: 'translate(120%, -50%)' };
 const overlayVisible = { transform: 'translate(-50%, -50%)' };
@@ -44,7 +45,8 @@ const timing = '225ms ease-in';
     CdkDragPlaceholder,
     CdkDragPreview,
     FormsModule,
-    AddTaskFormComponent
+    AddTaskFormComponent,
+    BoardTaskDetailCardComponent
 ],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss',
@@ -53,8 +55,18 @@ export class BoardComponent {
   taskService = inject(TaskService);
   userService = inject(UserService);
   showAddTaskOverlay: boolean = false;
-
+  showDetailCard = false;
   searchInput: string = '';
+  taskForDetail = new Task;
+
+  toggleDetailCard(){
+    this.showDetailCard = !this.showDetailCard;
+  }
+
+  openDetailCard(task: Task){
+    this.taskForDetail = task;
+    this.showDetailCard = true;
+  }
 
   /**
    * hide add task overlay

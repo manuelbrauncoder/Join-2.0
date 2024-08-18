@@ -33,6 +33,7 @@
         @for (task of filteredTasks() | filterTasks: 'todo'; track
         $index) {
         <div
+          (click)="openDetailCard(task)"
           class="drag-container"
           cdkDragBoundary=".task-container"
           [cdkDragStartDelay]="500"
@@ -62,6 +63,7 @@
         track $index) {
 
         <div
+          (click)="openDetailCard(task)"
           class="drag-container"
           cdkDragBoundary=".task-container"
           [cdkDragStartDelay]="500"
@@ -92,6 +94,7 @@
         track $index) {
 
         <div
+          (click)="openDetailCard(task)"
           class="drag-container"
           cdkDragBoundary=".task-container"
           [cdkDragStartDelay]="500"
@@ -122,6 +125,7 @@
         $index) {
 
         <div
+          (click)="openDetailCard(task)"
           class="drag-container"
           cdkDragBoundary=".task-container"
           [cdkDragStartDelay]="500"
@@ -145,4 +149,12 @@
   </div>
 
   <div (click)="toggleOverlay()" class="background"></div>
+}
+
+@if (showDetailCard) {
+  <div class="overlay">
+    <app-board-task-detail-card [currentTask]="taskForDetail"></app-board-task-detail-card>
+  </div>
+
+  <div (click)="toggleDetailCard()" class="background"></div>
 }
