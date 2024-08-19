@@ -1,14 +1,9 @@
 @import "../../styles.scss";
 
-.logo {
-  position: fixed;
-  top: 80px;
-  left: 77px;
-}
-
 .signup {
   @include dFlex($g: 35px);
   margin-left: auto;
+
   span {
     @extend .v2-t6;
   }
@@ -20,10 +15,13 @@ main {
   width: 100%;
   height: 100vh;
   padding: 48px;
+  opacity: 0;
+  animation: fadeIn 500ms ease-in forwards;
 }
 
 .legals {
   @include dFlex($g: 35px);
+
   a {
     @extend .v2-body;
     @include link($c: $color-icon);
@@ -37,4 +35,34 @@ main {
   box-shadow: 0px 0px 14px 3px #0000000a;
   background-color: white;
   border-radius: 30px;
+}
+
+.logo {
+  position: fixed;
+  top: 80px;
+  left: 77px;
+  animation: animateLogo 1000ms ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes animateLogo {
+  from {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  to {
+    top: 80px;
+    left: 77px;
+    transform: none;
+  }
 }

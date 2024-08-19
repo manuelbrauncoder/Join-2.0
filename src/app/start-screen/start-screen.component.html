@@ -1,25 +1,28 @@
-<main [ngStyle]="{ 'justify-content': showSignUp ? 'center' : 'space-between' }">
-    @if (!showSignUp) {
-        <div class="signup">
-            <span>Not a Join user?</span>
-            <button (click)="toggleSignUp()" class="primary">Sign up</button>
-        </div>
-    }
-    
-
-    <div [ngStyle]="{'margin-top': showSignUp ? 'auto' : '0'}" class="sign-wrapper">
+@if (!startAnimation) {
+    <main [ngStyle]="{ 'justify-content': showSignUp ? 'center' : 'space-between' }">
         @if (!showSignUp) {
-            <app-login></app-login>
+            <div class="signup">
+                <span>Not a Join user?</span>
+                <button (click)="toggleSignUp()" class="primary">Sign up</button>
+            </div>
         }
-        @if (showSignUp) {
-            <app-sign-up (signUp)="closeSignUp()"></app-sign-up>
-        }
-    </div>
+        
+    
+        <div [ngStyle]="{'margin-top': showSignUp ? 'auto' : '0'}" class="sign-wrapper">
+            @if (!showSignUp) {
+                <app-login></app-login>
+            }
+            @if (showSignUp) {
+                <app-sign-up (signUp)="closeSignUp()"></app-sign-up>
+            }
+        </div>
+    
+        <div [ngStyle]="{'margin-top': showSignUp ? 'auto' : '0'}" class="legals">
+            <a href="">Privacy Policy</a>
+            <a href="">Legal notice</a>
+        </div>
+    </main>
+}
 
-    <div [ngStyle]="{'margin-top': showSignUp ? 'auto' : '0'}" class="legals">
-        <a href="">Privacy Policy</a>
-        <a href="">Legal notice</a>
-    </div>
-</main>
     
     <img class="logo" src="assets/img/join-logo-maincolor.png" alt="">
