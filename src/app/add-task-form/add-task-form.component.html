@@ -11,7 +11,7 @@
     }
   </div>
   <form
-    [ngStyle]="{'flex-direction': editmode ? 'column' : 'row'}"
+    [ngStyle]="{'flex-direction': editmode ? 'column' : ''}"
     (ngSubmit)="onSubmit(taskForm)"
     id="taskForm"
     name="taskForm"
@@ -20,7 +20,7 @@
     <div class="first">
       <!-- title -->
       <div class="input-wrapper">
-        <label for="title">Title<span class="required">*</span></label>
+        <label class="mobile-margin" for="title">Title<span class="required">*</span></label>
         <input
           [ngClass]="{ 'input-field-error': !title.valid && title.touched }"
           #title="ngModel"
@@ -40,7 +40,7 @@
 
       <!-- description -->
       <div class="textarea-wrapper">
-        <label for="description">Description</label>
+        <label class="mobile-margin" for="description">Description</label>
         <textarea
           id="description"
           [(ngModel)]="task.description"
@@ -121,7 +121,7 @@
     <div class="second">
       <!-- Due date -->
       <div class="input-wrapper">
-        <label for="date">Due date<span class="required">*</span></label>
+        <label class="mobile-margin" for="date">Due date<span class="required">*</span></label>
         <input
           id="date"
           [ngClass]="{ 'input-field-error': !date.valid && date.touched }"
@@ -322,7 +322,7 @@
       <span>This field is required</span>
     </div>
     @if (!openInDialog && !editmode) {
-      <button type="button" class="secondary" (click)="clearAllInputs()">
+      <button type="button" class="secondary clear-btn" (click)="clearAllInputs()">
         Clear <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path class="path" d="M12.2496 11.9998L17.4926 17.2428M7.00659 17.2428L12.2496 11.9998L7.00659 17.2428ZM17.4926 6.75684L12.2486 11.9998L17.4926 6.75684ZM12.2486 11.9998L7.00659 6.75684L12.2486 11.9998Z" stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>

@@ -5,4 +5,7 @@ main{
     padding: 80px 64px 80px 64px;
     background-color: $color-bg-white;
     height: calc(100vh - 96px);
+    @media(max-width: 950px){
+        padding: 8px;
+      }
 }

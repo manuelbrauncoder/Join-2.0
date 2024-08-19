@@ -1,12 +1,17 @@
 @import "../../styles.scss";
 
-.opened-in-dialog{
+.mobile-margin{
+  margin-right: auto;
+  margin-left: 8px;
+}
+
+.opened-in-dialog {
   background-color: white;
   border-radius: 30px;
   padding: 64px;
 }
 
-.edit-mode{
+.edit-mode {
   background-color: white;
   border-radius: 30px;
   padding: 48px 40px;
@@ -16,6 +21,7 @@
 
 .headline {
   @include dFlex($jc: space-between);
+
   h1 {
     margin-bottom: 32px;
     @extend .v2-t1;
@@ -32,6 +38,7 @@
   width: 40px;
   height: 40px;
   border: unset;
+
   &:hover {
     background-color: #eeeeee;
   }
@@ -46,6 +53,7 @@
   width: 32px;
   height: 32px;
   border: unset;
+
   &:hover {
     background-color: #eeeeee;
   }
@@ -61,16 +69,43 @@
 
 form {
   @include dFlex($ai: flex-start, $jc: flex-start, $g: 32px);
+
+  @media(max-width: 1299px) {
+    gap: 16px;
+  }
+
+  @media(max-width: 950px) {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 input,
 textarea {
-  width: 440px;
+  width: 100%;
+
+  // @media(max-width: 1299px) {
+  //   width: 300px;
+  // }
+
+  // @media(max-width: 950px) {
+  //   width: calc(100% - 16px);
+  // }
 }
 
 .textarea-wrapper {
+  width: 440px;
   position: relative;
   @include dFlex($fd: column, $ai: flex-start);
+
+  @media(max-width: 1299px) {
+    width: 300px;
+  }
+
+  @media(max-width: 950px) {
+    align-items: center;
+    width: 100%;
+  }
 }
 
 textarea {
@@ -100,8 +135,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .input-wrapper {
+  width: 440px;
   position: relative;
   @include dFlex($fd: column, $ai: flex-start);
+
+  @media(max-width: 1299px) {
+    width: 300px;
+  }
+
+  @media(max-width: 950px) {
+    align-items: center;
+    width: 100%;
+  }
 }
 
 .input-icon {
@@ -118,10 +163,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .category-input-wrapper {
   cursor: pointer;
+
+  @media(max-width: 1299px) {
+    width: 100%;
+  }
 }
 
 .search-wrapper {
+  width: 100%;
   position: relative;
+  @media(max-width: 950px){
+    width: 100%;
+  }
 }
 
 .category-drop-down-arrow {
@@ -138,6 +191,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .add-sub-icons {
   @include dFlex();
+
   span {
     @extend .v2-t6;
     color: $color-grey;
@@ -146,15 +200,30 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .first {
   @include dFlex($fd: column, $ai: flex-start, $g: 32px);
+
+  @media(max-width: 1299px) {
+    width: 100%;
+  }
 }
 
 .second {
   @include dFlex($fd: column, $ai: flex-start, $g: 32px);
+
+  @media(max-width: 1299px) {
+    width: 100%;
+  }
 }
 
 .custom-select {
+  width: 440px;
   position: relative;
   @include dFlex($fd: column, $ai: flex-start, $g: 4px);
+  @media(max-width: 1299px){
+    width: 300px;
+  }
+  @media(max-width: 950px){
+    width: 100%;
+  }
 }
 
 .options {
@@ -168,15 +237,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   max-height: 250px;
   overflow-y: auto;
   width: 100%;
+
   .option {
     @include dFlex($jc: flex-start, $g: 16px);
     width: 100%;
     padding: 7px 16px;
     border-radius: 10px;
     @extend .v2-t6;
+
     &:hover {
       background-color: #eeeeee;
     }
+
     img {
       margin-left: auto;
     }
@@ -199,12 +271,17 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   width: 2px;
   border-radius: 100vw;
   background-color: $color-grey;
+
+  @media(max-width: 950px) {
+    display: none;
+  }
 }
 
 .btns {
   margin-top: 160px;
   @include dFlex($jc: flex-end, $g: 16px);
-  > div {
+
+  >div {
     margin-right: auto;
   }
 }
@@ -221,9 +298,21 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .prio {
   @include dFlex($fd: column);
-  > div {
-    @include dFlex($g: 16px);
+
+  @media(max-width: 950px) {
+    width: 100%;
   }
+
+  >div {
+    @include dFlex($g: 16px);
+
+    @media(max-width: 950px) {
+      width: 100%;
+      justify-content: space-between;
+      gap: 8px;
+    }
+  }
+
   label {
     margin-bottom: 2px;
     margin-right: auto;
@@ -241,8 +330,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   width: 136px;
   height: 56px;
   cursor: pointer;
+
   &:hover {
     box-shadow: 0px 9px 15px 3px rgba(0, 0, 0, 0.1019607843);
+  }
+
+  @media(max-width: 1299px) {
+    width: 89.3px;
+    gap: 4px;
+  }
+
+  @media(max-width: 950px) {
+    width: calc((100% - 64px) / 3);
   }
 }
 
@@ -265,21 +364,30 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   margin-top: 4px;
 }
 
+.subtasks-field{
+  @media(max-width: 950px){
+    width: 100%;
+  }
+}
+
 .subtask-wrapper {
   position: relative;
   @include dFlex($jc: flex-start);
   height: 35px;
+
   input {
     @extend .v2-t6;
     color: $color-grey;
     border: unset;
     padding: 7px 16px;
     height: 100%;
+
     &:focus {
       outline: none;
       border-bottom: 1px solid $color-input-focus-blue;
     }
   }
+
   &:hover .subtask-icons {
     visibility: visible;
   }
@@ -300,6 +408,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   padding: 7px 16px;
   border-radius: 10px;
   width: 100%;
+
   &:hover {
     background-color: #eeeeee;
   }
@@ -317,7 +426,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   padding: 2px;
   border-radius: 100%;
   cursor: pointer;
+
   &:hover {
     background-color: #eeeeee;
+  }
+}
+
+.clear-btn {
+  @media(max-width: 950px) {
+    display: none;
   }
 }
