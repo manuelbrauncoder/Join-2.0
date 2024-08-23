@@ -1,29 +1,53 @@
 @import "../../styles.scss";
 
+.divider {
+  width: 3px;
+  height: 100px;
+  border-radius: 100vw;
+  background-color: $color-lightblue;
+  margin: 0;
+  @media(max-width: 950px){
+    display: none;
+  }
+}
 
+.divider-mobile{
+  margin: 0;
+  height: 3px;
+  width: 90px;
+  border-radius: 100vw;
+  background-color: $color-lightblue;
+  @media(min-width: 951px) {
+    display: none;
+  }
+}
 
 main {
   margin: 96px 0 0 232px;
   background-color: $color-bg-white;
-  height: calc(100vh - 96px);
+  min-height: calc(100vh - 96px);
   @include dFlex($fd: column, $ai: flex-start, $g: 56px);
   padding: 96px;
+
+  @media(max-width: 950px) {
+    margin: 96px 0 90px 0;
+    padding: 16px;
+  }
 }
 
 header {
   @include dFlex($jc: flex-start, $g: 30px);
+  @media(max-width: 950px){
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
 
   h1 {
     margin: 0;
     @extend .v2-t1;
   }
 
-  hr {
-    height: 59px;
-    width: 3px;
-    background-color: $color-lightblue;
-    border-radius: 100vw;
-  }
 
   h3 {
     margin: 0;
@@ -40,6 +64,9 @@ section {
 
     .medium {
       @include dFlex($g: 32px);
+      @media(max-width: 950px){
+       gap: 8px;
+      }
 
       .medium-btn {
         cursor: pointer;
@@ -52,6 +79,10 @@ section {
         border-radius: 30px;
         @include dFlex($g: 18px);
         transition: transform 125ms ease-out;
+        @media(max-width: 950px){
+          width: calc((100vw - 16px) / 2);
+          padding: 8px 6px;
+        }
         .icon {
           width: 69px;
           height: 69px;
@@ -59,6 +90,10 @@ section {
           border: unset;
           border-radius: 100%;
           @include dFlex();
+          @media(max-width: 950px) {
+            width: 40px;
+            height: 40px;
+          }
         }
 
         .btn-font {
@@ -121,12 +156,21 @@ section {
       height: 168px;
       cursor: pointer;
       transition: transform 125ms ease-out;
+      @media(max-width: 950px){
+        width: calc(100vw - 16px);
+      }
       .btn-font {
         color: $color-main;
       }
 
       .counter {
         @include dFlex($g: 18px);
+        img{
+          @media(max-width: 950px){
+            height: 40px;
+            width: 40px;
+          }
+        }
 
         .counter-number {
           h1 {
@@ -140,13 +184,7 @@ section {
         }
       }
 
-      .divider {
-        width: 2px;
-        height: 100px;
-        border-radius: 100vw;
-        background-color: $color-grey;
-        margin: 0;
-      }
+      
 
       .date {
         @include dFlex($fd: column, $g: 13px);
@@ -178,6 +216,9 @@ section {
 
   .small {
     @include dFlex($g: 32px);
+    @media(max-width: 950px){
+      gap: 8px;
+    }
 
     .small-btn {
       cursor: pointer;
@@ -190,6 +231,9 @@ section {
       padding: 25px;
       background-color: white;
       transition: transform 125ms ease-out;
+      @media(max-width: 950px){
+        width: calc((100vw - 16px) / 3);
+      }
       .btn-font {
         color: $color-main;
       }
@@ -219,10 +263,14 @@ section {
 }
 
 .greeting {
+  @media(max-width: 950px){
+    display: none;
+  }
   h3 {
     margin: 0;
     @extend .v2-t2;
     color: $color-main;
+    
   }
 
   h2 {

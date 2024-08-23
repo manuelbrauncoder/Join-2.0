@@ -1,6 +1,7 @@
 @import '../../../styles.scss';
 
-header{
+header {
+    z-index: 3;
     box-shadow: 0px 4px 4px 0px #0000001A;
     padding: 20px 40px 20px 116px;
     @include dFlex($jc: space-between);
@@ -10,13 +11,32 @@ header{
     height: 96px;
     width: calc(100vw - 232px);
     background-color: white;
-    h2{
-        @extend .v2-t6;
+
+    .mobile-logo{
+        height: 39px;
+        width: 32px;
+        @media(min-width: 951px) {
+            display: none;
+        }
     }
 
-    .btns{
+    h2 {
+        @extend .v2-t6;
+
+        @media(max-width: 950px) {
+            display: none;
+        }
+    }
+
+    @media(max-width: 950px) {
+        width: 100%;
+        padding: 8px 16px;
+    }
+
+    .btns {
         @include dFlex($g: 16px);
-        .help{
+
+        .help {
             cursor: pointer;
             color: $color-icon;
             border: 1px solid $color-icon;
@@ -24,9 +44,13 @@ header{
             width: 20px;
             height: 20px;
             background-color: unset;
+
+            @media(max-width: 950px) {
+                display: none;
+            }
         }
-    
-        .user-profile{
+
+        .user-profile {
             cursor: pointer;
             border: 3px solid #2A3647;
             font-family: 'Inter';
@@ -37,22 +61,25 @@ header{
             color: $color-lightblue;
             border-radius: 100%;
             background-color: unset;
-            &:hover{
+
+            &:hover {
                 background-color: $color-grey;
             }
-            &:focus{
+
+            &:focus {
                 background-color: $color-grey;
             }
         }
     }
-    
+
 }
 
-.btn-wrapper{
+.btn-wrapper {
     position: relative;
 }
 
-.popup{
+.popup {
+    z-index: 3;
     border-radius: 20px 0 20px 20px;
     padding: 18px 26px;
     @include dFlex($fd: column, $ai: flex-start, $g: 24px);
@@ -60,7 +87,14 @@ header{
     top: 80px;
     right: -16px;
     background-color: $color-main;
-    a{
+
+    .mobile-help {
+        @media(min-width: 951px) {
+            display: none;
+        }
+    }
+
+    a {
         color: #cdcdcd;
         @extend .v2-body;
         text-decoration: none;
@@ -68,8 +102,13 @@ header{
         text-wrap: nowrap;
         padding: 8px 16px;
         border-radius: 10px;
-        &:hover{
+
+        &:hover {
             background-color: #42546df1;
         }
+    }
+
+    @media(max-width: 950px) {
+        right: -6px;
     }
 }

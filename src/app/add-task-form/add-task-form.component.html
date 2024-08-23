@@ -20,7 +20,7 @@
     <div class="first">
       <!-- title -->
       <div class="input-wrapper">
-        <label class="mobile-margin" for="title">Title<span class="required">*</span></label>
+        <label class="mobile-margin mobile-span" for="title">Title<span class="required">*</span></label>
         <input
           [ngClass]="{ 'input-field-error': !title.valid && title.touched }"
           #title="ngModel"
@@ -40,7 +40,7 @@
 
       <!-- description -->
       <div class="textarea-wrapper">
-        <label class="mobile-margin" for="description">Description</label>
+        <label class="mobile-margin mobile-span" for="description">Description</label>
         <textarea
           id="description"
           [(ngModel)]="task.description"
@@ -57,7 +57,7 @@
 
       <!-- assigned To -->
       <div class="custom-select">
-        <label for="assignedTo">Assigned to</label>
+        <label class="mobile-span" for="assignedTo">Assigned to</label>
         <div class="search-wrapper">
           <input
             autocomplete="off"
@@ -121,7 +121,7 @@
     <div class="second">
       <!-- Due date -->
       <div class="input-wrapper">
-        <label class="mobile-margin" for="date">Due date<span class="required">*</span></label>
+        <label class="mobile-margin mobile-span" for="date">Due date<span class="required">*</span></label>
         <input
           id="date"
           [ngClass]="{ 'input-field-error': !date.valid && date.touched }"
@@ -140,7 +140,7 @@
 
       <!-- priority -->
       <div class="prio">
-        <label>Prio</label>
+        <label class="mobile-span">Prio</label>
         <div>
           <button
             [ngClass]="{ 'prio-urgent': task.priority === 'urgent' }"
@@ -192,7 +192,7 @@
 
       <!-- category -->
       <div class="custom-select">
-        <label for="category">Category<span class="required">*</span></label>
+        <label class="mobile-span" for="category">Category<span class="required">*</span></label>
         <div
           class="input-wrapper category-input-wrapper"
           (click)="toggleCategoryOptions()"
@@ -237,7 +237,7 @@
 
       <!-- subtasks -->
       <div class="subtasks-field">
-        <label for="subTaskInput">Subtasks</label>
+        <label class="mobile-span" for="subTaskInput">Subtasks</label>
         <div class="input-wrapper">
           <input
             id="subTaskInput"
@@ -316,10 +316,10 @@
   </form>
 
   <!-- buttons -->
-  <div class="btns" [ngStyle]="{'margin-top': editmode ? '16px' : '160px'}">
+  <div class="btns" [ngStyle]="{'margin-top': editmode ? '16px' : ''}">
     <div>
       <span class="required moveUp">*</span>
-      <span>This field is required</span>
+      <span class="mobile-span">This field is required</span>
     </div>
     @if (!openInDialog && !editmode) {
       <button type="button" class="secondary clear-btn" (click)="clearAllInputs()">

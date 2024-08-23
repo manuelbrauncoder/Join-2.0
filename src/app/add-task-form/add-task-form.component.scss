@@ -280,10 +280,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .btns {
   margin-top: 160px;
   @include dFlex($jc: flex-end, $g: 16px);
+  @media(max-width: 950px) {
+    margin-top: 32px;
+  }
 
   >div {
     margin-right: auto;
   }
+  
 }
 
 .moveUp {
@@ -435,5 +439,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .clear-btn {
   @media(max-width: 950px) {
     display: none;
+  }
+}
+
+.mobile-span{
+  @media(max-width: 950px) {
+    font-size: 14px;
   }
 }

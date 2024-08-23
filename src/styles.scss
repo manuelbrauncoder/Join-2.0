@@ -27,6 +27,8 @@ $color-green-low: #7ae229;
 $color-input-focus-blue: #005dff;
 $color-link-blue: #007cee;
 $color-font-grey: #42526E;
+$color-link-grey: #CDCDCD;
+
 
 // Fonts
 
@@ -35,6 +37,9 @@ $color-font-grey: #42526E;
   font-size: 64px;
   font-weight: 600;
   line-height: 76.8px;
+  @media(max-width: 950px) {
+    font-size: 47px;
+  }
 }
 
 .v2-body {
@@ -64,7 +69,7 @@ $color-font-grey: #42526E;
   font-weight: 400;
   line-height: 24px;
   @media(max-width: 1299px) {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
 
@@ -119,6 +124,7 @@ $color-font-grey: #42526E;
 // default classes
 
 .primary {
+  white-space: nowrap;
   color: #ffffff;
   background-color: $color-main;
   padding: 12px 20px;

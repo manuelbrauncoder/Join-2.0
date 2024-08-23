@@ -11,6 +11,9 @@ main {
   margin: 96px 0 0 232px;
   padding: 80px 64px 80px 64px;
   min-height: calc(100vh - 96px);
+  @media(max-width: 950px) {
+    margin: 0;
+  }
 }
 
 .input-wrapper{

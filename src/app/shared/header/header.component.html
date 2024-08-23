@@ -1,5 +1,6 @@
 <header>
     <h2>Kanban Project Management Tool</h2>
+    <img class="mobile-logo" src="assets/img/join-logo-maincolor.png" alt="">
     <div class="btns">
         <button (click)="resetTasks()" class="help">?</button>
         <div class="btn-wrapper">
@@ -8,6 +9,7 @@
             </button>
             @if(showPopup){
                 <div class="popup">
+                    <a class="mobile-help" href="">Help</a>
                     <a href="">Legal Notice</a>
                     <a href="">Privacy Policy</a>
                     <a (click)="logUserOut()">Log out</a>

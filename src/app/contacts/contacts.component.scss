@@ -4,6 +4,9 @@ main{
     margin: 96px 0 0 232px;
     height: calc(100vh - 96px);
     display: flex;
+    @media(max-width: 950px) {
+        margin: 0;
+      }
 }
 
 .list-view {
