@@ -63,6 +63,9 @@ $color-link-grey: #CDCDCD;
   font-size: 27px;
   font-weight: 400;
   line-height: 32.4px;
+  @media(max-width: 950px) {
+   font-size: 16px; 
+  }
 }
 
 .v2-t6 {

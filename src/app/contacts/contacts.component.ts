@@ -39,7 +39,7 @@ const timing = '225ms ease-in';
 })
 export class ContactsComponent {
   userService = inject(UserService);
-  showContactOverlay: boolean = false;
+  showContactOverlay: boolean = true;
   showEditMode: boolean = false;
 
   selectedUser: UserCl = {
