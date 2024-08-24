@@ -12,6 +12,14 @@ header {
     width: calc(100vw - 232px);
     background-color: white;
 
+    @media(max-width: 950px) {
+        top: 0;
+        left: 0;
+        right: 0;
+        width: unset;
+        padding: 8px 16px;
+    }
+
     .mobile-logo{
         height: 39px;
         width: 32px;
@@ -28,10 +36,7 @@ header {
         }
     }
 
-    @media(max-width: 950px) {
-        width: 100%;
-        padding: 8px 16px;
-    }
+    
 
     .btns {
         @include dFlex($g: 16px);

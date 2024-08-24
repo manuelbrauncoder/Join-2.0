@@ -1,7 +1,11 @@
 @import '../styles.scss';
 
 .router-container{
-   min-height: calc(100vh - 96px);
+   // min-height: calc(100vh - 96px - 80px);
+   // margin: 96px 0 0 0;
+   @media(max-width: 950px) {
+      //overflow-y: hidden;
+   }
 }
 
 

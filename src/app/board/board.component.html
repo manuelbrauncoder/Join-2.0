@@ -1,6 +1,11 @@
 <main>
   <div class="headline">
-    <h1 (click)="userService.addLocalUsersToFirebase()" class="v2-t1">Board</h1>
+    <div>
+      <h1 (click)="userService.addLocalUsersToFirebase()" class="v2-t1">Board</h1>
+      <button class="mobile-btn">
+        <img src="assets/img/add-task-plus-mobile.png" alt="">
+      </button>
+    </div>
     <div class="search">
       <div class="input-wrapper">
         <input [(ngModel)]="searchInput" type="text" class="input-field" placeholder="Find Task" />
@@ -8,10 +13,11 @@
         <img src="assets/img/icon-search.png" alt="">
 
       </div>
-      <button (click)="toggleAddTaskOverlay()" class="primary">
+      <button (click)="toggleAddTaskOverlay()" class="primary add-btn">
         Add task 
         <img src="assets/img/plus-icon-white.png" alt="">
       </button>
+      
     </div>
   </div>
 

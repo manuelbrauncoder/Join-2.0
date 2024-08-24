@@ -30,8 +30,10 @@ main {
   padding: 96px;
 
   @media(max-width: 950px) {
-    margin: 96px 0 90px 0;
-    padding: 16px;
+    margin: 96px 0 80px 0;
+    padding: 8px;
+    //height: calc(100vh - 96px - 80px);
+    //overflow-y: auto;
   }
 }
 
@@ -80,7 +82,7 @@ section {
         @include dFlex($g: 18px);
         transition: transform 125ms ease-out;
         @media(max-width: 950px){
-          width: calc((100vw - 16px) / 2);
+          width: calc((100vw - 32px) / 2);
           padding: 8px 6px;
         }
         .icon {
@@ -158,6 +160,7 @@ section {
       transition: transform 125ms ease-out;
       @media(max-width: 950px){
         width: calc(100vw - 16px);
+        padding: 8px 6px;
       }
       .btn-font {
         color: $color-main;
@@ -232,7 +235,10 @@ section {
       background-color: white;
       transition: transform 125ms ease-out;
       @media(max-width: 950px){
-        width: calc((100vw - 16px) / 3);
+        gap: 8px;
+        width: calc((100vw - 32px) / 3);
+        height: 140px;
+        padding: 8px 6px;
       }
       .btn-font {
         color: $color-main;

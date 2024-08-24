@@ -12,11 +12,13 @@ aside{
     height: 100vh;
     @include dFlex($fd: column, $jc: flex-start);
     @media(max-width: 950px){
-        bottom: 0;
+        position: fixed;
         left: 0;
+        right: 0;
+        width: unset;
+        bottom: 0;
         top: unset;
-        width: 100%;
-        height: fit-content;
+        height: 80px;
         padding: 0;
     }
     .logo{
