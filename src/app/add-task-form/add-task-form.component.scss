@@ -17,10 +17,13 @@
   padding: 48px 40px;
   max-height: 90vh;
   overflow-y: auto;
+  @include dFlex($fd: column, $ai: flex-start, $jc: flex-start);
+  max-width: calc(100vw - 16px);
 }
 
 .headline {
   @include dFlex($jc: space-between);
+  width: 100%;
 
   h1 {
     margin-bottom: 32px;

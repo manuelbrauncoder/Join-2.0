@@ -54,7 +54,8 @@ const timing = '225ms ease-in';
     AddTaskFormComponent,
     BoardTaskDetailCardComponent,
     RouterLink,
-    CdkScrollable
+    CdkScrollable,
+    CdkDragHandle
 ],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss',

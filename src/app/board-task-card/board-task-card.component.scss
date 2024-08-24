@@ -8,7 +8,7 @@ main{
     @include dFlex($fd: column, $g: 10px, $ai: flex-start, $jc: flex-start);
     width: 252px;
     min-height: 260px;
-    cursor: grab;
+    cursor: pointer;
     .category{
         color: white;
         padding: 4px 16px;

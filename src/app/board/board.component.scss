@@ -1,6 +1,16 @@
 @import "../../styles.scss";
 
 
+.drag-container{
+  position: relative;
+}
+
+.drag-indicator {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  cursor: grab;
+}
 
 main {
   overflow: auto;
