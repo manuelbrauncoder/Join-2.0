@@ -7,16 +7,29 @@
   span {
     @extend .v2-t6;
   }
+  @media(max-width: 950px) {
+    margin: 0;
+  }
+}
+
+.sign-up-btn {
+  @media(max-width: 950px) {
+    font-size: 16px;
+  }
 }
 
 main {
   background-color: $color-bg-white;
   @include dFlex($fd: column, $jc: space-between);
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   padding: 48px;
   opacity: 0;
   animation: fadeIn 500ms ease-in forwards;
+  @media(max-width: 950px) {
+    flex-direction: column-reverse;
+    padding: 8px;
+  }
 }
 
 .legals {
@@ -25,6 +38,9 @@ main {
   a {
     @extend .v2-body;
     @include link($c: $color-icon);
+  }
+  @media(max-width: 950px) {
+    display: none;
   }
 }
 
@@ -35,6 +51,11 @@ main {
   box-shadow: 0px 0px 14px 3px #0000000a;
   background-color: white;
   border-radius: 30px;
+  @media(max-width: 950px) {
+    padding: 16px;
+    margin-top: auto !important;
+    margin-bottom: 16px;
+  }
 }
 
 .logo {
@@ -42,6 +63,13 @@ main {
   top: 80px;
   left: 77px;
   animation: animateLogo 1000ms ease-in-out;
+  @media(max-width: 950px) {
+    width: 64px;
+    height: 78px;
+    top: 37px;
+    left: 37px;
+    animation: animateLogoMobile 1000ms ease-in-out;
+  }
 }
 
 @keyframes fadeIn {
@@ -63,6 +91,20 @@ main {
   to {
     top: 80px;
     left: 77px;
+    transform: none;
+  }
+}
+
+@keyframes animateLogoMobile {
+  from {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  to {
+    top: 37px;
+    left: 37px;
     transform: none;
   }
 }

@@ -5,11 +5,12 @@ import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
 import { FirebaseService } from './services/firebase.service';
 import { UserService } from './services/user.service';
 import { FirebaseAuthService } from './services/firebase-auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, NavBarComponent],
+  imports: [RouterOutlet, HeaderComponent, NavBarComponent, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

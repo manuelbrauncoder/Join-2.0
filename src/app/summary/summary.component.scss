@@ -23,17 +23,14 @@
 }
 
 main {
-  margin: 96px 0 0 232px;
+  height: 100%;
   background-color: $color-bg-white;
-  min-height: calc(100vh - 96px);
-  @include dFlex($fd: column, $ai: flex-start, $g: 56px);
+  @include dFlex($fd: column, $ai: flex-start, $g: 56px, $jc: flex-start);
   padding: 96px;
 
   @media(max-width: 950px) {
-    margin: 96px 0 80px 0;
     padding: 8px;
-    //height: calc(100vh - 96px - 80px);
-    //overflow-y: auto;
+    height: unset;
   }
 }
 

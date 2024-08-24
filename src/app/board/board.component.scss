@@ -1,18 +1,11 @@
 @import "../../styles.scss";
 
-// .test-item{
-//   width: 80%;
-//   height: 50px;
-//   background-color: lightcoral;
-// }
+
 
 main {
   background-color: $color-bg-white;
-  margin: 96px 0 0 232px;
   padding: 80px 64px 80px 64px;
-  min-height: calc(100vh - 96px);
   @media(max-width: 950px) {
-    margin: 96px 0 80px 0;
     padding: 8px;
   }
 }

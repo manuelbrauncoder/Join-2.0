@@ -23,15 +23,22 @@ main {
         width: 150px;
         border-radius: 100vw;
         background-color: $color-lightblue;
+        border: unset;
       }
     }
   }
 
   form{
     @include dFlex($fd: column, $g: 24px);
+    @media(max-width: 950px) {
+      gap: 16px;
+    }
 
     input{
         width: 420px;
+        @media(max-width: 950px) {
+          width: 280px;
+        }
     }
   }
 }

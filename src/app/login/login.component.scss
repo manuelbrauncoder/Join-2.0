@@ -9,6 +9,16 @@
   }
   .btns {
     @include dFlex($g: 35px);
+    @media(max-width: 950px) {
+      flex-direction: column;
+      gap: 10px;
+    }
+    button{
+      @media(max-width: 950px) {
+        font-size: 16px;
+        width: 140px;
+      }
+    }
   }
   .input-wrapper {
     position: relative;
@@ -20,6 +30,9 @@
     }
     input {
       width: 420px;
+      @media(max-width: 950px) {
+        width: 280px;
+      }
     }
   }
   .checkbox-wrapper {

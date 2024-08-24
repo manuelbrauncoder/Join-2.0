@@ -1,12 +1,65 @@
 @import '../styles.scss';
 
-.router-container{
-   // min-height: calc(100vh - 96px - 80px);
-   // margin: 96px 0 0 0;
-   @media(max-width: 950px) {
-      //overflow-y: hidden;
-   }
+// classes shown on login/register
+
+
+.on-login {
+   height: 100vh;
+   display: flex;
+   width: 100vw;
 }
 
 
 
+.grid-container {
+   display: grid;
+   grid-template-columns: 232px 1fr;
+   grid-template-rows: auto 1fr auto;
+   grid-template-areas: "nav header" "nav main";
+}
+
+.nav{
+   height: 100vh;
+   grid-column: 1;
+   grid-area: nav;
+}
+
+.header {
+   height: 100px;
+   grid-row: 1;
+   grid-column: 2;
+   grid-area: header;
+}
+
+.main {
+   grid-row: 2;
+   grid-column: 2;
+   grid-area: main;
+   overflow-y: auto;
+   height: calc(100vh - 100px);
+   background-color: $color-bg-white;
+}
+
+@media (max-width: 899px) {
+   .grid-container {
+       grid-template-columns: 1fr;
+       grid-template-rows: auto 1fr auto;
+       grid-template-areas: 
+           "header"
+           "main"
+           "nav";
+       height: 100vh;
+   }
+
+   .nav {
+       height: 80px;
+   }
+
+   .main{
+       height: 100%;
+   }
+
+   .header, .main, .nav {
+       width: 100%;
+   }
+}

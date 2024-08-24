@@ -40,7 +40,6 @@ aside{
             @include dFlex($jc: flex-start, $g: 8px);
             color: $color-link-grey;
             text-decoration: none;
-            //width: 100%;
             white-space: nowrap;
             @extend .v2-body;
             img{

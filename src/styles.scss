@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  margin: 0;
 }
 
 h1, h2, h3, h4, hr{
@@ -68,7 +69,7 @@ $color-link-grey: #CDCDCD;
   font-size: 20px;
   font-weight: 400;
   line-height: 24px;
-  @media(max-width: 1299px) {
+  @media(max-width: 950px) {
     font-size: 14px;
   }
 }
@@ -78,7 +79,7 @@ $color-link-grey: #CDCDCD;
   font-size: 61px;
   font-weight: 700;
   line-height: 73.2px;
-  @media(max-width: 1299px) {
+  @media(max-width: 950px) {
     font-size: 47px;
   }
 }
