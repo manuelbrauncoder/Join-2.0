@@ -9,6 +9,7 @@ export class UserService {
   fireService = inject(FirebaseService);
   users: UserCl[] = [];
   showDetailView: boolean = false;
+  showContactList: boolean = true;
   colors: string[] = [
     '#FF7A00',
     '#9327FF',

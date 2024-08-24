@@ -39,8 +39,9 @@ const timing = '225ms ease-in';
 })
 export class ContactsComponent {
   userService = inject(UserService);
-  showContactOverlay: boolean = true;
+  showContactOverlay: boolean = false;
   showEditMode: boolean = false;
+
 
   selectedUser: UserCl = {
     name: '',
@@ -71,5 +72,12 @@ export class ContactsComponent {
   setSelectedUser(user: UserCl) {
     this.selectedUser = user;
     this.userService.showDetailView = true;
+    if (this.isMobileView()) {
+      this.userService.showContactList = false;
+    }
+  }
+
+  isMobileView(): boolean {
+    return window.innerWidth <= 950;
   }
 }

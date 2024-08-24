@@ -1,16 +1,20 @@
 <main>
-    <section class="list-view">
-        <header>
-            <button (click)="toggleOverlay()" class="primary addContactBtn">Add new contact <img src="assets/img/add-contact.png" alt=""></button>
-        </header>
-        <div class="list">
-            @for (letterGroup of userService.fireService.letterUser; track $index; let index = $index) {
-                <div class="letter-user">
-                    <app-contacts-letter-user-group (selectedUser)="setSelectedUser($event)" [userGroup]="letterGroup"></app-contacts-letter-user-group>
-                </div>
-            }
-        </div>
-    </section>
+    @if (userService.showContactList) {
+        <section class="list-view">
+            <header>
+                <button (click)="toggleOverlay()" class="primary addContactBtn">Add new contact <img src="assets/img/add-contact.png" alt=""></button>
+            </header>
+            <div class="list">
+                @for (letterGroup of userService.fireService.letterUser; track $index; let index = $index) {
+                    <div class="letter-user">
+                        <app-contacts-letter-user-group (selectedUser)="setSelectedUser($event)" [userGroup]="letterGroup"></app-contacts-letter-user-group>
+                    </div>
+                }
+            </div>
+        </section>
+    }
+    
+
     <section class="detail-view">
         <header>
             <h1 class="v2-t1">Contacts</h1>
