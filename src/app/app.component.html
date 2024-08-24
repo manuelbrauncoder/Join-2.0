@@ -7,12 +7,10 @@
     <header class="header"><app-header></app-header></header>
   }
 
-  <main [ngClass]="onLogin ? 'on-login' : 'main'"><router-outlet /></main>
+  <main cdkScrollable [ngClass]="onLogin ? 'on-login' : 'main'"><router-outlet /></main>
 
   @if (!onLogin) {
     <nav class="nav"><app-nav-bar></app-nav-bar></nav>
   }
 
 </div>
-
-

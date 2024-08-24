@@ -3,7 +3,7 @@
     <div>
       <h1 (click)="userService.addLocalUsersToFirebase()" class="v2-t1">Board</h1>
       <button class="mobile-btn">
-        <img src="assets/img/add-task-plus-mobile.png" alt="">
+        <img routerLink="/addTask" src="assets/img/add-task-plus-mobile.png" alt="">
       </button>
     </div>
     <div class="search">
@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <div class="task-container">
+  <div cdkScrollable class="task-container">
     <div class="tasks-column">
       <div class="header">
         <h3>To do</h3>

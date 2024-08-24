@@ -3,6 +3,7 @@
 
 
 main {
+  overflow: auto;
   background-color: $color-bg-white;
   padding: 80px 64px 80px 64px;
   @media(max-width: 950px) {
@@ -62,6 +63,9 @@ main {
 }
 
 .mobile-btn{
+  background-color: unset;
+  border: unset;
+  cursor: pointer;
   @media(min-width: 951px) {
     display: none;
   }
@@ -110,9 +114,6 @@ main {
   border-radius: 24px;
 }
 
-.drag-preview{
-  
-  transform: rotate(15deg) !important;
-}
+
 
 

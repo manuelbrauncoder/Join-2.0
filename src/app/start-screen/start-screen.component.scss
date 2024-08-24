@@ -54,7 +54,12 @@ main {
   @media(max-width: 950px) {
     padding: 16px;
     margin-top: auto !important;
-    margin-bottom: 16px;
+    margin-bottom: auto;
+  }
+  @media(max-width: 380px) {
+    padding: 16px;
+    margin-top: auto !important;
+    margin-bottom: 32px;
   }
 }
 

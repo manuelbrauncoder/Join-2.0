@@ -6,11 +6,12 @@ import { FirebaseService } from './services/firebase.service';
 import { UserService } from './services/user.service';
 import { FirebaseAuthService } from './services/firebase-auth.service';
 import { CommonModule } from '@angular/common';
+import { CdkScrollable } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, NavBarComponent, CommonModule],
+  imports: [RouterOutlet, HeaderComponent, NavBarComponent, CommonModule, CdkScrollable],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

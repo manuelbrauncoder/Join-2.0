@@ -19,6 +19,8 @@ import { FormsModule } from '@angular/forms';
 import { AddTaskFormComponent } from "../add-task-form/add-task-form.component";
 import { animate, style, transition, trigger } from '@angular/animations';
 import { BoardTaskDetailCardComponent } from "../board-task-detail-card/board-task-detail-card.component";
+import { RouterLink } from '@angular/router';
+import { CdkScrollable } from '@angular/cdk/scrolling';
 
 const overLayHidden = { transform: 'translate(120%, -50%)' };
 const overlayVisible = { transform: 'translate(-50%, -50%)' };
@@ -50,7 +52,9 @@ const timing = '225ms ease-in';
     CdkDragPreview,
     FormsModule,
     AddTaskFormComponent,
-    BoardTaskDetailCardComponent
+    BoardTaskDetailCardComponent,
+    RouterLink,
+    CdkScrollable
 ],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss',

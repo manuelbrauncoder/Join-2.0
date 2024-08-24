@@ -29,7 +29,7 @@ aside{
 
     nav{
         margin-top: 160px;
-        @include dFlex($fd: column, $g: 32px);
+        @include dFlex($fd: column, $g: 32px, $ai: flex-start);
         @media(max-width: 950px){
             @include dFlex($g: 15px);
             margin: 0;
@@ -47,7 +47,7 @@ aside{
                 height: 25px;
             }
             @media(max-width: 950px){
-                @include dFlex($fd: column);
+                @include dFlex($fd: column, $g: 8px);
                 padding: 8px;
                 width: 100%;
                 font-size: 14px;

@@ -38,8 +38,8 @@
             </svg>
           </div>
           <div class="text">
-            <h1 class="btn-font">{{ getNumberOfTasks("todo") }}</h1>
-            <span class="btn-font">To-do</span>
+            <h1 class="btn-text">{{ getNumberOfTasks("todo") }}</h1>
+            <span class="btn-text">To-do</span>
           </div>
         </button>
         <button class="medium-btn">
@@ -61,8 +61,8 @@
             </svg>
           </div>
           <div class="text">
-            <h1 class="btn-font">{{ getNumberOfTasks("done") }}</h1>
-            <span class="btn-font">Done</span>
+            <h1 class="btn-text">{{ getNumberOfTasks("done") }}</h1>
+            <span class="btn-text">Done</span>
           </div>
         </button>
       </div>
@@ -70,28 +70,28 @@
         <div class="counter">
           <img src="assets/img/summary-urgent-icon.png" alt="" />
           <div class="counter-number">
-            <h1 class="btn-font">{{ getNumberOfUrgentTasks() }}</h1>
-            <span class="btn-font">Urgent</span>
+            <h1 class="btn-text">{{ getNumberOfUrgentTasks() }}</h1>
+            <span class="btn-text">Urgent</span>
           </div>
         </div>
         <hr class="divider" />
         <div class="date">
-          <span class="btn-font">October 16, 2022</span>
-          <span class="btn-font">Upcoming Deadline</span>
+          <span class="btn-text">October 16, 2022</span>
+          <span class="btn-text">Upcoming Deadline</span>
         </div>
       </button>
       <div class="small">
         <button class="small-btn">
-          <h1 class="btn-font">{{ taskService.fireService.tasks.length }}</h1>
-          <span class="btn-font">Tasks in board</span>
+          <h1 class="btn-text">{{ taskService.fireService.tasks.length }}</h1>
+          <span class="btn-text">Tasks in board</span>
         </button>
         <button class="small-btn">
-          <h1 class="btn-font">{{ getNumberOfTasks("progress") }}</h1>
-          <span class="btn-font">Tasks in Progress</span>
+          <h1 class="btn-text">{{ getNumberOfTasks("progress") }}</h1>
+          <span class="btn-text">Tasks in Progress</span>
         </button>
         <button class="small-btn">
-          <h1 class="btn-font">{{ getNumberOfTasks("feedback") }}</h1>
-          <span class="btn-font">Awaiting Feedback</span>
+          <h1 class="btn-text">{{ getNumberOfTasks("feedback") }}</h1>
+          <span class="btn-text">Awaiting Feedback</span>
         </button>
       </div>
     </div>

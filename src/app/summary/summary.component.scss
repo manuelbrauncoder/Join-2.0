@@ -80,6 +80,7 @@ section {
         transition: transform 125ms ease-out;
         @media(max-width: 950px){
           width: calc((100vw - 32px) / 2);
+          height: 110px;
           padding: 8px 6px;
         }
         .icon {
@@ -93,10 +94,17 @@ section {
             width: 40px;
             height: 40px;
           }
+          svg{
+            @media(max-width: 950px) {
+              scale: 0.7;
+            }
+          }
         }
 
-        .btn-font {
+        .btn-text {
           color: $color-main;
+          font-size: 14px;
+          line-height: 32px !important;
         }
 
         .text {
@@ -157,6 +165,7 @@ section {
       transition: transform 125ms ease-out;
       @media(max-width: 950px){
         width: calc(100vw - 16px);
+        height: 110px;
         padding: 8px 6px;
       }
       .btn-font {
@@ -234,7 +243,7 @@ section {
       @media(max-width: 950px){
         gap: 8px;
         width: calc((100vw - 32px) / 3);
-        height: 140px;
+        height: 130px;
         padding: 8px 6px;
       }
       .btn-font {
