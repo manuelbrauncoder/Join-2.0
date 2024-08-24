@@ -40,7 +40,7 @@
    background-color: $color-bg-white;
 }
 
-@media (max-width: 899px) {
+@media (max-width: 950px) {
    .grid-container {
        grid-template-columns: 1fr;
        grid-template-rows: auto 1fr auto;

@@ -3,7 +3,7 @@
     <div>
       <h1 (click)="userService.addLocalUsersToFirebase()" class="v2-t1">Board</h1>
       <button class="mobile-btn">
-        <img routerLink="/addTask" src="assets/img/add-task-plus-mobile.png" alt="">
+        <img #mobileBtn routerLink="/addTask" src="assets/img/add-task-plus-mobile.png" alt="">
       </button>
     </div>
     <div class="search">
@@ -13,7 +13,7 @@
         <img src="assets/img/icon-search.png" alt="">
 
       </div>
-      <button (click)="toggleAddTaskOverlay()" class="primary add-btn">
+      <button (click)="toggleAddTaskOverlay('todo')" class="primary add-btn">
         Add task 
         <img src="assets/img/plus-icon-white.png" alt="">
       </button>
@@ -25,7 +25,7 @@
     <div class="tasks-column">
       <div class="header">
         <h3>To do</h3>
-        <img src="assets/img/board-plus-btn.png" alt="" />
+        <img (click)="toggleAddTaskOverlay('todo')" src="assets/img/board-plus-btn.png" alt="" />
       </div>
       <div
         id="todoList"
@@ -55,7 +55,7 @@
     <div class="tasks-column">
       <div class="header">
         <h3>In progress</h3>
-        <img src="assets/img/board-plus-btn.png" alt="" />
+        <img (click)="toggleAddTaskOverlay('progress')" src="assets/img/board-plus-btn.png" alt="" />
       </div>
       <div
         id="progressList"
@@ -87,7 +87,7 @@
     <div class="tasks-column">
       <div class="header">
         <h3>Await feedback</h3>
-        <img src="assets/img/board-plus-btn.png" alt="" />
+        <img (click)="toggleAddTaskOverlay('feedback')" src="assets/img/board-plus-btn.png" alt="" />
       </div>
       <div
         id="feedbackList"
@@ -119,7 +119,7 @@
     <div class="tasks-column">
       <div class="header">
         <h3>Done</h3>
-        <img src="assets/img/board-plus-btn.png" alt="" />
+        <img (click)="toggleAddTaskOverlay('done')" src="assets/img/board-plus-btn.png" alt="" />
       </div>
       <div
         id="doneList"
@@ -158,7 +158,7 @@
     <app-add-task-form [openInDialog]="true"></app-add-task-form>
   </div>
 
-  <div (click)="toggleAddTaskOverlay()" class="background"></div>
+  <div (click)="toggleAddTaskOverlay('todo')" class="background"></div>
 }
 
 @if (taskService.showDetailOverlay) {

@@ -19,7 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { AddTaskFormComponent } from "../add-task-form/add-task-form.component";
 import { animate, style, transition, trigger } from '@angular/animations';
 import { BoardTaskDetailCardComponent } from "../board-task-detail-card/board-task-detail-card.component";
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 
 const overLayHidden = { transform: 'translate(120%, -50%)' };
@@ -56,11 +56,12 @@ const timing = '225ms ease-in';
     RouterLink,
     CdkScrollable,
     CdkDragHandle
-],
+  ],
   templateUrl: './board.component.html',
   styleUrl: './board.component.scss',
 })
 export class BoardComponent {
+  router = inject(Router);
   taskService = inject(TaskService);
   userService = inject(UserService);
   showAddTaskOverlay: boolean = false;
@@ -68,12 +69,12 @@ export class BoardComponent {
   searchInput: string = '';
   taskForDetail = new Task;
 
-  toggleTaskDetailOverlay(){
+  toggleTaskDetailOverlay() {
     this.taskService.showDetailOverlay = !this.taskService.showDetailOverlay;
     this.taskService.taskEditMode = false;
   }
 
-  openDetailCard(task: Task){
+  openDetailCard(task: Task) {
     this.taskForDetail = task;
     this.taskService.showDetailOverlay = true;
   }
@@ -81,9 +82,23 @@ export class BoardComponent {
   /**
    * toggle add task overlay
    */
-  toggleAddTaskOverlay(){
-    this.taskService.showAddTaskOverlay = !this.taskService.showAddTaskOverlay;
+  toggleAddTaskOverlay(status: 'todo' | 'progress' | 'feedback' | 'done') {
+    if (this.isMobileView()) {
+      this.taskService.setTaskStatus(status);
+      this.router.navigate(['addTask']);
+    } else {
+      this.taskService.showAddTaskOverlay = !this.taskService.showAddTaskOverlay;
+      if (this.taskService.showAddTaskOverlay) {
+        this.taskService.setTaskStatus(status);
+      }
+    }
+
   }
+
+  isMobileView(): boolean {
+    return window.innerWidth <= 950;
+  }
+
 
   /**
    * filter tasks by searchInput

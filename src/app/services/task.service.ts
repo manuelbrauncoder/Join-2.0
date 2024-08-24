@@ -12,6 +12,9 @@ export class TaskService {
   showDetailOverlay = false; // task detail view in board
   taskEditMode = false; // edit mode in task detail view in board
 
+  taskStatus: 'todo' | 'progress' | 'feedback' | 'done' = 'todo';
+  
+
   exampleTasks: Task[] = [
     {
       id: '',
@@ -228,6 +231,10 @@ export class TaskService {
   ];
 
   constructor() {}
+
+  setTaskStatus(status: 'todo' | 'progress' | 'feedback' | 'done') {
+    this.taskStatus = status;
+  }
 
   /**
    * save Example tasks in firebase collection

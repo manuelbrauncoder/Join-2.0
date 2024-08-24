@@ -225,6 +225,7 @@ export class AddTaskFormComponent implements OnInit {
   async onSubmit(ngForm: NgForm) {
     if (ngForm.valid && ngForm.submitted && !this.editmode) {
       this.handleDueDate();
+      this.task.status = this.taskService.taskStatus;
       await this.taskService.fireService.addTask(this.task);
       if (this.openInDialog) {
         this.toggleAddTaskOverlay();
