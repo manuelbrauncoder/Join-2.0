@@ -42,7 +42,6 @@ export class ContactsComponent {
   showContactOverlay: boolean = false;
   showEditMode: boolean = false;
 
-
   selectedUser: UserCl = {
     name: '',
     id: '',

@@ -15,10 +15,10 @@
     }
     
 
-    <section class="detail-view">
+    <section [ngStyle]="{ 'display': userService.showDetailView ? 'block' : ''}" class="detail-view">
         <header>
             <h1 class="v2-t1">Contacts</h1>
-            <img src="assets/img/divider-vertical-blue.png" alt="">
+            <hr class="divider-header">
             <span class="v2-t5">Better with a team</span>
         </header>
 

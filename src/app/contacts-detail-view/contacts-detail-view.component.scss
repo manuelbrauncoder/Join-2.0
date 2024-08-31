@@ -6,8 +6,31 @@ main {
   background-color: $color-bg-white;
 }
 
+.headline-mobile {
+  background-color: $color-bg-white;
+  padding: 32px;
+  @include dFlex($fd: column, $jc: flex-start, $ai: flex-start, $g: 8px);
+
+  span {
+    color: $color-main;
+  }
+
+  .divider-header {
+    height: 3px;
+    width: 59px;
+    background-color: $color-lightblue;
+    border: unset;
+  }
+
+  @media(min-width: 951px) {
+    display: none;
+  }
+
+}
+
 header {
   @include dFlex($g: 54px, $jc: flex-start);
+
   span {
     @extend .assignedToBubble;
     font-size: 47px;
@@ -16,14 +39,18 @@ header {
     width: 120px;
     height: 120px;
   }
-  > div {
+
+  >div {
     @include dFlex($fd: column, $g: 8px, $jc: flex-start, $ai: flex-start);
+
     h2 {
       margin: 0;
       @extend .v2-t2;
     }
-    > div {
-        display: flex;
+
+    >div {
+      display: flex;
+
       button {
         margin-right: 8px;
         @extend .v2-body;
@@ -31,15 +58,19 @@ header {
         background-color: unset;
         @include dFlex($g: 13px);
         cursor: pointer;
-        &:hover{
-            color: $color-link-blue;
-            font-weight: 700;
-            svg{
-                fill: $color-link-blue;
-                rect,path{
-                    fill: $color-link-blue;
-                }
+
+        &:hover {
+          color: $color-link-blue;
+          font-weight: 700;
+
+          svg {
+            fill: $color-link-blue;
+
+            rect,
+            path {
+              fill: $color-link-blue;
             }
+          }
         }
       }
     }
@@ -57,6 +88,7 @@ header {
     font-weight: 700;
     line-height: 19.2px;
   }
+
   span {
     @extend .v2-body;
     color: $color-link-blue;

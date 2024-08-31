@@ -7,6 +7,7 @@ import { UserService } from './services/user.service';
 import { FirebaseAuthService } from './services/firebase-auth.service';
 import { CommonModule } from '@angular/common';
 import { CdkScrollable } from '@angular/cdk/scrolling';
+import { BreakpointObserverService } from './services/breakpoint-observer.service';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,7 @@ export class AppComponent implements OnDestroy, OnInit {
   title = 'join-2';
 
   authService = inject(FirebaseAuthService);
-
+  observerService = inject(BreakpointObserverService);
   fireService = inject(FirebaseService);
   userService = inject(UserService);
   unsubTaskList;
@@ -45,6 +46,7 @@ export class AppComponent implements OnDestroy, OnInit {
         }
         console.log(this.authService.currentUserSig());
       });
+      this.observerService.initObserver();
   }
 
   subRouterEvents(){
