@@ -6,6 +6,7 @@ import { ContactsFormComponent } from '../contacts-form/contacts-form.component'
 import { animate, style, transition, trigger } from '@angular/animations';
 import { UserService } from '../services/user.service';
 import { TaskService } from '../services/task.service';
+import { BreakpointObserverService } from '../services/breakpoint-observer.service';
 
 const overLayHidden = { transform: 'translate(120%, -50%)' };
 const overlayVisible = { transform: 'translate(-50%, -50%)' };
@@ -34,6 +35,7 @@ const timing = '225ms ease-in';
 export class ContactsDetailViewComponent {
   userService = inject(UserService);
   taskService = inject(TaskService);
+  observerService = inject(BreakpointObserverService);
 
   showEditOverlay: boolean = false;
 

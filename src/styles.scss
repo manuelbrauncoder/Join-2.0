@@ -56,6 +56,9 @@ $color-link-grey: #CDCDCD;
   font-size: 47px;
   font-weight: 500;
   line-height: 56.4px;
+  @media(max-width: 950px) {
+    font-size: 40px;
+}
 }
 
 .v2-t5 {

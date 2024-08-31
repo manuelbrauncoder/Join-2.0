@@ -6,6 +6,7 @@ import { ContactsDetailViewComponent } from '../contacts-detail-view/contacts-de
 import { animate, style, transition, trigger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { ContactsFormComponent } from "../contacts-form/contacts-form.component";
+import { BreakpointObserverService } from '../services/breakpoint-observer.service';
 
 const detailHidden = { transform: 'translateX(120%)' };
 const detailVisible = { transform: 'translateX(0)' };
@@ -39,6 +40,7 @@ const timing = '225ms ease-in';
 })
 export class ContactsComponent {
   userService = inject(UserService);
+  observerService = inject(BreakpointObserverService);
   showContactOverlay: boolean = false;
   showEditMode: boolean = false;
 

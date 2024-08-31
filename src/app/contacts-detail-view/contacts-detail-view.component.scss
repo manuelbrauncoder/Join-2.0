@@ -1,35 +1,71 @@
 @import "../../styles.scss";
 
 main {
+  z-index: 2;
   @include dFlex($fd: column, $ai: flex-start, $jc: flex-start, $g: 21px);
   margin-top: 32px;
   background-color: $color-bg-white;
+
+  @media(max-width: 950px) {
+    margin: 0;
+    padding: 8px;
+  }
+}
+
+.more-btn {
+  cursor: pointer;
+  @include dFlex();
+  position: absolute;
+  bottom: 94px;
+  right: 14px;
+  width: 56px;
+  height: 56px;
+  border-radius: 100%;
+  border: unset;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  background-color: $color-main;
+
+  &:active {
+    background-color: $color-lightblue;
+  }
+
+  @media(min-width: 951px) {
+    display: none;
+  }
 }
 
 .headline-mobile {
-  background-color: $color-bg-white;
-  padding: 32px;
-  @include dFlex($fd: column, $jc: flex-start, $ai: flex-start, $g: 8px);
+  @include dFlex($jc: space-between, $ai: flex-start);
+  width: 100%;
 
-  span {
-    color: $color-main;
-  }
+  .headline {
+    background-color: $color-bg-white;
+    @include dFlex($fd: column, $jc: flex-start, $ai: flex-start, $g: 8px);
 
-  .divider-header {
-    height: 3px;
-    width: 59px;
-    background-color: $color-lightblue;
-    border: unset;
+    span {
+      color: $color-main;
+    }
+
+    .divider-header {
+      height: 3px;
+      width: 59px;
+      background-color: $color-lightblue;
+      border: unset;
+    }
   }
 
   @media(min-width: 951px) {
     display: none;
   }
 
+
 }
 
 header {
   @include dFlex($g: 54px, $jc: flex-start);
+  @media(max-width: 950px) {
+    gap: 24px;
+  }
 
   span {
     @extend .assignedToBubble;
@@ -38,6 +74,13 @@ header {
     line-height: 56.4px;
     width: 120px;
     height: 120px;
+
+    @media(max-width: 950px) {
+      width: 80px;
+      height: 80px;
+      font-size: 40px;
+    }
+    
   }
 
   >div {

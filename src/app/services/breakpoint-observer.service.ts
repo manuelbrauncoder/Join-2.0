@@ -24,13 +24,20 @@ export class BreakpointObserverService {
         if (!state.matches) {
           // Desktop
           this.userService.showContactList = true;
-          this.mobile = true;
+          this.mobile = false;
           console.log('Desktop');
         } else if (state.matches) {
           // Mobile
           console.log('Mobile');
-          this.mobile = false;
+          this.mobile = true;
+          this.hideContactList();
         }
       })
+  }
+
+  hideContactList(){
+    if (this.userService.showDetailView) {
+      this.userService.showContactList = false;
+    }
   }
 }

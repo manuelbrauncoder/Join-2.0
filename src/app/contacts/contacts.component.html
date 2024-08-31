@@ -30,8 +30,9 @@
         }
         
     </section>
-    
-    <button (click)="toggleOverlay()" class="mobile-add-btn"><img src="assets/img/contact-mobile-add.png" alt=""></button>
+    @if (observerService.mobile && !observerService.userService.showDetailView) {
+        <button (click)="toggleOverlay()" class="mobile-add-btn"><img src="assets/img/contact-mobile-add.png" alt=""></button>
+    }
 </main>
 
 

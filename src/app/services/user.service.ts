@@ -162,6 +162,11 @@ export class UserService {
 
   constructor() {}
 
+  closeDetailViewMobile() {
+    this.showDetailView = false;
+    this.showContactList = true;
+  }
+
   async addLocalUsersToFirebase() {
     for (let i = 0; i < this.exampleUsers.length; i++) {
       const user = this.exampleUsers[i];
