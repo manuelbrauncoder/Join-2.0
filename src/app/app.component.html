@@ -14,3 +14,10 @@
   }
 
 </div>
+
+@if (uiService.showConfirmationPopup) {
+  <div class="confirm-popup-background"></div>
+  <div @slideInVertical class="popup-wrapper">
+    <app-confirmation-popup></app-confirmation-popup>
+  </div>
+}

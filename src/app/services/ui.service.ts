@@ -17,7 +17,20 @@ export class UiService {
   showEditContactOverlay = false; // edit contact overlay
   showHeaderMenu = false; // menu popup in header
 
+  showConfirmationPopup = false;
+  confirmText = '';
+  showConfirmIcon = false;
+
   constructor() { }
+
+  showConfirmPopup(text: string, showIcon: boolean){
+    this.confirmText = text;
+    this.showConfirmIcon = showIcon;
+    this.showConfirmationPopup = true;
+    setTimeout(() => {
+      this.showConfirmationPopup = false;
+    }, 2500);
+  }
 
   /**
    * toggle menu in header

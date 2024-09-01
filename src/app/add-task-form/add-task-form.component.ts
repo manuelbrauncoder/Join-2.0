@@ -7,6 +7,7 @@ import { UserService } from '../services/user.service';
 import { InitialsPipe } from '../pipes/initials.pipe';
 import { UserCl } from '../models/user.class';
 import { Router } from '@angular/router';
+import { UiService } from '../services/ui.service';
 
 @Component({
   selector: 'app-add-task-form',
@@ -18,6 +19,7 @@ import { Router } from '@angular/router';
 export class AddTaskFormComponent implements OnInit {
   taskService = inject(TaskService);
   userService = inject(UserService);
+  uiService = inject(UiService);
   router = inject(Router);
 
   task = new Task(); // task for ngModel
@@ -228,9 +230,11 @@ export class AddTaskFormComponent implements OnInit {
       this.task.status = this.taskService.taskStatus;
       await this.taskService.fireService.addTask(this.task);
       if (this.openInDialog) {
+        this.uiService.showConfirmPopup('Task added to board', true);
         this.toggleAddTaskOverlay();
       } else {
         this.router.navigate(['/board']);
+        this.uiService.showConfirmPopup('Task added to board', true);
       }
     } else if (ngForm.valid && ngForm.submitted && this.editmode) {
       this.taskService.fireService.updateTask(this.task);

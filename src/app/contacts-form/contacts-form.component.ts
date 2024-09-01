@@ -49,6 +49,7 @@ export class ContactsFormComponent implements OnInit {
   async onSubmit(ngForm: NgForm) {
     if (ngForm.valid && ngForm.submitted && !this.editMode) {
       this.saveNewUser();
+      this.uiService.showConfirmPopup('Contact succesfully created ', false);
     } else if (ngForm.valid && ngForm.submitted && this.editMode) {
       this.updateEditedUser();
     }

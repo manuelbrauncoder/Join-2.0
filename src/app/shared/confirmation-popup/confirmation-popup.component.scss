@@ -1,0 +1,23 @@
+@import '../../../styles.scss';
+
+.confirm-popup-background{
+    z-index: 4;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(208, 207, 207, 0.688);;
+}
+
+main{
+    
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    background-color: $color-main;
+    border-radius: 20px;
+    padding: 24px 32px;
+    @include dFlex($g: 32px);
+    span{
+        @extend .v2-t6;
+        color: white;
+    }
+}

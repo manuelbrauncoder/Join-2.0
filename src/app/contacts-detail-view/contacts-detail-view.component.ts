@@ -36,6 +36,7 @@ export class ContactsDetailViewComponent {
   
 
   async deleteUser() {
+    this.uiService.showConfirmPopup('Contact deleted', false);
     await this.taskService.deleteUserInTask(this.currentUser.name);
     await this.userService.fireService.deleteData(this.currentUser.id, 'users');
     this.uiService.showDetailView = false;

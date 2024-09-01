@@ -9,11 +9,14 @@ import { CommonModule } from '@angular/common';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { BreakpointObserverService } from './services/breakpoint-observer.service';
 import { UiService } from './services/ui.service';
+import { ConfirmationPopupComponent } from './shared/confirmation-popup/confirmation-popup.component';
+import { slideInVertical } from "./shared/animations";
 
 @Component({
   selector: 'app-root',
+  animations: [slideInVertical],
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, NavBarComponent, CommonModule, CdkScrollable],
+  imports: [RouterOutlet, HeaderComponent, NavBarComponent, CommonModule, CdkScrollable, ConfirmationPopupComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

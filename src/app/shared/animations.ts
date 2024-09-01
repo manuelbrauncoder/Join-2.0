@@ -9,8 +9,8 @@ const horizontalVisible = { transform: 'translateX(0)' };
 const slideInHorizontalCenterHidden = { transform: 'translate(120%, -50%)' };
 const slideInHorizontalCenterVisible = { transform: 'translate(-50%, -50%)' };
 
-const verticalHidden = { transform: 'translateY(120%)'};
-const verticalVisible = { transform: 'translateY(0)'};
+const verticalHidden = { transform: 'translate(-50%, 1000px)'};
+const verticalVisible = { transform: 'translate(-50%, -50%)'};
 
 /**
  * slide in and out from right to center

@@ -2,6 +2,25 @@
 
 // classes shown on login/register
 
+.confirm-popup-background {
+   position: fixed;
+   z-index: 4;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   background-color: rgba(208, 207, 207, 0.688);
+   ;
+}
+
+.popup-wrapper {
+   z-index: 5;
+   position: fixed;
+   bottom: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+}
+
 
 .on-login {
    height: 100vh;
@@ -18,7 +37,7 @@
    grid-template-areas: "nav header" "nav main";
 }
 
-.nav{
+.nav {
    height: 100vh;
    grid-column: 1;
    grid-area: nav;
@@ -42,24 +61,26 @@
 
 @media (max-width: 950px) {
    .grid-container {
-       grid-template-columns: 1fr;
-       grid-template-rows: auto 1fr auto;
-       grid-template-areas: 
-           "header"
-           "main"
-           "nav";
-       height: 100vh;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto 1fr auto;
+      grid-template-areas:
+         "header"
+         "main"
+         "nav";
+      height: 100vh;
    }
 
    .nav {
-       height: 80px;
+      height: 80px;
    }
 
-   .main{
-       height: 100%;
+   .main {
+      height: 100%;
    }
 
-   .header, .main, .nav {
-       width: 100%;
+   .header,
+   .main,
+   .nav {
+      width: 100%;
    }
 }
