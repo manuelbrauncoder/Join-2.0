@@ -8,6 +8,8 @@ import { Injectable } from '@angular/core';
 })
 export class UiService {
 
+  activeSection: 'summary' | 'addTask' | 'board' | 'contacts' | '' = '';
+
   showDetailView = false; // contact detail view
   showContactList = true; // contact list view
   showContactMenu = false; // menu popup in mobile detail contact view

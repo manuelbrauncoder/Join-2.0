@@ -61,8 +61,30 @@ export class AppComponent implements OnDestroy, OnInit {
       if (event instanceof NavigationEnd) {
         this.checkPath(event.url);
         this.hideUserDetailonRoute(event.url);
+        this.setActiveSection(event.url);
       }
     });
+  }
+
+  setActiveSection(url: string) {
+    
+    switch (url) {
+      case '/summary':        
+        this.uiService.activeSection = 'summary';
+        break;
+      case '/addTask':
+        this.uiService.activeSection = 'addTask';
+        break;
+      case '/board':
+        this.uiService.activeSection = 'board';
+        break;
+      case '/contacts':
+        this.uiService.activeSection = 'contacts';
+        break;
+      default:
+        this.uiService.activeSection = '';
+        break;
+    }
   }
 
   /**

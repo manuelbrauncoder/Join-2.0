@@ -18,7 +18,7 @@ aside{
         width: unset;
         bottom: 0;
         top: unset;
-        height: 80px;
+        height: fit-content;
         padding: 0;
     }
     .logo{
@@ -27,15 +27,22 @@ aside{
         }
     }
 
+    .active-section {
+        background-color: $color-active-section;
+    }
+
     nav{
+        width: 100%;
         margin-top: 160px;
         @include dFlex($fd: column, $g: 32px, $ai: flex-start);
         @media(max-width: 950px){
             @include dFlex($g: 15px);
             margin: 0;
-            padding: 10px 0;
+            height: 100%;
+            padding: 8px 8px;
         }
         a{
+            width: 100%;
             padding: 8px 56px 8px 56px;
             @include dFlex($jc: flex-start, $g: 8px);
             color: $color-link-grey;
@@ -48,9 +55,10 @@ aside{
             }
             @media(max-width: 950px){
                 @include dFlex($fd: column, $g: 8px);
-                padding: 8px;
-                width: 100%;
+                padding: 8px 1px;
                 font-size: 14px;
+                height: 100%;
+                border-radius: 16px;
             }
         }
     }
