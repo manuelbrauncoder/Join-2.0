@@ -3,30 +3,17 @@ import { UserCl } from '../models/user.class';
 import { InitialsPipe } from '../pipes/initials.pipe';
 import { CommonModule } from '@angular/common';
 import { ContactsFormComponent } from '../contacts-form/contacts-form.component';
-import { animate, style, transition, trigger } from '@angular/animations';
 import { UserService } from '../services/user.service';
 import { TaskService } from '../services/task.service';
 import { BreakpointObserverService } from '../services/breakpoint-observer.service';
+import { slideInHorizontal, slideInHorizontalCenter, slideInVertical } from "../shared/animations";
 
-const overLayHidden = { transform: 'translate(120%, -50%)' };
-const overlayVisible = { transform: 'translate(-50%, -50%)' };
 
-const timing = '225ms ease-in';
+
 
 @Component({
   selector: 'app-contacts-detail-view',
-  animations: [
-    trigger('toggleOverlay', [
-      transition(':enter', [
-        style(overLayHidden),
-        animate(timing, style(overlayVisible)),
-      ]),
-      transition(':leave', [
-        style(overlayVisible),
-        animate(timing, style(overLayHidden)),
-      ]),
-    ]),
-  ],
+  animations: [slideInHorizontal, slideInHorizontalCenter, slideInVertical],
   standalone: true,
   imports: [InitialsPipe, CommonModule, ContactsFormComponent],
   templateUrl: './contacts-detail-view.component.html',
@@ -37,7 +24,8 @@ export class ContactsDetailViewComponent {
   taskService = inject(TaskService);
   observerService = inject(BreakpointObserverService);
 
-  showEditOverlay: boolean = false;
+  
+
 
   @Input() currentUser: UserCl = {
     name: '',
@@ -49,13 +37,16 @@ export class ContactsDetailViewComponent {
     color: '',
   };
 
+
+
   toggleEditOverlay() {
-    this.showEditOverlay = !this.showEditOverlay;
+    this.userService.showEditOverlay = !this.userService.showEditOverlay;
+    this.userService.showEditPopup = false;
   }
 
-  hideEditMode(event: boolean) {
-    this.showEditOverlay = event;
-  }
+  // hideEditMode(event: boolean) {
+  //   this.userService.showEditOverlay = event;
+  // }
 
   async deleteUser() {
     await this.taskService.deleteUserInTask(this.currentUser.name);

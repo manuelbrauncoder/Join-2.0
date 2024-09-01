@@ -137,3 +137,51 @@ header {
     color: $color-link-blue;
   }
 }
+
+.background-edit-popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  z-index: 2;
+}
+
+.edit-popup {
+  
+  z-index: 3;
+  position: fixed;
+  bottom: 90px;
+  right: 14px;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  background-color: white;
+  border-radius: 20px 20px 0 20px;
+  padding: 10px;
+  .btns{
+    @include dFlex($fd: column, $g: 10px);
+    button {
+      margin-right: 8px;
+      @extend .v2-body;
+      border: unset;
+      background-color: unset;
+      @include dFlex($g: 13px);
+      cursor: pointer;
+  
+      &:hover {
+        color: $color-link-blue;
+        font-weight: 700;
+  
+        svg {
+          fill: $color-link-blue;
+  
+          rect,
+          path {
+            fill: $color-link-blue;
+          }
+        }
+      }
+    }
+  }
+  
+}

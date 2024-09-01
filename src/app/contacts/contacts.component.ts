@@ -7,27 +7,13 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { ContactsFormComponent } from "../contacts-form/contacts-form.component";
 import { BreakpointObserverService } from '../services/breakpoint-observer.service';
+import { slideInHorizontal, slideInHorizontalCenter } from "../shared/animations";
 
-const detailHidden = { transform: 'translateX(120%)' };
-const detailVisible = { transform: 'translateX(0)' };
 
-const overLayHidden = { transform: 'translate(120%, -50%)' };
-const overlayVisible = { transform: 'translate(-50%, -50%)' };
-
-const timing = '225ms ease-in';
 
 @Component({
   selector: 'app-contacts',
-  animations: [
-    trigger('openClose', [
-      transition(':enter', [style(detailHidden), animate(timing, style(detailVisible))]),
-      transition(':leave', [style(detailVisible), animate(timing, style(detailHidden))]),
-    ]),
-    trigger('toggleOverlay', [
-      transition(':enter', [style(overLayHidden), animate(timing, style(overlayVisible))]),
-      transition(':leave', [style(overlayVisible), animate(timing, style(overLayHidden))]),
-    ]),
-  ],
+  animations: [ slideInHorizontal, slideInHorizontalCenter],
   standalone: true,
   imports: [
     ContactsLetterUserGroupComponent,
@@ -59,12 +45,7 @@ export class ContactsComponent {
   }
 
 
-  /**
-   * toggle the add or edit contact overlay
-   */
-  toggleOverlay(){
-    this.showContactOverlay = !this.showContactOverlay;
-  }
+  
 
   /**
    * select the user for detail view

@@ -8,8 +8,15 @@ import { FirebaseService } from './firebase.service';
 export class UserService {
   fireService = inject(FirebaseService);
   users: UserCl[] = [];
-  showDetailView: boolean = false;
-  showContactList: boolean = true;
+
+  showDetailView = false;
+  showContactList = true;
+  showEditPopup = false;
+  showContactOverlay = false;
+  showEditOverlay: boolean = false;
+
+
+
   colors: string[] = [
     '#FF7A00',
     '#9327FF',
@@ -161,6 +168,22 @@ export class UserService {
   ];
 
   constructor() {}
+
+  /**
+   * toggle the add or edit contact overlay
+   */
+  toggleContactOverlay(){
+    this.showContactOverlay = !this.showContactOverlay;
+  }
+
+  closeContactOverlay() {
+    this.showContactOverlay = false;
+    this.showEditOverlay = false;
+  }
+
+  toggleEditPopup() {
+    this.showEditPopup = !this.showEditPopup;
+  }
 
   closeDetailViewMobile() {
     this.showDetailView = false;

@@ -1,5 +1,5 @@
 <main>
-  <button (click)="closeOverlay()" class="close-icon-mobile"><img src="assets/img/Close.png" alt=""></button>
+  <button (click)="userService.closeContactOverlay()" class="close-icon-mobile"><img src="assets/img/Close.png" alt=""></button>
   <div class="headline">
     <img src="assets/img/join-logo.png" alt="" />
     @if (editMode) {
@@ -14,7 +14,7 @@
   </div>
   <div class="user">
     @if (!editMode) {
-    <button (click)="closeOverlay()" class="close-icon">
+    <button (click)="userService.toggleContactOverlay()" class="close-icon">
       <img src="assets/img/btn-clear.png" alt="" />
     </button>
     } @if (editMode) {
@@ -29,7 +29,7 @@
         <img src="assets/img/person.png" alt="" />
       </div>
     }
-    @if (editMode) {
+    @if (editMode && !observer.mobile) {
       <span [ngStyle]="{ 'background-color': user.color }" class="assignedToBubble name-bubble">{{ user.name | initials }}</span>
     }
     <div class="form">
@@ -89,7 +89,7 @@
         </div>
         <div class="btns">
           @if (!editMode) {
-            <button (click)="closeOverlay()" type="button" class="secondary">
+            <button (click)="userService.toggleContactOverlay()" type="button" class="secondary">
               Cancel
               <svg
                 width="25"
