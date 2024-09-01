@@ -1,8 +1,9 @@
 <main>
-    @if (userService.showContactList) {
+
+    @if (uiService.showContactList) {
         <section class="list-view">
             <header>
-                <button (click)="userService.toggleContactOverlay()" class="primary addContactBtn">Add new contact <img src="assets/img/add-contact.png" alt=""></button>
+                <button (click)="uiService.toggleAddContactOverlay()" class="primary addContactBtn">Add new contact <img src="assets/img/add-contact.png" alt=""></button>
             </header>
             <div class="list">
                 @for (letterGroup of userService.fireService.letterUser; track $index; let index = $index) {
@@ -14,8 +15,7 @@
         </section>
     }
     
-
-    <section [ngStyle]="{ 'display': userService.showDetailView ? 'block' : ''}" class="detail-view">
+    <section [ngStyle]="{ 'display': uiService.showDetailView ? 'block' : ''}" class="detail-view">
         <header>
             <h1 class="v2-t1">Contacts</h1>
             <hr class="divider-header">
@@ -23,24 +23,24 @@
         </header>
 
 
-        @if (userService.showDetailView) {
+        @if (uiService.showDetailView) {
             <div @slideInHorizontal class="detail">
                 <app-contacts-detail-view [currentUser]="selectedUser"></app-contacts-detail-view>
             </div>
         }
         
     </section>
-    @if (observerService.mobile && !observerService.userService.showDetailView) {
-        <button (click)="userService.toggleContactOverlay()" class="mobile-add-btn"><img src="assets/img/contact-mobile-add.png" alt=""></button>
+    @if (observerService.mobile && !uiService.showDetailView) {
+        <button (click)="uiService.toggleAddContactOverlay()" class="mobile-add-btn"><img src="assets/img/contact-mobile-add.png" alt=""></button>
     }
 </main>
 
 
-@if (userService.showContactOverlay) {
+@if (uiService.showAddContactOverlay) {
     <div @slideInHorizontalCenter class="overlay">
         <app-contacts-form></app-contacts-form>
     </div>
 
-    <div (click)="userService.toggleContactOverlay()" class="background"></div>
+    <div (click)="uiService.toggleAddContactOverlay()" class="background"></div>
 }
 

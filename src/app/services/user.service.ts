@@ -1,21 +1,15 @@
 import { inject, Injectable } from '@angular/core';
 import { UserCl } from '../models/user.class';
 import { FirebaseService } from './firebase.service';
+import { UiService } from './ui.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   fireService = inject(FirebaseService);
+  uiService = inject(UiService);
   users: UserCl[] = [];
-
-  showDetailView = false;
-  showContactList = true;
-  showEditPopup = false;
-  showContactOverlay = false;
-  showEditOverlay: boolean = false;
-
-
 
   colors: string[] = [
     '#FF7A00',
@@ -168,27 +162,6 @@ export class UserService {
   ];
 
   constructor() {}
-
-  /**
-   * toggle the add or edit contact overlay
-   */
-  toggleContactOverlay(){
-    this.showContactOverlay = !this.showContactOverlay;
-  }
-
-  closeContactOverlay() {
-    this.showContactOverlay = false;
-    this.showEditOverlay = false;
-  }
-
-  toggleEditPopup() {
-    this.showEditPopup = !this.showEditPopup;
-  }
-
-  closeDetailViewMobile() {
-    this.showDetailView = false;
-    this.showContactList = true;
-  }
 
   async addLocalUsersToFirebase() {
     for (let i = 0; i < this.exampleUsers.length; i++) {

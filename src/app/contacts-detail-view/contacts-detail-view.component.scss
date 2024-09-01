@@ -149,7 +149,6 @@ header {
 }
 
 .edit-popup {
-  
   z-index: 3;
   position: fixed;
   bottom: 90px;
@@ -159,7 +158,7 @@ header {
   border-radius: 20px 20px 0 20px;
   padding: 10px;
   .btns{
-    @include dFlex($fd: column, $g: 10px);
+    @include dFlex($fd: column, $g: 10px, $ai: flex-start);
     button {
       margin-right: 8px;
       @extend .v2-body;

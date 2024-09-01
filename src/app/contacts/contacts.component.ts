@@ -1,16 +1,13 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { ContactsLetterUserGroupComponent } from '../contacts-letter-user-group/contacts-letter-user-group.component';
 import { UserCl } from '../models/user.class';
 import { ContactsDetailViewComponent } from '../contacts-detail-view/contacts-detail-view.component';
-import { animate, style, transition, trigger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { ContactsFormComponent } from "../contacts-form/contacts-form.component";
 import { BreakpointObserverService } from '../services/breakpoint-observer.service';
 import { slideInHorizontal, slideInHorizontalCenter } from "../shared/animations";
-
-
-
+import { UiService } from '../services/ui.service';
 @Component({
   selector: 'app-contacts',
   animations: [ slideInHorizontal, slideInHorizontalCenter],
@@ -27,8 +24,7 @@ import { slideInHorizontal, slideInHorizontalCenter } from "../shared/animations
 export class ContactsComponent {
   userService = inject(UserService);
   observerService = inject(BreakpointObserverService);
-  showContactOverlay: boolean = false;
-  showEditMode: boolean = false;
+  uiService = inject(UiService);
 
   selectedUser: UserCl = {
     name: '',
@@ -40,12 +36,6 @@ export class ContactsComponent {
     color: '',
   };
 
-  hideOverlay(event: boolean){
-    this.showContactOverlay = event;
-  }
-
-
-  
 
   /**
    * select the user for detail view
@@ -53,9 +43,9 @@ export class ContactsComponent {
    */
   setSelectedUser(user: UserCl) {
     this.selectedUser = user;
-    this.userService.showDetailView = true;
+    this.uiService.showDetailView = true;
     if (this.isMobileView()) {
-      this.userService.showContactList = false;
+      this.uiService.showContactList = false;
     }
   }
 

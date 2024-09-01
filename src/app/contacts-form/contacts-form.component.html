@@ -1,11 +1,14 @@
 <main>
-  <button (click)="userService.closeContactOverlay()" class="close-icon-mobile"><img src="assets/img/Close.png" alt=""></button>
+  <button (click)="uiService.closeContactOverlay()" class="close-icon-mobile"><img src="assets/img/Close.png" alt=""></button>
   <div class="headline">
     <img src="assets/img/join-logo.png" alt="" />
+
     @if (editMode) {
     <h1 class="v2-t1">Edit contact</h1>
+
     } @if (!editMode) {
     <h1 class="v2-t1">Add contact</h1>
+
     } @if (!editMode) {
     <h2 class="v2-t5">Tasks are better with a team!</h2>
     }
@@ -13,12 +16,14 @@
     <hr class="blue-line" />
   </div>
   <div class="user">
+
     @if (!editMode) {
-    <button (click)="userService.toggleContactOverlay()" class="close-icon">
+    <button (click)="uiService.toggleAddContactOverlay()" class="close-icon">
       <img src="assets/img/btn-clear.png" alt="" />
     </button>
+
     } @if (editMode) {
-    <button (click)="closeEditMode()" class="close-icon">
+    <button (click)="uiService.closeEditContactOverlay()" class="close-icon">
       <img src="assets/img/btn-clear.png" alt="" />
     </button>
     }
@@ -29,9 +34,11 @@
         <img src="assets/img/person.png" alt="" />
       </div>
     }
-    @if (editMode && !observer.mobile) {
+
+    @if (editMode && !observerService.mobile) {
       <span [ngStyle]="{ 'background-color': user.color }" class="assignedToBubble name-bubble">{{ user.name | initials }}</span>
     }
+
     <div class="form">
       <form
         id="contactForm"
@@ -88,8 +95,9 @@
           />
         </div>
         <div class="btns">
+
           @if (!editMode) {
-            <button (click)="userService.toggleContactOverlay()" type="button" class="secondary">
+            <button (click)="uiService.toggleAddContactOverlay()" type="button" class="secondary">
               Cancel
               <svg
                 width="25"
@@ -109,6 +117,7 @@
               </svg>
             </button>
           }
+
           @if (editMode) {
             <button type="button" class="secondary" (click)="deleteUser()">
               Delete

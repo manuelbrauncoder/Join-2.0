@@ -4,10 +4,10 @@
     <div class="btns">
         <button (click)="resetTasks()" class="help">?</button>
         <div class="btn-wrapper">
-            <button (click)="togglePopup()" class="user-profile">
+            <button (click)="uiService.toggleHeaderMenu()" class="user-profile">
                 {{ showNameAsString() | initials }}
             </button>
-            @if(showPopup){
+            @if(uiService.showHeaderMenu){
                 <div class="popup">
                     <a class="mobile-help" href="">Help</a>
                     <a href="">Legal Notice</a>

@@ -4,6 +4,7 @@ import { UserService } from '../../services/user.service';
 import { FirebaseAuthService } from '../../services/firebase-auth.service';
 import { InitialsPipe } from '../../pipes/initials.pipe';
 import { Router } from '@angular/router';
+import { UiService } from '../../services/ui.service';
 
 @Component({
   selector: 'app-header',
@@ -16,9 +17,9 @@ export class HeaderComponent {
   taskService = inject(TaskService);
   userService = inject(UserService);
   authService = inject(FirebaseAuthService);
+  uiService = inject(UiService);
   router = inject(Router);
 
-  showPopup = false;
 
   logUserOut(){
     this.router.navigate(['']);
@@ -33,9 +34,7 @@ export class HeaderComponent {
     return nameAsString;
   }
 
-  togglePopup() {
-    this.showPopup = !this.showPopup;
-  }
+  
 
  async resetTasks(){
     if (confirm('replace data in firebase with example data')) {

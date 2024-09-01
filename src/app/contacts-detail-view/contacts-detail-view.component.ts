@@ -7,9 +7,7 @@ import { UserService } from '../services/user.service';
 import { TaskService } from '../services/task.service';
 import { BreakpointObserverService } from '../services/breakpoint-observer.service';
 import { slideInHorizontal, slideInHorizontalCenter, slideInVertical } from "../shared/animations";
-
-
-
+import { UiService } from '../services/ui.service';
 
 @Component({
   selector: 'app-contacts-detail-view',
@@ -22,10 +20,8 @@ import { slideInHorizontal, slideInHorizontalCenter, slideInVertical } from "../
 export class ContactsDetailViewComponent {
   userService = inject(UserService);
   taskService = inject(TaskService);
+  uiService = inject(UiService);
   observerService = inject(BreakpointObserverService);
-
-  
-
 
   @Input() currentUser: UserCl = {
     name: '',
@@ -37,20 +33,11 @@ export class ContactsDetailViewComponent {
     color: '',
   };
 
-
-
-  toggleEditOverlay() {
-    this.userService.showEditOverlay = !this.userService.showEditOverlay;
-    this.userService.showEditPopup = false;
-  }
-
-  // hideEditMode(event: boolean) {
-  //   this.userService.showEditOverlay = event;
-  // }
+  
 
   async deleteUser() {
     await this.taskService.deleteUserInTask(this.currentUser.name);
     await this.userService.fireService.deleteData(this.currentUser.id, 'users');
-    this.userService.showDetailView = false;
+    this.uiService.showDetailView = false;
   }
 }

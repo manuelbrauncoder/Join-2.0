@@ -8,6 +8,7 @@ import { FirebaseAuthService } from './services/firebase-auth.service';
 import { CommonModule } from '@angular/common';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { BreakpointObserverService } from './services/breakpoint-observer.service';
+import { UiService } from './services/ui.service';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +24,7 @@ export class AppComponent implements OnDestroy, OnInit {
   observerService = inject(BreakpointObserverService);
   fireService = inject(FirebaseService);
   userService = inject(UserService);
+  uiService = inject(UiService);
   unsubTaskList;
   unsubUsersList;
 
@@ -35,18 +37,23 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit(): void {
-      this.authService.user$.subscribe(user => {
-        if (user) {
-          this.authService.currentUserSig.set({
-            email: user.email!,
-            username: user.displayName!
-          })
-        } else {
-          this.authService.currentUserSig.set(null);
-        }
-        console.log(this.authService.currentUserSig());
-      });
+      this.initAuthSignal();
       this.observerService.initObserver();
+  }
+
+
+  initAuthSignal() {
+    this.authService.user$.subscribe(user => {
+      if (user) {
+        this.authService.currentUserSig.set({
+          email: user.email!,
+          username: user.displayName!
+        })
+      } else {
+        this.authService.currentUserSig.set(null);
+      }
+      console.log(this.authService.currentUserSig());
+    });
   }
 
   subRouterEvents(){
@@ -76,7 +83,7 @@ export class AppComponent implements OnDestroy, OnInit {
    */
   hideUserDetailonRoute(url: string) {
     if (url !== '/contacts') {
-      this.userService.showDetailView = false;
+      this.uiService.showDetailView = false;
     }
   }
 

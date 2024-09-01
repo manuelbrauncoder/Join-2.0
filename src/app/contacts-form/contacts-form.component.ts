@@ -1,11 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  inject,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { UserCl } from '../models/user.class';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
@@ -13,6 +6,7 @@ import { UserService } from '../services/user.service';
 import { TaskService } from '../services/task.service';
 import { InitialsPipe } from '../pipes/initials.pipe';
 import { BreakpointObserverService } from '../services/breakpoint-observer.service';
+import { UiService } from '../services/ui.service';
 
 @Component({
   selector: 'app-contacts-form',
@@ -22,11 +16,11 @@ import { BreakpointObserverService } from '../services/breakpoint-observer.servi
   styleUrl: './contacts-form.component.scss',
 })
 export class ContactsFormComponent implements OnInit {
+
   userService = inject(UserService);
   taskService = inject(TaskService);
-  observer = inject(BreakpointObserverService);
-
-  
+  observerService = inject(BreakpointObserverService);
+  uiService = inject(UiService);
 
   @Input() editMode: boolean = false;
   @Input() currentUser = new UserCl(); // user before edited
@@ -49,17 +43,7 @@ export class ContactsFormComponent implements OnInit {
   }
 
   /**
-   * close edit window
-   */
-  closeEditMode() {
-    this.userService.showEditOverlay = false;
-    this.userService.showContactList = true;
-  }
-
-  
-
-  /**
-   * handle form subit
+   * handle form submit
    * @param ngForm
    */
   async onSubmit(ngForm: NgForm) {
@@ -77,7 +61,7 @@ export class ContactsFormComponent implements OnInit {
     this.user.color = this.userService.getRandomColor();
     console.log('form submitted', this.user);
     await this.userService.fireService.addUser(this.user);
-    this.userService.toggleContactOverlay();
+    this.uiService.toggleAddContactOverlay();
   }
 
   /**
@@ -90,8 +74,8 @@ export class ContactsFormComponent implements OnInit {
       this.user.name
     );
     await this.userService.fireService.updateUser(this.user);
-    this.closeEditMode();
-    this.userService.showDetailView = false;
+    this.uiService.closeEditContactOverlay();
+    this.uiService.showDetailView = false;
   }
 
   /**
@@ -100,8 +84,8 @@ export class ContactsFormComponent implements OnInit {
   async deleteUser() {
     await this.taskService.deleteUserInTask(this.user.name);
     await this.userService.fireService.deleteData(this.user.id, 'users');
-    this.closeEditMode();
-    this.userService.showDetailView = false;
-    this.userService.showContactList = true;
+    this.uiService.closeEditContactOverlay();
+    this.uiService.showDetailView = false;
+    this.uiService.showContactList = true;
   }
 }

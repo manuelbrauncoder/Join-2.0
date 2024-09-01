@@ -6,7 +6,7 @@
             <span class="v2-t5">Better with a team</span>
             <hr class="divider-header">
         </div>
-        <img (click)="userService.closeDetailViewMobile()" src="assets/img/arrow-blue-left.png" alt="" class="back-btn-mobile">
+        <img (click)="uiService.closeDetailViewMobile()" src="assets/img/arrow-blue-left.png" alt="" class="back-btn-mobile">
 
     </div>
     <header>
@@ -15,7 +15,7 @@
             <h2>{{ currentUser.name }}</h2>
             @if (!observerService.mobile) {
                 <div class="btns">
-                    <button (click)="toggleEditOverlay()">
+                    <button (click)="uiService.openEditContactOverlayMobile()">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <mask id="mask0_213806_3882" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
                                 width="24" height="24">
@@ -57,7 +57,7 @@
         <h3>Phone</h3>
         <span>{{ currentUser.phone }}</span>
     </div>
-    <div (click)="userService.toggleEditPopup()" class="more-btn">
+    <div (click)="uiService.toggleContactMenu()" class="more-btn">
         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <mask id="mask0_219957_6307" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="32">
             <rect width="32" height="32" fill="#D9D9D9"/>
@@ -71,24 +71,23 @@
         
 </main>
 
-@if (userService.showEditOverlay) {
+@if (uiService.showEditContactOverlay) {
 <div @slideInHorizontalCenter class="overlay">
-    <app-contacts-form [currentUser]="currentUser"
-        [editMode]="true"></app-contacts-form>
+    <app-contacts-form [currentUser]="currentUser"[editMode]="true"></app-contacts-form>
 </div>
-<div (click)="toggleEditOverlay()" class="background"></div>
+<div (click)="uiService.openEditContactOverlayMobile()" class="background"></div>
 }
 
 
 
-@if (userService.showEditPopup) {
-    <div (click)="userService.toggleEditPopup()" class="background-edit-popup"></div>
+@if (uiService.showContactMenu) {
+    <div (click)="uiService.toggleContactMenu()" class="background-edit-popup"></div>
 
     <div @slideInHorizontal class="edit-popup">
         
             
                 <div class="btns">
-                    <button (click)="toggleEditOverlay()">
+                    <button (click)="uiService.openEditContactOverlayMobile()">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <mask id="mask0_213806_3882" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0"
                                 width="24" height="24">
