@@ -20,21 +20,13 @@ export class HeaderComponent {
   uiService = inject(UiService);
   router = inject(Router);
 
-
   logUserOut(){
+    this.uiService.showHeaderMenu = false;
     this.router.navigate(['']);
     setTimeout(() => {
       this.authService.logout();
     }, 50);
   }
-
-  showNameAsString(){
-    let name = this.authService.currentUserSig()?.username;
-    let nameAsString = name?.toString()
-    return nameAsString;
-  }
-
-  
 
  async resetTasks(){
     if (confirm('replace data in firebase with example data')) {

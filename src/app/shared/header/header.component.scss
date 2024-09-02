@@ -1,5 +1,15 @@
 @import '../../../styles.scss';
 
+.menu-bg{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 4;
+    background-color: transparent;
+}
+
 header {
     z-index: 3;
     box-shadow: 0px 4px 4px 0px #0000001A;
@@ -84,7 +94,7 @@ header {
 }
 
 .popup {
-    z-index: 3;
+    z-index: 5;
     border-radius: 20px 0 20px 20px;
     padding: 18px 26px;
     @include dFlex($fd: column, $ai: flex-start, $g: 24px);

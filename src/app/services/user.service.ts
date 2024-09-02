@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { UserCl } from '../models/user.class';
 import { FirebaseService } from './firebase.service';
 import { UiService } from './ui.service';
+import { FirebaseAuthService } from './firebase-auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +11,7 @@ export class UserService {
   fireService = inject(FirebaseService);
   uiService = inject(UiService);
   users: UserCl[] = [];
+  authService = inject(FirebaseAuthService);
 
   colors: string[] = [
     '#FF7A00',
@@ -162,6 +164,8 @@ export class UserService {
   ];
 
   constructor() {}
+
+  
 
   async addLocalUsersToFirebase() {
     for (let i = 0; i < this.exampleUsers.length; i++) {

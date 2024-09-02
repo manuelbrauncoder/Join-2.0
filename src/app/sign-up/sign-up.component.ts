@@ -33,15 +33,13 @@ export class SignUpComponent {
   async onSubmit(ngForm: NgForm) {
     if (ngForm.valid && ngForm.submitted && this.confirmPassword()) {
       this.uiService.showConfirmPopup('You Signed Up successfully', false);
-      console.log(this.contactData);
       this.authService.register(this.contactData.email,
         this.contactData.name,
         this.contactData.password);
-        
-        this.authService.currentUserSig.set({
-          username: this.contactData.name,
-          email: this.contactData.email
-        })
+        // this.authService.currentUserSig.set({
+        //   username: this.contactData.name,
+        //   email: this.contactData.email
+        // })
         setTimeout(() => {
           this.router.navigate(['/summary']);
         }, 300);

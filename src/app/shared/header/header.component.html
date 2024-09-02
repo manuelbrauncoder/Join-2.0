@@ -5,9 +5,10 @@
         <button (click)="resetTasks()" class="help">?</button>
         <div class="btn-wrapper">
             <button (click)="uiService.toggleHeaderMenu()" class="user-profile">
-                {{ showNameAsString() | initials }}
+                  {{ authService.auth.currentUser?.displayName | initials }}
             </button>
             @if(uiService.showHeaderMenu){
+                <div (click)="uiService.toggleHeaderMenu()" class="menu-bg"></div>
                 <div class="popup">
                     <a class="mobile-help" href="">Help</a>
                     <a href="">Legal Notice</a>
