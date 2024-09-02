@@ -3,6 +3,7 @@
 .divider {
   width: 3px;
   height: 100px;
+  border: unset;
   border-radius: 100vw;
   background-color: $color-lightblue;
   margin: 0;
@@ -21,6 +22,16 @@
   @media(min-width: 951px) {
     display: none;
   }
+}
+
+.divider-btn {
+  width: 3px;
+  height: 100%;
+  border: unset;
+  border-radius: 100vw;
+  background-color: $color-grey;
+  margin: 0;
+  
 }
 
 main {
@@ -119,7 +130,7 @@ section {
           }
         }
 
-        &:hover .btn-font {
+        &:hover .btn-text {
           color: white;
         }
 
@@ -169,7 +180,7 @@ section {
         height: 110px;
         padding: 8px 6px;
       }
-      .btn-font {
+      .btn-text {
         color: $color-main;
       }
 
@@ -218,7 +229,7 @@ section {
         transform: scale(1.1, 1.1) translate(-5px, 5px);
       }
 
-      &:hover .btn-font {
+      &:hover .btn-text {
         color: white;
       }
     }
@@ -247,7 +258,7 @@ section {
         height: 130px;
         padding: 8px 6px;
       }
-      .btn-font {
+      .btn-text {
         color: $color-main;
       }
 
@@ -266,7 +277,7 @@ section {
         transform: scale(1.1, 1.1) translate(-5px, 5px);
       }
 
-      &:hover .btn-font {
+      &:hover .btn-text {
         color: white;
       }
     }
@@ -276,7 +287,7 @@ section {
 }
 
 .greeting {
-  @media(max-width: 950px){
+  @media(max-width: 1250px){
     display: none;
   }
   h3 {

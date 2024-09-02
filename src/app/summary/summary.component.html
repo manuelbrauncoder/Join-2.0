@@ -74,7 +74,7 @@
             <span class="btn-text">Urgent</span>
           </div>
         </div>
-        <hr class="divider" />
+        <hr class="divider-btn" />
         <div class="date">
           <span class="btn-text">October 16, 2022</span>
           <span class="btn-text">Upcoming Deadline</span>
@@ -96,7 +96,7 @@
       </div>
     </div>
     <div class="greeting">
-      <h3>Good morning,</h3>
+      <h3 (click)="getGreetingMessage()">{{ getGreetingMessage() }}</h3>
       <h2>{{ authService.auth.currentUser?.displayName }}</h2>
     </div>
   </section>
