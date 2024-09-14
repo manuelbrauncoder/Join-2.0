@@ -52,6 +52,7 @@ header {
         @include dFlex($g: 16px);
 
         .help {
+            @include dFlex();
             cursor: pointer;
             color: $color-icon;
             border: 1px solid $color-icon;
@@ -66,6 +67,7 @@ header {
         }
 
         .user-profile {
+            @include dFlex();
             cursor: pointer;
             border: 3px solid #2A3647;
             font-family: 'Inter';

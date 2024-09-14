@@ -62,13 +62,7 @@
   }
 }
 
-.hint {
-  @extend .form-hint;
-  position: absolute;
-  bottom: -16px;
-  left: 0;
-  color: $color-required-red;
-}
+
 
 form {
   @include dFlex($ai: flex-start, $jc: flex-start, $g: 32px);

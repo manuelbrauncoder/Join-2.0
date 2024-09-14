@@ -54,6 +54,7 @@ export class AppComponent implements OnDestroy, OnInit {
         })
       } else {
         this.authService.currentUserSig.set(null);
+        this.router.navigate(['/']);
       }
       console.log(this.authService.currentUserSig());
     });

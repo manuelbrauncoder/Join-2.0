@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { TaskService } from '../services/task.service';
 import { FirebaseAuthService } from '../services/firebase-auth.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-summary',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './summary.component.html',
   styleUrl: './summary.component.scss'
 })

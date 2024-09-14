@@ -8,18 +8,22 @@
     </div>
     <form (ngSubmit)="onSubmit(loginform)" #loginform="ngForm" name="loginform" id="loginform">
         <div class="input-wrapper">
-            <input #email="ngModel" required [(ngModel)]="contactData.email" name="email" id="email" class="input-field" type="email" placeholder="Email" />
+          @if (authService.wrongPw) {
+            <span class="error">Check your email and password. Please try again.</span>
+          }
+            <input #email="ngModel" [ngClass]="{ 'input-field-error': !email.valid && email.touched}" required [(ngModel)]="contactData.email" name="email" id="email" class="input-field" type="email" placeholder="Email" />
             <img src="assets/img/mail.png" alt="">
+            @if (!email.valid && email.touched) {
+              <span class="hint">This field is required</span>
+              }
         </div>
         <div class="input-wrapper">
-            <input #password="ngModel" required minlength="6" [(ngModel)]="contactData.password" name="email" id="password" class="input-field" type="password" placeholder="Password" />
+            <input [ngClass]="{ 'input-field-error': !password.valid && password.touched}" #password="ngModel" required minlength="6" [(ngModel)]="contactData.password" name="password" id="password" class="input-field" type="password" placeholder="Password" />
             <img src="assets/img/lock.png" alt="">
+            @if (!password.valid && password.touched) {
+              <span class="hint">This field is required</span>
+              }
         </div>
-      <!-- <div class="checkbox-wrapper">
-        <input name="checkbox" type="checkbox" />
-        <label for="checkbox">Remember me</label>
-      </div> -->
-
       <div class="btns">
         <button type="submit" [disabled]="!loginform.valid" class="primary">Log in</button>
         <button type="button" (click)="guestLogin()" class="secondary">Guest Log in</button>

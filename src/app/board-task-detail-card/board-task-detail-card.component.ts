@@ -3,6 +3,7 @@ import { Task } from '../models/task.class';
 import { CommonModule } from '@angular/common';
 import { TaskService } from '../services/task.service';
 import { InitialsPipe } from '../pipes/initials.pipe';
+import { UiService } from '../services/ui.service';
 
 @Component({
   selector: 'app-board-task-detail-card',
@@ -13,6 +14,7 @@ import { InitialsPipe } from '../pipes/initials.pipe';
 })
 export class BoardTaskDetailCardComponent implements OnInit {
   taskService = inject(TaskService);
+  uiService = inject(UiService);
   @Input() currentTask = new Task();
   task = new Task;
 
@@ -40,6 +42,7 @@ export class BoardTaskDetailCardComponent implements OnInit {
   deleteTask(){
     this.taskService.fireService.deleteData(this.task.id, 'tasks');
     this.toggleAddTaskOverlay();
+    this.uiService.showConfirmPopup('Task deleted', true);
   }
 
   openTaskEditMode(){

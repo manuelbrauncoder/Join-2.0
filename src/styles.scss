@@ -3,7 +3,11 @@
   margin: 0;
 }
 
-h1, h2, h3, h4, hr{
+h1,
+h2,
+h3,
+h4,
+hr {
   margin: 0;
 }
 
@@ -40,6 +44,7 @@ $color-active-section: #091931;
   font-size: 64px;
   font-weight: 600;
   line-height: 76.8px;
+
   @media(max-width: 950px) {
     font-size: 47px;
     line-height: 40px;
@@ -58,9 +63,10 @@ $color-active-section: #091931;
   font-size: 47px;
   font-weight: 500;
   line-height: 56.4px;
+
   @media(max-width: 950px) {
     font-size: 40px;
-}
+  }
 }
 
 .v2-t5 {
@@ -68,8 +74,9 @@ $color-active-section: #091931;
   font-size: 27px;
   font-weight: 400;
   line-height: 32.4px;
+
   @media(max-width: 950px) {
-   font-size: 16px; 
+    font-size: 16px;
   }
 }
 
@@ -78,6 +85,7 @@ $color-active-section: #091931;
   font-size: 20px;
   font-weight: 400;
   line-height: 24px;
+
   @media(max-width: 950px) {
     font-size: 14px;
   }
@@ -88,6 +96,7 @@ $color-active-section: #091931;
   font-size: 61px;
   font-weight: 700;
   line-height: 73.2px;
+
   @media(max-width: 950px) {
     font-size: 40px;
     line-height: 55px;
@@ -144,16 +153,20 @@ $color-active-section: #091931;
   cursor: pointer;
   @include dFlex($g: 4px);
   @extend .btn-font;
+
   &:hover {
     background-color: $color-lightblue;
     box-shadow: 0px 4px 4px 0px #00000040;
   }
+
   &:active {
     background-color: #091931;
   }
+
   &:disabled {
     cursor: not-allowed;
     background-color: #2a3647b8;
+
     &:hover {
       transform: none;
       box-shadow: unset;
@@ -170,14 +183,17 @@ $color-active-section: #091931;
   cursor: pointer;
   @include dFlex($g: 4px);
   @extend .btn-font;
+
   &:hover {
     color: $color-lightblue;
     border-color: $color-lightblue;
     box-shadow: 0px 4px 4px 0px #00000040;
   }
+
   &:hover .path {
     stroke: $color-lightblue;
   }
+
   &:active {
     color: $color-main;
     border-color: $color-main;
@@ -191,16 +207,40 @@ $color-active-section: #091931;
   padding: 12px 21px;
   border-radius: 10px;
   outline: none;
+
   &::placeholder {
     color: $color-grey;
   }
+
   &:focus {
     border-color: $color-lightblue;
   }
 }
 
+.hint {
+  @extend .form-hint;
+  position: absolute;
+  bottom: -16px;
+  left: 0;
+  color: $color-required-red;
+}
+
 .input-field-error {
   border-color: $color-required-red;
+}
+
+.error {
+  color: $color-required-red;
+  position: absolute;
+  top: -18px;
+  left: 0;
+  font-family: Inter;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 15.6px;
+  @media(max-width: 599px) {
+    font-size: 11px;
+  }
 }
 
 .text-area {
@@ -211,9 +251,11 @@ $color-active-section: #091931;
   outline: none;
   padding: 12px 21px;
   min-height: 120px;
+
   &::placeholder {
     color: $color-grey;
   }
+
   &:focus {
     border-color: $color-lightblue;
   }

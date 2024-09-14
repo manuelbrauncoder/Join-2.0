@@ -9,7 +9,7 @@
   <section>
     <div class="summary">
       <div class="medium">
-        <button class="medium-btn">
+        <button routerLink="/board" class="medium-btn">
           <div class="icon edit-icon">
             <svg
               width="33"
@@ -42,7 +42,7 @@
             <span class="btn-text">To-do</span>
           </div>
         </button>
-        <button class="medium-btn">
+        <button routerLink="/board" class="medium-btn">
           <div class="icon">
             <svg
               width="38"
@@ -66,7 +66,7 @@
           </div>
         </button>
       </div>
-      <button class="large">
+      <button routerLink="/board" class="large">
         <div class="counter">
           <img src="assets/img/summary-urgent-icon.png" alt="" />
           <div class="counter-number">
@@ -81,15 +81,15 @@
         </div>
       </button>
       <div class="small">
-        <button class="small-btn">
+        <button routerLink="/board" class="small-btn">
           <h1 class="btn-text">{{ taskService.fireService.tasks.length }}</h1>
           <span class="btn-text">Tasks in board</span>
         </button>
-        <button class="small-btn">
+        <button routerLink="/board" class="small-btn">
           <h1 class="btn-text">{{ getNumberOfTasks("progress") }}</h1>
           <span class="btn-text">Tasks in Progress</span>
         </button>
-        <button class="small-btn">
+        <button routerLink="/board" class="small-btn">
           <h1 class="btn-text">{{ getNumberOfTasks("feedback") }}</h1>
           <span class="btn-text">Awaiting Feedback</span>
         </button>

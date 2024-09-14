@@ -7,18 +7,20 @@
   border-radius: 100vw;
   background-color: $color-lightblue;
   margin: 0;
-  @media(max-width: 950px){
+
+  @media(max-width: 950px) {
     display: none;
   }
 }
 
-.divider-mobile{
+.divider-mobile {
   margin: 0;
   height: 3px;
   width: 90px;
   border-radius: 100vw;
   border: unset;
   background-color: $color-lightblue;
+
   @media(min-width: 951px) {
     display: none;
   }
@@ -31,7 +33,7 @@
   border-radius: 100vw;
   background-color: $color-grey;
   margin: 0;
-  
+
 }
 
 main {
@@ -43,12 +45,14 @@ main {
   @media(max-width: 950px) {
     padding: 8px;
     height: unset;
+    gap: 0;
   }
 }
 
 header {
   @include dFlex($jc: flex-start, $g: 30px);
-  @media(max-width: 950px){
+
+  @media(max-width: 950px) {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
@@ -68,21 +72,34 @@ header {
 }
 
 section {
-  @include dFlex($g: 80px);
+  width: 100%;
+  @include dFlex($g: 80px, $jc: flex-start);
 
   .summary {
     @include dFlex($g: 32px, $fd: column);
+    width: 560px;
+    height: 560px;
+
+    @media(max-width: 599px) {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      gap: 8px;
+    }
 
     .medium {
       @include dFlex($g: 32px);
-      @media(max-width: 950px){
-       gap: 8px;
+      height: calc((100% - 64px) / 3);
+      width: 100%;
+
+      @media(max-width: 599px) {
+        gap: 8px;
+        height: calc((100% - 16px) / 3);
       }
 
       .medium-btn {
         cursor: pointer;
-        width: 264px;
-        height: 168px;
+        width: calc((100% - 32px) / 2);
+        height: 100%;
         box-shadow: 0px 0px 4px 0px #0000001a;
         background-color: white;
         border: unset;
@@ -90,11 +107,42 @@ section {
         border-radius: 30px;
         @include dFlex($g: 18px);
         transition: transform 125ms ease-out;
-        @media(max-width: 950px){
-          width: calc((100vw - 32px) / 2);
-          height: 110px;
-          padding: 8px 6px;
+        &:hover .btn-text {
+          color: white;
         }
+  
+        &:hover {
+          box-shadow: 0px 4px 4px 0px #00000040;
+          background-color: $color-main;
+          transform: scale(1.1, 1.1) translate(-5px, 5px);
+        }
+  
+        &:hover .icon {
+          background-color: white;
+        }
+  
+        &:hover svg {
+  
+          rect,
+          path {
+            stroke: $color-main;
+          }
+        }
+  
+        &:hover .edit-icon {
+          svg {
+  
+            rect,
+            path {
+              fill: $color-main;
+            }
+          }
+        }
+
+        @media(max-width: 950px) {
+          width: calc((100vw - 16px) / 2);
+        }
+
         .icon {
           width: 69px;
           height: 69px;
@@ -102,199 +150,163 @@ section {
           border: unset;
           border-radius: 100%;
           @include dFlex();
-          @media(max-width: 950px) {
-            width: 40px;
-            height: 40px;
-          }
-          svg{
-            @media(max-width: 950px) {
-              scale: 0.7;
-            }
-          }
-        }
-
-        .btn-text {
-          color: $color-main;
-          font-size: 14px;
-          line-height: 32px !important;
-        }
-
-        .text {
-          h1 {
-            margin: 0;
-            @extend .summary-number;
-          }
-
-          span {
-            @extend .v2-t6;
-          }
-        }
-
-        &:hover .btn-text {
-          color: white;
-        }
-
-        &:hover {
-          box-shadow: 0px 4px 4px 0px #00000040;
-          background-color: $color-main;
-          transform: scale(1.1, 1.1) translate(-5px, 5px);
-        }
-
-        &:hover .icon {
-          background-color: white;
-        }
-
-        &:hover svg {
-
-          rect,
-          path {
-            stroke: $color-main;
-          }
-        }
-
-        &:hover .edit-icon {
-          svg {
-
-            rect,
-            path {
-              fill: $color-main;
-            }
-          }
         }
       }
-    }
 
-    .large {
-      background-color: white;
-      border: unset;
-      border-radius: 30px;
-      padding: 28px 48px;
-      @include dFlex($g: 48px);
-      box-shadow: 0px 0px 4px 0px #0000001a;
-      width: 560px;
-      height: 168px;
-      cursor: pointer;
-      transition: transform 125ms ease-out;
-      @media(max-width: 950px){
-        width: calc(100vw - 16px);
-        height: 110px;
-        padding: 8px 6px;
-      }
       .btn-text {
         color: $color-main;
+        font-size: 14px;
+        line-height: 32px !important;
       }
 
-      .counter {
-        @include dFlex($g: 18px);
-        img{
-          @media(max-width: 950px){
-            height: 40px;
-            width: 40px;
-          }
+      .text {
+        @include dFlex($g: 16px, $fd: column);
+        h1 {
+          margin: 0;
+          @extend .summary-number;
         }
 
-        .counter-number {
-          h1 {
-            margin: 0;
-            @extend .summary-number;
-          }
-
-          span {
-            @extend .v2-body;
-          }
+        span {
+          @extend .v2-t6;
         }
       }
 
       
-
-      .date {
-        @include dFlex($fd: column, $g: 13px);
-
-        & span:nth-of-type(1) {
-          font-family: Inter;
-          font-size: 21px;
-          font-weight: 700;
-          line-height: 25.2px;
-          text-align: left;
-        }
-
-        & span:nth-of-type(2) {
-          @extend .v2-body;
-        }
-      }
-
-      &:hover {
-        box-shadow: 0px 4px 4px 0px #00000040;
-        background-color: $color-main;
-        transform: scale(1.1, 1.1) translate(-5px, 5px);
-      }
-
-      &:hover .btn-text {
-        color: white;
-      }
     }
   }
 
-  .small {
-    @include dFlex($g: 32px);
-    @media(max-width: 950px){
-      gap: 8px;
+  .large {
+    background-color: white;
+    border: unset;
+    border-radius: 30px;
+    padding: 28px 48px;
+    @include dFlex($g: 48px);
+    box-shadow: 0px 0px 4px 0px #0000001a;
+    width: 100%;
+    height: calc((100% - 64px) / 3);
+    cursor: pointer;
+    transition: transform 125ms ease-out;
+
+    @media(max-width: 599px) {
+
+      height: calc((100% - 16px) / 3);
+      gap: 24px;
     }
 
-    .small-btn {
-      cursor: pointer;
-      width: 168px;
-      height: 168px;
-      border: unset;
-      border-radius: 30px;
+    .btn-text {
+      color: $color-main;
+    }
+
+    .counter {
+      @include dFlex($g: 18px);
+
+
+      .counter-number {
+        h1 {
+          margin: 0;
+          @extend .summary-number;
+        }
+
+        span {
+          @extend .v2-body;
+        }
+      }
+    }
+
+
+
+    .date {
       @include dFlex($fd: column, $g: 13px);
-      box-shadow: 0px 0px 4px 0px #0000001a;
-      padding: 25px;
-      background-color: white;
-      transition: transform 125ms ease-out;
-      @media(max-width: 950px){
-        gap: 8px;
-        width: calc((100vw - 32px) / 3);
-        height: 130px;
-        padding: 8px 6px;
-      }
-      .btn-text {
-        color: $color-main;
+
+      & span:nth-of-type(1) {
+        font-family: Inter;
+        font-size: 21px;
+        font-weight: 700;
+        line-height: 25.2px;
       }
 
-      h1 {
-        margin: 0;
-        @extend .summary-number;
-      }
-
-      span {
-        @extend .v2-t6;
-      }
-
-      &:hover {
-        box-shadow: 0px 4px 4px 0px #00000040;
-        background-color: $color-main;
-        transform: scale(1.1, 1.1) translate(-5px, 5px);
-      }
-
-      &:hover .btn-text {
-        color: white;
+      & span:nth-of-type(2) {
+        @extend .v2-body;
       }
     }
 
+    &:hover {
+      box-shadow: 0px 4px 4px 0px #00000040;
+      background-color: $color-main;
+      transform: scale(1.1, 1.1) translate(-5px, 5px);
+    }
+
+    &:hover .btn-text {
+      color: white;
+    }
+  }
+}
+
+.small {
+  height: calc((100% - 64px) / 3);
+  width: 100%;
+  @include dFlex($g: 32px);
+
+  @media(max-width: 599px) {
+    gap: 8px;
+    height: calc((100% - 16px) / 4);
+  }
+
+  .small-btn {
+    cursor: pointer;
+    width: calc((100% - 64px) / 3);
+    height: 100%;
+    border: unset;
+    border-radius: 30px;
+    @include dFlex($fd: column, $g: 13px);
+    box-shadow: 0px 0px 4px 0px #0000001a;
+    padding: 25px;
+    background-color: white;
+    transition: transform 125ms ease-out;
+
+    @media(max-width: 599px) {
+      width: calc((100% - 32px) / 3);
+      padding: 16px 6px;
+    }
+
+    .btn-text {
+      color: $color-main;
+    }
+
+    h1 {
+      margin: 0;
+      @extend .summary-number;
+    }
+
+    span {
+      @extend .v2-t6;
+    }
+
+    &:hover {
+      box-shadow: 0px 4px 4px 0px #00000040;
+      background-color: $color-main;
+      transform: scale(1.1, 1.1) translate(-5px, 5px);
+    }
+
+    &:hover .btn-text {
+      color: white;
+    }
   }
 
 }
 
+
+
 .greeting {
-  @media(max-width: 1250px){
+  @media(max-width: 1250px) {
     display: none;
   }
+
   h3 {
     margin: 0;
     @extend .v2-t2;
     color: $color-main;
-    
+
   }
 
   h2 {

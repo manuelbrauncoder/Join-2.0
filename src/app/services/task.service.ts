@@ -18,216 +18,109 @@ export class TaskService {
   exampleTasks: Task[] = [
     {
       id: '',
-      title: 'Develop New Authentication System',
+      title: 'Develop Responsive Layout for Homepage',
       description:
-        'Implement a new authentication system with multi-factor authentication.',
+        'Create a responsive layout for the homepage that adapts to various screen sizes.',
       subtasks: [
-        { title: 'Research authentication methods', done: false },
-        { title: 'Design user flow', done: true },
+        { title: 'Design mobile wireframes', done: false },
+        { title: 'Implement CSS media queries', done: false },
       ],
-      assignedTo: ['Elon Musk', 'Tim Cook'],
-      priority: 'urgent',
-      dueDate: 1693891200000,
+      assignedTo: ['Emily Davis', 'Matthew Taylor'],
+      priority: 'medium',
+      dueDate: 1726358400000, // 15. September 2024
       category: 'Technical Task',
       status: 'todo',
     },
     {
       id: '',
-      title: 'Design Landing Page',
+      title: 'Set Up User Authentication Module',
       description:
-        'Create a modern, responsive landing page for the new product.',
+        'Implement user authentication with JWT and integrate it with the frontend.',
       subtasks: [
-        { title: 'Create wireframes', done: true },
-        { title: 'Develop HTML/CSS', done: false },
-        { title: 'Integrate with backend', done: false },
+        { title: 'Set up backend endpoints', done: true },
+        { title: 'Create login and registration pages', done: false },
       ],
-      assignedTo: ['Bill Gates'],
-      priority: 'medium',
-      dueDate: 1694486400000,
+      assignedTo: ['Michael Johnson'],
+      priority: 'urgent',
+      dueDate: 1728960000000, // 15. Oktober 2024
+      category: 'Technical Task',
+      status: 'progress',
+    },
+    {
+      id: '',
+      title: 'Write User Documentation',
+      description:
+        'Prepare comprehensive user documentation for the new features.',
+      subtasks: [
+        { title: 'Outline documentation structure', done: true },
+        { title: 'Write content for each section', done: false },
+      ],
+      assignedTo: ['Daniel Thomas'],
+      priority: 'low',
+      dueDate: 1730438400000, // 1. November 2024
       category: 'User Story',
       status: 'todo',
     },
     {
       id: '',
-      title: 'Optimize Database Performance',
+      title: 'Integrate Payment Gateway',
       description:
-        'Improve the performance of the database by indexing key tables.',
+        'Add a new payment gateway to support additional payment options.',
+      subtasks: [
+        { title: 'Research payment gateway providers', done: true },
+        { title: 'Implement API integration', done: false },
+      ],
+      assignedTo: ['John Smith', 'Amanda Wilson'],
+      priority: 'urgent',
+      dueDate: 1731657600000, // 15. November 2024
+      category: 'Technical Task',
+      status: 'todo',
+    },
+    {
+      id: '',
+      title: 'Optimize Database Queries',
+      description:
+        'Improve database performance by optimizing slow-running queries.',
       subtasks: [
         { title: 'Identify slow queries', done: true },
-        { title: 'Implement indexing', done: true },
+        { title: 'Rewrite queries for optimization', done: false },
       ],
-      assignedTo: ['Jeff Bezos', 'Larry Page'],
-      priority: 'urgent',
-      dueDate: 1695177600000,
-      category: 'Technical Task',
-      status: 'feedback',
-    },
-    {
-      id: '',
-      title: 'User Feedback Analysis',
-      description: 'Collect and analyze user feedback from the latest release.',
-      subtasks: [],
-      assignedTo: ['Mark Zuckerberg', 'Susan Wojcicki', 'Sheryl Sandberg'],
+      assignedTo: ['Jane Doe'],
       priority: 'medium',
-      dueDate: 1695772800000,
-      category: 'User Story',
-      status: 'done',
-    },
-    {
-      id: '',
-      title: 'Implement New Payment Gateway',
-      description:
-        'Integrate a new payment gateway with support for multiple currencies.',
-      subtasks: [
-        { title: 'Research available gateways', done: true },
-        { title: 'Develop API integration', done: false },
-      ],
-      assignedTo: ['Sundar Pichai', 'Jack Dorsey'],
-      priority: 'urgent',
-      dueDate: 1696281600000,
-      category: 'Technical Task',
-      status: 'todo',
-    },
-    {
-      id: '',
-      title: 'Set Up Continuous Integration',
-      description:
-        'Establish a continuous integration pipeline for automated testing.',
-      subtasks: [
-        { title: 'Choose CI tool', done: true },
-        { title: 'Configure CI environment', done: false },
-      ],
-      assignedTo: ['Satya Nadella'],
-      priority: 'medium',
-      dueDate: 1696896000000,
+      dueDate: 1727740800000, // 1. Oktober 2024
       category: 'Technical Task',
       status: 'progress',
     },
     {
       id: '',
-      title: 'Marketing Campaign for New Feature',
+      title: 'Conduct Usability Testing',
       description:
-        'Plan and execute a marketing campaign for the new product feature.',
+        'Perform usability testing with target users and collect feedback.',
       subtasks: [
-        { title: 'Develop marketing strategy', done: false },
-        { title: 'Create ad creatives', done: false },
-        { title: 'Schedule social media posts', done: false },
+        { title: 'Prepare test scenarios', done: true },
+        { title: 'Conduct testing sessions', done: false },
       ],
-      assignedTo: ['Reed Hastings', 'Marissa Mayer'],
-      priority: 'medium',
-      dueDate: 1697500800000,
-      category: 'User Story',
-      status: 'todo',
-    },
-    {
-      id: '',
-      title: 'Refactor Legacy Codebase',
-      description:
-        'Refactor the legacy codebase to improve maintainability and performance.',
-      subtasks: [],
-      assignedTo: ['Steve Jobs'],
+      assignedTo: ['Christopher Brown'],
       priority: 'low',
-      dueDate: 1698105600000,
-      category: 'Technical Task',
-      status: 'feedback',
-    },
-    {
-      id: '',
-      title: 'Customer Satisfaction Survey',
-      description:
-        'Design and distribute a customer satisfaction survey for feedback.',
-      subtasks: [
-        { title: 'Draft survey questions', done: true },
-        { title: 'Distribute survey', done: true },
-      ],
-      assignedTo: ['Sheryl Sandberg'],
-      priority: 'medium',
-      dueDate: 1698710400000,
+      dueDate: 1733040000000, // 1. Dezember 2024
       category: 'User Story',
-      status: 'feedback',
+      status: 'todo',
     },
     {
       id: '',
-      title: 'Data Migration to New Server',
-      description: 'Migrate all user data to the new, more powerful server.',
+      title: 'Design New Marketing Landing Page',
+      description:
+        'Create a new landing page to improve lead generation and user engagement.',
       subtasks: [
-        { title: 'Backup current data', done: false },
-        { title: 'Transfer data to new server', done: false },
+        { title: 'Draft initial design mockups', done: true },
+        { title: 'Implement design in HTML/CSS', done: false },
       ],
-      assignedTo: ['Larry Page', 'Sergey Brin'],
-      priority: 'urgent',
-      dueDate: 1699315200000,
-      category: 'Technical Task',
-      status: 'progress',
-    },
-    // {
-    //   id: '',
-    //   title: 'User Interface Redesign',
-    //   description: 'Redesign the user interface to improve user experience.',
-    //   subtasks: [
-    //     { title: 'Collect user feedback', done: true },
-    //     { title: 'Create new UI mockups', done: false },
-    //   ],
-    //   assignedTo: ['Susan Wojcicki'],
-    //   priority: 'urgent',
-    //   dueDate: 1699920000000,
-    //   category: 'User Story',
-    //   status: 'progress',
-    // },
-    // {
-    //   id: '',
-    //   title: 'Security Audit',
-    //   description: 'Conduct a full security audit of the application.',
-    //   subtasks: [
-    //     { title: 'Review access logs', done: false },
-    //     { title: 'Update security protocols', done: false },
-    //   ],
-    //   assignedTo: ['Jeff Bezos', 'Bill Gates'],
-    //   priority: 'urgent',
-    //   dueDate: 1700524800000,
-    //   category: 'Technical Task',
-    //   status: 'todo',
-    // },
-    // {
-    //   id: '',
-    //   title: 'Cloud Migration Plan',
-    //   description: 'Develop a plan to migrate the infrastructure to the cloud.',
-    //   subtasks: [],
-    //   assignedTo: ['Sundar Pichai', 'Satya Nadella'],
-    //   priority: 'medium',
-    //   dueDate: 1701129600000,
-    //   category: 'Technical Task',
-    //   status: 'done',
-    // },
-    // {
-    //   id: '',
-    //   title: 'Develop AI Recommendation System',
-    //   description:
-    //     'Build an AI-based recommendation system for personalized user experience.',
-    //   subtasks: [
-    //     { title: 'Research AI models', done: false },
-    //     { title: 'Develop prototype', done: false },
-    //   ],
-    //   assignedTo: ['Elon Musk', 'Larry Page', 'Sergey Brin'],
-    //   priority: 'urgent',
-    //   dueDate: 1701734400000,
-    //   category: 'Technical Task',
-    //   status: 'feedback',
-    // },
-    // {
-    //   id: '',
-    //   title: 'Customer Onboarding Process',
-    //   description: 'Create a seamless onboarding process for new customers.',
-    //   subtasks: [
-    //     { title: 'Map customer journey', done: true },
-    //     { title: 'Develop onboarding content', done: true },
-    //   ],
-    //   assignedTo: ['Mark Zuckerberg', 'Reed Hastings'],
-    //   priority: 'medium',
-    //   dueDate: 1702339200000,
-    //   category: 'User Story',
-    //   status: 'done',
-    // },
+      assignedTo: ['Olivia Anderson', 'Sophia Martinez'],
+      priority: 'medium',
+      dueDate: 1734259200000, // 15. Dezember 2024
+      category: 'User Story',
+      status: 'todo',
+    }
   ];
 
   constructor() {}

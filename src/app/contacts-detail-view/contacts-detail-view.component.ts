@@ -40,5 +40,6 @@ export class ContactsDetailViewComponent {
     await this.taskService.deleteUserInTask(this.currentUser.name);
     await this.userService.fireService.deleteData(this.currentUser.id, 'users');
     this.uiService.showDetailView = false;
+    this.uiService.showContactList = true;
   }
 }

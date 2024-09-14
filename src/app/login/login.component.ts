@@ -28,18 +28,8 @@ export class LoginComponent{
     }
   }
 
-  userLogin(){
-    this.authService.login(this.contactData.email, this.contactData.password).subscribe({
-      next: () => {
-        console.log('User logged in');
-        this.router.navigate(['/summary']);
-      },
-      error: (err) => {
-        // handle error here, show if pw is wrong or email
-        console.log('Error logging in:', err);
-        
-      }
-    })
+   userLogin(){
+     this.authService.login(this.contactData.email, this.contactData.password);
   }
 
   guestEmail: string = 'mail@guest.com';

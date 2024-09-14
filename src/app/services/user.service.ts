@@ -27,139 +27,94 @@ export class UserService {
 
   exampleUsers: UserCl[] = [
     {
-      "id": '',
-      "uid": '',
-      "name": "Elon Musk",
-      "email": "elon.musk@tech.com",
-      "password": "SpaceX123!",
-      "phone": "+1-310-420-0000",
-      "color": "#FF7A00"
+      "id": "",
+      "uid": "",
+      "name": "John Smith",
+      "email": "john.smith@example.com",
+      "password": "SecurePass123!",
+      "phone": "+1-555-123-4560",
+      "color": "#6A5ACD"
     },
     {
-      "id": '',
-      "uid": '',
-      "name": "Bill Gates",
-      "email": "bill.gates@tech.com",
-      "password": "Microsoft@98",
-      "phone": "+1-425-703-0000",
-      "color": "#9327FF"
+      "id": "",
+      "uid": "",
+      "name": "Jane Doe",
+      "email": "jane.doe@example.com",
+      "password": "JaneDoe!2021",
+      "phone": "+1-555-123-4561",
+      "color": "#2E8B57"
     },
     {
-      "id": '',
-      "uid": '',
-      "name": "Jeff Bezos",
-      "email": "jeff.bezos@tech.com",
-      "password": "Amazon#2024",
-      "phone": "+1-206-266-0000",
-      "color": "#6E52FF"
+      "id": "",
+      "uid": "",
+      "name": "Michael Johnson",
+      "email": "michael.johnson@example.com",
+      "password": "Mjohnson@99",
+      "phone": "+1-555-123-4562",
+      "color": "#4682B4"
     },
     {
-      "id": '',
-      "uid": '',
-      "name": "Tim Cook",
-      "email": "tim.cook@tech.com",
-      "password": "Apple123!",
-      "phone": "+1-408-996-0000",
-      "color": "#FC71FF"
+      "id": "",
+      "uid": "",
+      "name": "Emily Davis",
+      "email": "emily.davis@example.com",
+      "password": "EmiDavis#2022",
+      "phone": "+1-555-123-4563",
+      "color": "#CD853F"
     },
     {
-      "id": '',
-      "uid": '',
-      "name": "Mark Zuckerberg",
-      "email": "mark.zuckerberg@tech.com",
-      "password": "Meta@2024",
-      "phone": "+1-650-543-0000",
-      "color": "#FFBB2B"
+      "id": "",
+      "uid": "",
+      "name": "Christopher Brown",
+      "email": "chris.brown@example.com",
+      "password": "ChrisB_77",
+      "phone": "+1-555-123-4564",
+      "color": "#8FBC8F"
     },
     {
-      "id": '',
-      "uid": '',
-      "name": "Sundar Pichai",
-      "email": "sundar.pichai@tech.com",
-      "password": "Google#2024",
-      "phone": "+1-650-253-0000",
-      "color": "#1FD7C1"
+      "id": "",
+      "uid": "",
+      "name": "Amanda Wilson",
+      "email": "amanda.wilson@example.com",
+      "password": "AmandaW*321",
+      "phone": "+1-555-123-4565",
+      "color": "#B0C4DE"
     },
     {
-      "id": '',
-      "uid": '',
-      "name": "Satya Nadella",
-      "email": "satya.nadella@tech.com",
-      "password": "Azure@2024",
-      "phone": "+1-425-882-0000",
-      "color": "#462F8A"
+      "id": "",
+      "uid": "",
+      "name": "Matthew Taylor",
+      "email": "matthew.taylor@example.com",
+      "password": "MattT!567",
+      "phone": "+1-555-123-4566",
+      "color": "#556B2F"
     },
     {
-      "id": '',
-      "uid": '',
-      "name": "Sheryl Sandberg",
-      "email": "sheryl.sandberg@tech.com",
-      "password": "Facebook2024!",
-      "phone": "+1-650-543-0001",
-      "color": "#FF4646"
+      "id": "",
+      "uid": "",
+      "name": "Olivia Anderson",
+      "email": "olivia.anderson@example.com",
+      "password": "OliviaA$890",
+      "phone": "+1-555-123-4567",
+      "color": "#DAA520"
     },
     {
-      "id": '',
-      "uid": '',
-      "name": "Larry Page",
-      "email": "larry.page@tech.com",
-      "password": "Alphabet#01",
-      "phone": "+1-650-253-0001",
-      "color": "#00BEE8"
+      "id": "",
+      "uid": "",
+      "name": "Daniel Thomas",
+      "email": "daniel.thomas@example.com",
+      "password": "DanThomas#001",
+      "phone": "+1-555-123-4568",
+      "color": "#8B4513"
     },
     {
-      "id": '',
-      "uid": '',
-      "name": "Sergey Brin",
-      "email": "sergey.brin@tech.com",
-      "password": "GoogleX@24",
-      "phone": "+1-650-253-0002",
-      "color": "#FF7A00"
-    },
-    {
-      "id": '',
-      "uid": '',
-      "name": "Jack Dorsey",
-      "email": "jack.dorsey@tech.com",
-      "password": "Twitter2024#",
-      "phone": "+1-415-222-0000",
-      "color": "#9327FF"
-    },
-    {
-      "id": '',
-      "uid": '',
-      "name": "Susan Wojcicki",
-      "email": "susan.wojcicki@tech.com",
-      "password": "YouTube@24",
-      "phone": "+1-650-253-0003",
-      "color": "#6E52FF"
-    },
-    {
-      "id": '',
-      "uid": '',
-      "name": "Reed Hastings",
-      "email": "reed.hastings@tech.com",
-      "password": "Netflix2024!",
-      "phone": "+1-408-540-0000",
-      "color": "#FC71FF"
-    },
-    {
-      "id": '',
-      "uid": '',
-      "name": "Marissa Mayer",
-      "email": "marissa.mayer@tech.com",
-      "password": "Yahoo@24!",
-      "phone": "+1-408-349-0000",
-      "color": "#FFBB2B"
-    },
-    {
-      "id": '',
-      "uid": '',
-      "name": "Steve Jobs",
-      "email": "steve.jobs@tech.com",
-      "password": "Apple1984!",
-      "phone": "+1-408-996-0001",
-      "color": "#1FD7C1"
+      "id": "",
+      "uid": "",
+      "name": "Sophia Martinez",
+      "email": "sophia.martinez@example.com",
+      "password": "SophiaM!234",
+      "phone": "+1-555-123-4569",
+      "color": "#A0522D"
     }
   ];
 
