@@ -14,6 +14,7 @@ import { from, Observable, Subscription } from 'rxjs';
 import { FirebaseService } from './firebase.service';
 import { UserInterface } from '../interfaces/user-interface';
 import { Router } from '@angular/router';
+import { UiService } from './ui.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +24,7 @@ export class FirebaseAuthService {
   wrongPw = false;
 
   fireService = inject(FirebaseService);
+  uiService = inject(UiService);
 
   auth = inject(Auth);
   user$ = user(this.auth);
@@ -66,6 +68,7 @@ export class FirebaseAuthService {
   login(email: string, password: string): Observable<void> {
     const promise = signInWithEmailAndPassword(this.auth, email, password).then(()=>{
       this.wrongPw = false;
+      this.uiService.mobileGreetingDone = false;
       this.router.navigate(['/summary']);
     }).catch((error)=>{
       const wrongPw = AuthErrorCodes.INVALID_PASSWORD;

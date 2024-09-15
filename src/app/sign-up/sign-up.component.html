@@ -36,13 +36,16 @@
         name="mail"
         id="mail"
         required
+        pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}"
       />
       <img class="input-icon" src="assets/img/mail.png" alt="" />
+      
     </div>
     <div class="input-wrapper">
       <input
+      [ngClass]="{'input-field-error': passwordConfirmation.touched && !confirmPassword()}"
         placeholder="Password"
-        type="password"
+        [type]="passwordFieldType"
         class="input-field"
         [(ngModel)]="contactData.password"
         #password="ngModel"
@@ -51,18 +54,40 @@
         required
         minlength="6"
       />
-      <img class="input-icon" src="assets/img/lock.png" alt="" />
+      @if (password.dirty && passwordFieldType === 'password') {
+        <img (click)="togglePasswordFieldType()" class="input-icon" src="assets/img/visibility_off.png" alt="" />
+
+      }
+      @if (!password.dirty) {
+        <img class="input-icon" src="assets/img/lock.png" alt="" />
+      }
+      @if (password.dirty && passwordFieldType === 'text') {
+        <img (click)="togglePasswordFieldType()" class="input-icon" src="assets/img/visibility.png" alt="" />
+      }
     </div>
     <div class="input-wrapper">
       <input
+      [ngClass]="{'input-field-error': passwordConfirmation.touched && !confirmPassword()}"
         placeholder="Confirm Password"
-        type="password"
+        [type]="passwordConfirmationFieldType"
         class="input-field"
         [(ngModel)]="contactData.confirmPW"
         #passwordConfirmation="ngModel"
         name="passwordConfirmation"
       />
-      <img class="input-icon" src="assets/img/lock.png" alt="" />
+      @if (passwordConfirmation.dirty && passwordFieldType === 'password') {
+        <img (click)="togglepasswordConfirmationFieldType()" class="input-icon" src="assets/img/visibility_off.png" alt="" />
+
+      }
+      @if (!passwordConfirmation.dirty) {
+        <img class="input-icon" src="assets/img/lock.png" alt="" />
+      }
+      @if (passwordConfirmation.dirty && passwordFieldType === 'text') {
+        <img (click)="togglepasswordConfirmationFieldType()" class="input-icon" src="assets/img/visibility.png" alt="" />
+      }
+      @if (passwordConfirmation.touched && !confirmPassword()) {
+        <span class="hint">Your passwords don't match. Please try again.</span>
+        }
     </div>
     <div class="checkbox-wrapper">
       <input

@@ -1,18 +1,26 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { TaskService } from '../services/task.service';
 import { FirebaseAuthService } from '../services/firebase-auth.service';
 import { RouterLink } from '@angular/router';
+import { UiService } from '../services/ui.service';
+import { fadeIn } from "../shared/animations";
 
 @Component({
   selector: 'app-summary',
   standalone: true,
   imports: [RouterLink],
+  animations: [fadeIn],
   templateUrl: './summary.component.html',
   styleUrl: './summary.component.scss'
 })
-export class SummaryComponent {
+export class SummaryComponent implements OnInit {
   taskService = inject(TaskService);
   authService = inject(FirebaseAuthService);
+  uiService = inject(UiService);
+
+  ngOnInit(): void {
+    this.uiService.showMobileGreeting();
+  }
 
   getNumberOfTasks(status: string): number {
     let counter = 0;

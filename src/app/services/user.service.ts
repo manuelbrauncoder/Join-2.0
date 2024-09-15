@@ -120,7 +120,9 @@ export class UserService {
 
   constructor() {}
 
-  
+  isUserAccount(user: UserCl){
+    return user.uid !== '';
+  }
 
   async addLocalUsersToFirebase() {
     for (let i = 0; i < this.exampleUsers.length; i++) {

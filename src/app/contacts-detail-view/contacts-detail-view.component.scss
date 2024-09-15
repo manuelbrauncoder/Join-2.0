@@ -104,6 +104,30 @@ header {
         @include dFlex($g: 13px);
         cursor: pointer;
 
+        &:disabled {
+          cursor: not-allowed;
+          svg {
+            fill: $color-link-grey;
+    
+            rect,
+            path {
+              fill: $color-link-grey;
+            }
+          }
+          &:hover {
+            color: $color-link-grey;
+            font-weight: unset;
+            svg {
+              fill: $color-link-grey;
+      
+              rect,
+              path {
+                fill: $color-link-grey;
+              }
+            }
+          }
+        }
+
         &:hover {
           color: $color-link-blue;
           font-weight: 700;
@@ -168,6 +192,30 @@ header {
       background-color: unset;
       @include dFlex($g: 13px);
       cursor: pointer;
+
+      &:disabled {
+        cursor: not-allowed;
+        svg {
+          fill: $color-link-grey;
+  
+          rect,
+          path {
+            fill: $color-link-grey;
+          }
+        }
+        &:hover {
+          color: $color-link-grey;
+          font-weight: unset;
+          svg {
+            fill: $color-link-grey;
+    
+            rect,
+            path {
+              fill: $color-link-grey;
+            }
+          }
+        }
+      }
   
       &:hover {
         color: $color-link-blue;

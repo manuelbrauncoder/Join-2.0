@@ -37,6 +37,7 @@
 }
 
 main {
+  position: relative;
   height: 100%;
   background-color: $color-bg-white;
   @include dFlex($fd: column, $ai: flex-start, $g: 56px, $jc: flex-start);
@@ -295,8 +296,6 @@ section {
 
 }
 
-
-
 .greeting {
   @media(max-width: 1250px) {
     display: none;
@@ -306,7 +305,6 @@ section {
     margin: 0;
     @extend .v2-t2;
     color: $color-main;
-
   }
 
   h2 {
@@ -317,4 +315,37 @@ section {
     line-height: 76.8px;
     color: $color-lightblue;
   }
+}
+
+.mobile-greeting{
+  z-index: 4;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  h3 {
+    margin: 0;
+    @extend .v2-t2;
+    color: $color-main;
+  }
+
+  h2 {
+    margin: 0;
+    font-family: Inter;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 76.8px;
+    color: $color-lightblue;
+  }
+}
+
+.greeting-background{
+  background-color: rgba(255, 255, 255, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
 }

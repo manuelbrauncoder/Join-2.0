@@ -21,9 +21,23 @@ export class UiService {
   confirmText = '';
   showConfirmIcon = false;
 
+  mobileGreeting = false;
+  mobileGreetingDone = true;
+
   constructor() { }
 
-  showConfirmPopup(text: string, showIcon: boolean){
+  showMobileGreeting() {
+    if (!this.mobileGreetingDone) {
+      this.mobileGreeting = true;
+      setTimeout(() => {
+        this.mobileGreeting = false;
+      }, 2500);
+      this.mobileGreetingDone = true;
+    }
+
+  }
+
+  showConfirmPopup(text: string, showIcon: boolean) {
     this.confirmText = text;
     this.showConfirmIcon = showIcon;
     this.showConfirmationPopup = true;
@@ -42,7 +56,7 @@ export class UiService {
   /**
    * toggle add contact overlay
    */
-  toggleAddContactOverlay(){
+  toggleAddContactOverlay() {
     this.showAddContactOverlay = !this.showAddContactOverlay;
   }
 

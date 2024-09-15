@@ -12,6 +12,14 @@ const slideInHorizontalCenterVisible = { transform: 'translate(-50%, -50%)' };
 const verticalHidden = { transform: 'translate(-50%, 1000px)'};
 const verticalVisible = { transform: 'translate(-50%, -50%)'};
 
+const popupHidden = { opacity: '0'};
+const popupVisible = { opacity: '1'};
+
+export const fadeIn = trigger('fadeIn', [
+    transition(':enter', [style(popupHidden), animate(timing, style(popupVisible))]),
+    transition(':leave', [style(popupVisible), animate(timing, style(popupHidden))]),
+  ]);
+
 /**
  * slide in and out from right to center
  */
@@ -19,8 +27,6 @@ export const slideInHorizontal = trigger('slideInHorizontal', [
     transition(':enter', [style(horizontalHidden), animate(timing, style(horizontalVisible))]),
     transition(':leave', [style(horizontalVisible), animate(timing, style(horizontalHidden))]),
 ])
-
-
 
 /**
  * slide in and out from bottom center to center

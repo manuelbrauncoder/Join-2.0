@@ -18,12 +18,31 @@ export class SignUpComponent {
   router = inject(Router);
   @Output() signUp = new EventEmitter<boolean>();
 
+  passwordFieldType: 'password' | 'text' = 'password';
+  passwordConfirmationFieldType: 'password' | 'text' = 'password';
+
   contactData = {
     name: '',
     email: '',
     password: '',
     confirmPW: '',
     policyCheck: false
+  }
+
+  togglePasswordFieldType(){
+    if (this.passwordFieldType === 'password') {
+      this.passwordFieldType = 'text';
+    } else {
+      this.passwordFieldType = 'password';
+    }
+  }
+
+  togglepasswordConfirmationFieldType(){
+    if (this.passwordConfirmationFieldType === 'password') {
+      this.passwordConfirmationFieldType = 'text';
+    } else {
+      this.passwordConfirmationFieldType = 'password';
+    }
   }
 
   hideSignUp() {
@@ -36,10 +55,6 @@ export class SignUpComponent {
       this.authService.register(this.contactData.email,
         this.contactData.name,
         this.contactData.password);
-        // this.authService.currentUserSig.set({
-        //   username: this.contactData.name,
-        //   email: this.contactData.email
-        // })
         setTimeout(() => {
           this.router.navigate(['/summary']);
         }, 300);
