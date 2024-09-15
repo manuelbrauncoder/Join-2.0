@@ -19,6 +19,9 @@
   overflow-y: auto;
   @include dFlex($fd: column, $ai: flex-start, $jc: flex-start);
   max-width: calc(100vw - 16px);
+  @media(max-width: 599px) {
+    padding: 32px 8px;
+  }
 }
 
 .headline {
@@ -66,14 +69,16 @@
 
 form {
   @include dFlex($ai: flex-start, $jc: flex-start, $g: 32px);
+  max-width: 1000px;
 
-  @media(max-width: 1299px) {
-    gap: 16px;
-  }
+  // @media(max-width: 1299px) {
+  //   gap: 16px;
+  // }
 
-  @media(max-width: 950px) {
+  @media(max-width: 599px) {
     flex-direction: column;
     align-items: center;
+    width: 90vw;
   }
 }
 
@@ -83,18 +88,18 @@ textarea {
 }
 
 .textarea-wrapper {
-  width: 440px;
+  width: 100%;
   position: relative;
   @include dFlex($fd: column, $ai: flex-start);
 
-  @media(max-width: 1299px) {
-    width: 300px;
-  }
+  // @media(max-width: 1299px) {
+  //   width: 300px;
+  // }
 
-  @media(max-width: 950px) {
-    align-items: center;
-    width: 100%;
-  }
+  // @media(max-width: 599px) {
+  //   align-items: center;
+  //   width: 100%;
+  // }
 }
 
 textarea {
@@ -124,18 +129,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .input-wrapper {
-  width: 440px;
+  width: 100%;
   position: relative;
   @include dFlex($fd: column, $ai: flex-start);
 
-  @media(max-width: 1299px) {
-    width: 300px;
-  }
+  // @media(max-width: 1299px) {
+  //   width: 300px;
+  // }
 
-  @media(max-width: 950px) {
-    align-items: center;
-    width: 100%;
-  }
+  // @media(max-width: 599px) {
+  //   align-items: center;
+  //   width: 100%;
+  // }
 }
 
 .input-icon {
@@ -152,18 +157,19 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .category-input-wrapper {
   cursor: pointer;
+  width: 100%;
 
-  @media(max-width: 1299px) {
-    width: 100%;
-  }
+  // @media(max-width: 1299px) {
+  //   width: 100%;
+  // }
 }
 
 .search-wrapper {
   width: 100%;
   position: relative;
-  @media(max-width: 950px){
-    width: 100%;
-  }
+  // @media(max-width: 599px){
+  //   width: 100%;
+  // }
 }
 
 .category-drop-down-arrow {
@@ -189,30 +195,32 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .first {
   @include dFlex($fd: column, $ai: flex-start, $g: 32px);
+  width: 100%;
 
-  @media(max-width: 1299px) {
-    width: 100%;
-  }
+  // @media(max-width: 1299px) {
+  //   width: 100%;
+  // }
 }
 
 .second {
   @include dFlex($fd: column, $ai: flex-start, $g: 32px);
+  width: 100%;
 
-  @media(max-width: 1299px) {
-    width: 100%;
-  }
+  // @media(max-width: 1299px) {
+  //   width: 100%;
+  // }
 }
 
 .custom-select {
-  width: 440px;
+  width: 100%;
   position: relative;
   @include dFlex($fd: column, $ai: flex-start, $g: 4px);
-  @media(max-width: 1299px){
-    width: 300px;
-  }
-  @media(max-width: 950px){
-    width: 100%;
-  }
+  // @media(max-width: 1299px){
+  //   width: 300px;
+  // }
+  // @media(max-width: 599px){
+  //   width: 100%;
+  // }
 }
 
 .options {
@@ -261,15 +269,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   border-radius: 100vw;
   background-color: $color-grey;
 
-  @media(max-width: 950px) {
+  @media(max-width: 599px) {
     display: none;
   }
 }
 
 .btns {
   margin-top: 160px;
+  width: 100%;
   @include dFlex($jc: flex-end, $g: 16px);
-  @media(max-width: 950px) {
+  @media(max-width: 599px) {
     margin-top: 32px;
   }
 
@@ -291,15 +300,17 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .prio {
   @include dFlex($fd: column);
+  width: 100%;
 
-  @media(max-width: 950px) {
+  @media(max-width: 599px) {
     width: 100%;
   }
 
   >div {
-    @include dFlex($g: 16px);
+    width: 100%;
+    @include dFlex($g: 16px, $jc: space-between);
 
-    @media(max-width: 950px) {
+    @media(max-width: 599px) {
       width: 100%;
       justify-content: space-between;
       gap: 8px;
@@ -328,14 +339,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     box-shadow: 0px 9px 15px 3px rgba(0, 0, 0, 0.1019607843);
   }
 
-  @media(max-width: 1299px) {
-    width: 89.3px;
-    gap: 4px;
-  }
+  // @media(max-width: 1299px) {
+  //   width: 89.3px;
+  //   gap: 4px;
+  // }
 
-  @media(max-width: 950px) {
-    width: calc((100% - 64px) / 3);
-  }
+  // @media(max-width: 599px) {
+  //   width: calc((100% - 64px) / 3);
+  // }
 }
 
 .prio-urgent {
@@ -358,9 +369,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .subtasks-field{
-  @media(max-width: 950px){
-    width: 100%;
-  }
+  width: 100%;
 }
 
 .subtask-wrapper {
@@ -426,13 +435,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .clear-btn {
-  @media(max-width: 950px) {
+  @media(max-width: 599px) {
     display: none;
   }
 }
 
 .mobile-span{
-  @media(max-width: 950px) {
+  @media(max-width: 599px) {
     font-size: 14px;
   }
 }

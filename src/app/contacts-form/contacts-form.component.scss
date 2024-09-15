@@ -42,10 +42,10 @@
 
 main {
   display: flex;
-  width: fit-content;
-  @media(max-width: 950px) {
+  //width: fit-content;
+  @media(max-width: 1299px) {
     flex-direction: column;
-    width: calc(100vw - 32px);
+    max-width: calc(100vw - 32px);
     max-height: calc(100vh - 32px);
   }
 }
@@ -55,7 +55,7 @@ main {
   padding: 100px 48px;
   background-color: $color-main;
   @include dFlex($fd: column, $ai: flex-start, $g: 16px);
-  @media(max-width: 950px) {
+  @media(max-width: 1299px) {
       padding: 32px;
       border-radius: 30px 30px 0 0;
   }
@@ -85,7 +85,7 @@ main {
   @include dFlex($jc: center, $g: 48px);
   background-color: white;
   padding: 100px 48px;
-  @media(max-width: 950px) {
+  @media(max-width: 1299px) {
     border-radius: 0 0 30px 30px;
     padding: 32px;
   }
@@ -97,45 +97,51 @@ main {
     background-color: $color-grey;
     border-radius: 100%;
     @include dFlex();
-    @media(max-width: 950px) {
+    @media(max-width: 1299px) {
       display: none;
     }
   }
 
-  .form {
+  
     form {
       @include dFlex($fd: column, $ai: flex-start, $g: 32px);
-      @media(max-width: 950px) {
+      width: fit-content;
+      max-width: 420px;
+      @media(max-width: 1299px) {
         align-items: center;
         gap: 8px;
+        width: 100%;
+        max-width: unset;
       }
       input {
-        width: 420px;
+        //width: 420px;
+        width: 100%;
+        padding: 12px 40px 12px 12px;
         
           @media(max-width: 950px) {
-            width: 280px;
+            //width: 280px;
           }
         
       }
     }
     .btns {
       @include dFlex($jc: flex-start, $g: 24px);
-      @media(max-width: 950px) {
+      @media(max-width: 1299px) {
         margin-top: 16px;
       }
     }
-  }
+  
 }
 
 .secondary{
-  @media(max-width: 950px) {
+  @media(max-width: 1299px) {
     display: none !important; 
   }
 }
 
 .input-wrapper {
   position: relative;
-  
+  width: 100%;
 }
 
 

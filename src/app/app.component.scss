@@ -1,6 +1,5 @@
 @import '../styles.scss';
 
-// classes shown on login/register
 
 .confirm-popup-background {
    position: fixed;
@@ -10,7 +9,6 @@
    left: 0;
    right: 0;
    background-color: rgba(208, 207, 207, 0.688);
-   ;
 }
 
 .popup-wrapper {
@@ -23,7 +21,7 @@
 
 
 .on-login {
-   height: 100vh;
+   height: 100dvh;
    display: flex;
    width: 100vw;
 }
@@ -38,7 +36,7 @@
 }
 
 .nav {
-   height: 100vh;
+   height: 100dvh;
    grid-column: 1;
    grid-area: nav;
 }
@@ -55,7 +53,7 @@
    grid-column: 2;
    grid-area: main;
    overflow-y: auto;
-   height: calc(100vh - 100px);
+   height: calc(100dvh - 100px);
    background-color: $color-bg-white;
 }
 
@@ -67,7 +65,7 @@
          "header"
          "main"
          "nav";
-      height: 100vh;
+      height: 100dvh;
    }
 
    .nav {

@@ -51,6 +51,7 @@ main {
       width: 59px;
       background-color: $color-lightblue;
       border: unset;
+      border-radius: 100vw;
     }
   }
 
@@ -68,6 +69,7 @@ header {
   }
 
   span {
+    flex-shrink: 0;
     @extend .assignedToBubble;
     font-size: 47px;
     font-weight: 500;

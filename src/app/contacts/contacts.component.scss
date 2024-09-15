@@ -66,7 +66,7 @@ header {
 
     header {
         height: 60px;
-        @include dFlex($g: 30px);
+        @include dFlex($g: 30px, $jc: flex-start);
 
         span {
             color: $color-main;
@@ -78,23 +78,29 @@ header {
             background-color: $color-lightblue;
             border: unset;
 
-            @media(max-width: 950px) {
-                height: 3px;
-                width: 59px;
+            @media(max-width: 1299px) {
+                display: none;
             }
+        }
+        @media(max-width: 1299px) {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 64px;
         }
         @media(max-width: 950px) {
             display: none;
         }
         
     }
+    @media(max-width: 1299px) {
+        padding: 24px 32px;
+    }
+
     @media(max-width: 950px) {
         display: none;
         padding: 0;
     }
-
-    
-
 }
 
 

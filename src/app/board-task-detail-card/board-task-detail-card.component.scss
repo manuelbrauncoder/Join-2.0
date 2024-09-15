@@ -5,13 +5,13 @@ main {
     box-shadow: 0px 0px 4px 0px #00000029;
     padding: 48px 40px;
     border-radius: 30px;
-    max-width: 525px;
-    @include dFlex($fd: column, $ai: flex-start, $g: 24px);
+    max-width: 550px;
+    @include dFlex($fd: column, $ai: flex-start, $jc: flex-start, $g: 24px);
+    max-height: 90dvh;
+    overflow-y: auto;
 
-    @media(max-width: 950px) {
+    @media(max-width: 599px) {
         max-width: calc(100vw - 32px);
-        max-height: 90vh;
-        overflow-y: auto;
         width: 90vw;
         justify-content: flex-start;
     }
