@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { TaskService } from '../services/task.service';
 import {
   CdkDrag,
@@ -69,6 +69,7 @@ export class BoardComponent {
   searchInput: string = '';
   taskForDetail = new Task;
 
+  
   toggleTaskDetailOverlay() {
     this.taskService.showDetailOverlay = !this.taskService.showDetailOverlay;
     this.taskService.taskEditMode = false;
@@ -105,11 +106,12 @@ export class BoardComponent {
    * @returns all or searched
    */
   filteredTasks(): Task[] {
+    const input = this.searchInput.trim().toLowerCase();
     if (!this.searchInput) {
       return this.taskService.fireService.tasks;
     }
     return this.taskService.fireService.tasks.filter((task) =>
-      task.title.toLowerCase().includes(this.searchInput)
+      task.title.toLowerCase().includes(input) || task.description.toLowerCase().includes(input)
     );
   }
 

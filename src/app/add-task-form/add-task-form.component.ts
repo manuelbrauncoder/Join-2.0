@@ -73,11 +73,12 @@ export class AddTaskFormComponent implements OnInit {
    * @returns all users, or filtered user
    */
   filteredUsers(): UserCl[] {
+    const input = this.searchUserInput.trim().toLowerCase();
     if (!this.searchUserInput) {
       return this.userService.fireService.users;
     }
     return this.userService.fireService.users.filter((user) =>
-      user.name.toLowerCase().includes(this.searchUserInput)
+      user.name.toLowerCase().includes(input)
     );
   }
 
