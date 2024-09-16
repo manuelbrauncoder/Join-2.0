@@ -9,6 +9,7 @@
   }
   @media(max-width: 950px) {
     margin: 0;
+    margin-bottom: 32px;
   }
 }
 
@@ -40,6 +41,17 @@ main {
     @include link($c: $color-icon);
   }
   @media(max-width: 950px) {
+    display: none;
+  }
+}
+
+.legals-mobile {
+  @include dFlex($g: 35px);
+  a {
+    @extend .v2-body;
+    @include link($c: $color-icon);
+  }
+  @media(min-width: 951px) {
     display: none;
   }
 }

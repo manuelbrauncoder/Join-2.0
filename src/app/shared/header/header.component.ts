@@ -28,6 +28,11 @@ export class HeaderComponent {
     }, 50);
   }
 
+  goToRouteAndClose(route: string) {
+    this.router.navigate([`${route}`]);
+    this.uiService.toggleHeaderMenu();
+  }
+
  async resetTasks(){
     if (confirm('replace data in firebase with example data')) {
      await this.taskService.deleteAllTasks();

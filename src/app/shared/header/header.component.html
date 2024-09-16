@@ -11,9 +11,9 @@
                 @if(uiService.showHeaderMenu){
                     <div (click)="uiService.toggleHeaderMenu()" class="menu-bg"></div>
                     <div class="popup">
-                        <a class="mobile-help" routerLink="help">Help</a>
-                        <a routerLink="imprint">Legal Notice</a>
-                        <a routerLink="privacy">Privacy Policy</a>
+                        <a (click)="goToRouteAndClose('help')" class="mobile-help">Help</a>
+                        <a (click)="goToRouteAndClose('imprint')">Legal Notice</a>
+                        <a (click)="goToRouteAndClose('privacy')">Privacy Policy</a>
                         <a (click)="logUserOut()">Log out</a>
                     </div>
                 }

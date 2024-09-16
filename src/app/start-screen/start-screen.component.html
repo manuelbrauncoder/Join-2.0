@@ -1,5 +1,9 @@
 @if (!startAnimation) {
     <main [ngStyle]="{ 'justify-content': showSignUp ? 'center' : 'space-between' }">
+        <div class="legals-mobile">
+            <a routerLink="privacy">Privacy Policy</a>
+            <a routerLink="imprint">Legal notice</a>
+        </div>
         @if (!showSignUp) {
             <div class="signup">
                 <span>Not a Join user?</span>
