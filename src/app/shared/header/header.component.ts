@@ -5,11 +5,12 @@ import { FirebaseAuthService } from '../../services/firebase-auth.service';
 import { InitialsPipe } from '../../pipes/initials.pipe';
 import { Router, RouterLink } from '@angular/router';
 import { UiService } from '../../services/ui.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [InitialsPipe, RouterLink],
+  imports: [InitialsPipe, RouterLink, FormsModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -19,6 +20,7 @@ export class HeaderComponent {
   authService = inject(FirebaseAuthService);
   uiService = inject(UiService);
   router = inject(Router);
+  password = '';
 
   logUserOut(){
     this.uiService.showHeaderMenu = false;

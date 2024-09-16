@@ -15,7 +15,19 @@
                         <a (click)="goToRouteAndClose('imprint')">Legal Notice</a>
                         <a (click)="goToRouteAndClose('privacy')">Privacy Policy</a>
                         <a (click)="logUserOut()">Log out</a>
+                        <a (click)="authService.deleteAccount()">Delete Account</a>
+                        @if (uiService.showPWConfirmation) {
+                            <div class="confirm-password">
+                                @if (uiService.wrongPwConfirmation) {
+                                    <span class="error">Wrong Password, please try again.</span>
+                                }
+                                <input class="input-field" placeholder="Confirm Password" type="password" [(ngModel)]="password">
+                                <button class="secondary btn" (click)="authService.reAuthenticateUser(authService.userEmailCache, password)">Confirm</button>
+                            </div>
+                        }
+                        
                     </div>
+                    
                 }
                 
             </div>

@@ -15,12 +15,12 @@ export class UiService {
 
   activeSection: 'summary' | 'addTask' | 'board' | 'contacts' | '' = '';
 
-  showDetailView = false; // contact detail view
-  showContactList = true; // contact list view
-  showContactMenu = false; // menu popup in mobile detail contact view
-  showAddContactOverlay = false; // add contact overlay
-  showEditContactOverlay = false; // edit contact overlay
-  showHeaderMenu = false; // menu popup in header
+  showDetailView = false;
+  showContactList = true;
+  showContactMenu = false;
+  showAddContactOverlay = false;
+  showEditContactOverlay = false;
+  showHeaderMenu = false;
 
   showConfirmationPopup = false;
   confirmText = '';
@@ -30,6 +30,8 @@ export class UiService {
   mobileGreetingDone = true;
 
   userIsLoggedIn = false;
+  showPWConfirmation = false;
+  wrongPwConfirmation = false;
 
   constructor() { }
 

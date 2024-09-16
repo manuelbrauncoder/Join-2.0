@@ -58,7 +58,7 @@
       <!-- assigned To -->
       <div class="custom-select">
         <label class="mobile-span" for="assignedTo">Assigned to</label>
-        <div class="search-wrapper">
+        <div class="search-wrapper" #searchWrapper>
           <input
             autocomplete="off"
             id="assignedTo"
@@ -81,7 +81,7 @@
         </div>
 
         @if (userOptions) {
-        <div class="options">
+        <div class="options" #options>
           @for (user of filteredUsers(); track $index) {
           <div (click)="asignUserToTask(user.name)" class="option">
             <span
@@ -115,9 +115,7 @@
         }
       </div>
     </div>
-    <!-- @if (!editmode) {
-      <div class="divider"></div>
-    } -->
+    
     <div class="second">
       <!-- Due date -->
       <div class="input-wrapper">
@@ -196,6 +194,7 @@
         <div
           class="input-wrapper category-input-wrapper"
           (click)="toggleCategoryOptions()"
+          #categoryWrapper
         >
           <input
             id="category"
@@ -223,7 +222,7 @@
         @if (!category.valid && showCategoryHint) {
         <span class="hint">This field is required</span>
         }
-        <div class="options">
+        <div class="options" #categoryOptions>
           @if (taskCategoryOptions) {
           <span class="option" (click)="changeTaskCategory('Technical Task')"
             >Technical Task</span
@@ -246,6 +245,7 @@
             type="text"
             class="input-field"
             placeholder="Add new subtask"
+            (keydown)="onKeyDownSubtask($event)"
           />
           @if (!subTaskInput) {
           <img
@@ -282,6 +282,7 @@
               [(ngModel)]="subTaskEditInput"
               type="text"
               [ngModelOptions]="{ standalone: true }"
+              (keydown)="onKeyDownSubtaskEdit($event)"
             />
             }
             <div class="subtask-icons" [ngStyle]="editingSubtaskIndex === index ? { 'visibility': 'visible' } : {} ">

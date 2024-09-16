@@ -19,8 +19,18 @@
     <div class="input-wrapper">
       <input [ngClass]="{ 'input-field-error': !password.valid && password.touched}" #password="ngModel" required
         minlength="6" [(ngModel)]="contactData.password" name="password" id="password" class="input-field"
-        type="password" placeholder="Password" />
-      <img src="assets/img/lock.png" alt="">
+        [type]="passwordFieldType" placeholder="Password" />
+      <!-- <img src="assets/img/lock.png" alt=""> -->
+      @if (password.dirty && passwordFieldType === 'password') {
+        <img (click)="togglePasswordFieldType()" class="input-icon" src="assets/img/visibility_off.png" alt="" />
+
+      }
+      @if (!password.dirty) {
+        <img class="input-icon" src="assets/img/lock.png" alt="" />
+      }
+      @if (password.dirty && passwordFieldType === 'text') {
+        <img (click)="togglePasswordFieldType()" class="input-icon" src="assets/img/visibility.png" alt="" />
+      }
       @if (!password.valid && password.touched) {
       <span class="hint">This field is required</span>
       }

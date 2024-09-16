@@ -129,3 +129,14 @@ header {
         right: -6px;
     }
 }
+
+.confirm-password{
+    position: relative;
+    @include dFlex($fd: column, $g: 8px, $ai: flex-start);
+    input{
+        font-size: 16px;
+    }
+    button{
+        font-size: 16px;
+    }
+}

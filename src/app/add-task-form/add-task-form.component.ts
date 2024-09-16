@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, inject, Input, OnInit, ViewChild } from '@angular/core';
 import { SubTask, Task } from '../models/task.class';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
@@ -22,29 +22,80 @@ export class AddTaskFormComponent implements OnInit {
   uiService = inject(UiService);
   router = inject(Router);
 
-  task = new Task(); // task for ngModel
-  @Input() currentTask = new Task(); // task for editMode
+  task = new Task();
+  @Input() currentTask = new Task();
+  @Input() openInDialog: boolean = false;
+  @Input() editmode: boolean = false;
 
   dueDate: Date | null | string = null;
   subTaskInput: string = '';
   subTaskEditInput: string = '';
   searchUserInput: string = '';
-
-  @Input() openInDialog: boolean = false; // true: open in overlay, false: open in add Task View 
-  @Input() editmode: boolean = false;
-
   editingSubtaskIndex: number | null = null; // if null, editmode not showing
-
   taskCategoryOptions: boolean = false;
   userOptions: boolean = false;
   showCategoryHint: boolean = false;
 
-  constructor() {
+  @ViewChild('options') userOptionsContainer!: ElementRef;
+  @ViewChild('searchWrapper') searchWrapper!: ElementRef;
+  @ViewChild('categoryOptions') categoryOptions!: ElementRef;
+  @ViewChild('categoryWrapper') categoryWrapper!: ElementRef;
+
+  constructor(private elementRef: ElementRef) {
     this.task.category = '';
   }
 
+  /**
+   * save subtask with Enter
+   * @param event 
+   */
+  onKeyDownSubtask(event: KeyboardEvent){
+    if (event.key === 'Enter') {
+      this.addSubtask();
+    }
+  }
+
+  /**
+   * save edited Subtask with Enter
+   * @param event 
+   */
+  onKeyDownSubtaskEdit(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      this.saveEditedSubtask(this.editingSubtaskIndex!);
+    }
+  }
+
+  /**
+   * Closes DropDown Menus when clicking outside
+   * @param event 
+   */
+  @HostListener('document:click', ['$event'])
+  clickOutside(event: Event) {
+    if (this.isClickOutsideUserDropDown(event)) {
+      this.userOptions = false;
+    } else if (this.isClickOutsideCategoryDropDown(event)) {
+      this.taskCategoryOptions = false;
+    }
+  }
+
+  isClickOutsideCategoryDropDown(event: Event) {
+    return this.taskCategoryOptions &&
+    this.categoryOptions &&
+    !this.categoryOptions.nativeElement.contains(event.target) &&
+    this.categoryWrapper &&
+    !this.categoryWrapper.nativeElement.contains(event.target)
+  }
+
+  isClickOutsideUserDropDown(event: Event){
+    return this.userOptions &&
+    this.userOptionsContainer &&
+    !this.userOptionsContainer.nativeElement.contains(event.target) &&
+    this.searchWrapper &&
+    !this.searchWrapper.nativeElement.contains(event.target)
+  }
+
   ngOnInit(): void {
-    this.task = new Task(this.currentTask); // copy current task to task
+    this.task = new Task(this.currentTask);
     this.dueDate = this.formatDateForInput();
     if (!this.editmode) {
       this.dueDate = null;
@@ -111,31 +162,23 @@ export class AddTaskFormComponent implements OnInit {
     this.editingSubtaskIndex = null;
   }
 
-  /**
-   * toggle options for user to asign
-   */
+ 
   toggleUserOptions() {
     this.userOptions = !this.userOptions;
   }
 
-  /**
-   * show user options
-   */
+  
   showUserOptions() {
     this.userOptions = true;
   }
 
-  /**
-   * toggle options for category
-   */
+  
   toggleCategoryOptions() {
     this.taskCategoryOptions = !this.taskCategoryOptions;
     this.showCategoryHint = true;
   }
 
-  /**
-   * clear form
-   */
+  
   clearAllInputs() {
     this.task.title = '';
     this.task.description = '';
@@ -147,9 +190,7 @@ export class AddTaskFormComponent implements OnInit {
     this.task.category = '';
   }
 
-  /**
-   * clearSubtaskInput
-   */
+  
   clearSubtaskInput() {
     this.subTaskInput = '';
   }

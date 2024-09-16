@@ -1,20 +1,22 @@
-import { inject, Injectable, OnDestroy, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import {
   Auth,
   user,
-  User,
   createUserWithEmailAndPassword,
-  getAuth,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
   AuthErrorCodes,
+  deleteUser,
+  EmailAuthProvider,
+  reauthenticateWithCredential,
 } from '@angular/fire/auth';
-import { from, Observable, Subscription } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { FirebaseService } from './firebase.service';
 import { UserInterface } from '../interfaces/user-interface';
 import { Router } from '@angular/router';
 import { UiService } from './ui.service';
+import { TaskService } from './task.service';
 
 @Injectable({
   providedIn: 'root',
@@ -22,21 +24,22 @@ import { UiService } from './ui.service';
 export class FirebaseAuthService {
   router = inject(Router);
   wrongPw = false;
+  
 
   fireService = inject(FirebaseService);
   uiService = inject(UiService);
+  taskService = inject(TaskService);
 
   auth = inject(Auth);
   user$ = user(this.auth);
+
+  userEmailCache = '';
 
   currentUserSig = signal<UserInterface | null | undefined>(undefined);
 
   constructor() {
   }
 
-  setUserObject(email: string, username: string){
-
-  }
 
   register(
     email: string,
@@ -59,18 +62,18 @@ export class FirebaseAuthService {
         phone: '',
         color: ''
       }));
-      
+
     }
     );
     return from(promise);
   }
 
   login(email: string, password: string): Observable<void> {
-    const promise = signInWithEmailAndPassword(this.auth, email, password).then(()=>{
+    const promise = signInWithEmailAndPassword(this.auth, email, password).then(() => {
       this.wrongPw = false;
       this.uiService.mobileGreetingDone = false;
       this.router.navigate(['/summary']);
-    }).catch((error)=>{
+    }).catch((error) => {
       const wrongPw = AuthErrorCodes.INVALID_PASSWORD;
       if (wrongPw) {
         this.wrongPw = true;
@@ -82,5 +85,55 @@ export class FirebaseAuthService {
   logout(): Observable<void> {
     const promise = signOut(this.auth);
     return from(promise);
+  }
+
+  async deleteAccount() {
+    const currentUser = this.auth.currentUser;
+    if (currentUser?.displayName === 'Guest User') {
+      this.uiService.showConfirmPopup('Guest Account can not be deleted', false);
+      return;
+    } else if (currentUser) {
+      this.userEmailCache = currentUser.email!;
+      deleteUser(currentUser).then(() => {
+        this.deleteUserInFirestore(currentUser.uid);
+      }).then(() => {
+        this.taskService.deleteUserInTask(currentUser.displayName!);
+      }).catch((error) => {
+        const errCode = AuthErrorCodes.CREDENTIAL_TOO_OLD_LOGIN_AGAIN
+        if (errCode) {
+          this.uiService.showPWConfirmation = true;
+        } else {
+          console.log('Error deleting User Account', error);
+        }
+      })
+    }
+  }
+
+  reAuthenticateUser(email: string, password: string) {
+    const credential = EmailAuthProvider.credential(email, password);
+    if (this.auth.currentUser) {
+      reauthenticateWithCredential(this.auth.currentUser, credential).then(() => {
+        this.uiService.showPWConfirmation = false;
+        this.uiService.showHeaderMenu = false;
+        this.uiService.wrongPwConfirmation = false;
+        this.deleteAccount();
+      }).catch((error) => {
+        const errCode = AuthErrorCodes.INVALID_PASSWORD;
+        if (errCode) {
+          this.uiService.wrongPwConfirmation = true;
+        } else {
+          console.log('Error reauthenticate User', error);
+        }
+      })
+    }
+  }
+
+  async deleteUserInFirestore(uid: string) {
+    for (let i = 0; i < this.fireService.users.length; i++) {
+      const user = this.fireService.users[i];
+      if (user.uid === uid) {
+        await this.fireService.deleteData(user.id, 'users');
+      }
+    }
   }
 }

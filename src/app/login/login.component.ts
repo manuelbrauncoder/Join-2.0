@@ -16,6 +16,7 @@ export class LoginComponent{
   fireService = inject(FirebaseService);
   authService = inject(FirebaseAuthService);
   router = inject(Router);
+  passwordFieldType: 'password' | 'text' = 'password';
 
   contactData = {
     email: '',
@@ -25,6 +26,14 @@ export class LoginComponent{
   onSubmit(ngForm: NgForm){
     if (ngForm.valid && ngForm.submitted) {
       this.userLogin();
+    }
+  }
+
+  togglePasswordFieldType(){
+    if (this.passwordFieldType === 'password') {
+      this.passwordFieldType = 'text';
+    } else {
+      this.passwordFieldType = 'password';
     }
   }
 
