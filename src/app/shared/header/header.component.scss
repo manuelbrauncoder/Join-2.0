@@ -1,6 +1,6 @@
 @import '../../../styles.scss';
 
-.menu-bg{
+.menu-bg {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -15,13 +15,9 @@ header {
     box-shadow: 0px 4px 4px 0px #0000001A;
     padding: 20px 40px 20px 116px;
     @include dFlex($jc: space-between);
-    position: fixed;
-    top: 0;
-    right: 0;
     height: 96px;
-    width: calc(100vw - 232px);
     background-color: white;
-
+    
     @media(max-width: 950px) {
         top: 0;
         left: 0;
@@ -30,9 +26,10 @@ header {
         padding: 8px 16px;
     }
 
-    .mobile-logo{
+    .mobile-logo {
         height: 39px;
         width: 32px;
+
         @media(min-width: 951px) {
             display: none;
         }
@@ -46,20 +43,24 @@ header {
         }
     }
 
-    
+
 
     .btns {
         @include dFlex($g: 16px);
 
-        .help {
+        .help-wrapper {
             @include dFlex();
             cursor: pointer;
-            color: $color-icon;
             border: 1px solid $color-icon;
-            border-radius: 100%;
+            border-radius: 20px;
             width: 20px;
             height: 20px;
             background-color: unset;
+
+            a {
+                color: $color-icon;
+                text-decoration: none;
+            }
 
             @media(max-width: 950px) {
                 display: none;
@@ -130,13 +131,15 @@ header {
     }
 }
 
-.confirm-password{
+.confirm-password {
     position: relative;
     @include dFlex($fd: column, $g: 8px, $ai: flex-start);
-    input{
+
+    input {
         font-size: 16px;
     }
-    button{
+
+    button {
         font-size: 16px;
     }
 }

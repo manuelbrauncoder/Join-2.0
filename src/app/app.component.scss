@@ -1,5 +1,7 @@
 @import '../styles.scss';
 
+
+
 .landscape{
    text-align: center;
    font-size: 32px;
@@ -40,9 +42,16 @@
    width: 100vw;
 }
 
-
+.flex-container{
+   max-width: $content-limit;
+   display: flex;
+   justify-content: center;
+   margin-inline: auto;
+}
 
 .grid-container {
+   margin-inline: auto;
+   max-width: $content-limit;
    display: grid;
    grid-template-columns: 232px 1fr;
    grid-template-rows: auto 1fr auto;
@@ -96,3 +105,4 @@
       width: 100%;
    }
 }
+

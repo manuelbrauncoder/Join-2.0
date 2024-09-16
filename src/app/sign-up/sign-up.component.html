@@ -98,7 +98,7 @@
         #policyCheck="ngModel"
         name="checkbox"
       />
-      <label for="checkbox">I accept the Privacy policy</label>
+      <label for="checkbox">I accept the <a class="legal-link" routerLink="privacy">Privacy policy</a></label>
     </div>
     <button type="submit" [disabled]="!userForm.valid || !confirmPassword()" class="primary">Sign up</button>
   </form>

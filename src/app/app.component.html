@@ -5,19 +5,22 @@
     <img src="assets/img/rotate.png" alt="">
   </div>
 } @else {
-  <div [ngClass]="onLogin ? '' : 'grid-container'">
+  
+    <div [ngClass]="onLogin ? 'flex-container' : 'grid-container'">
 
-    @if (!onLogin) {
-      <header class="header"><app-header></app-header></header>
-    }
+      @if (!onLogin) {
+        <header class="header"><app-header></app-header></header>
+      }
+    
+      <main cdkScrollable [ngClass]="onLogin ? 'on-login' : 'main'"><router-outlet /></main>
+    
+      @if (!onLogin) {
+        <nav class="nav"><app-nav-bar></app-nav-bar></nav>
+      }
+    
+    </div>
   
-    <main cdkScrollable [ngClass]="onLogin ? 'on-login' : 'main'"><router-outlet /></main>
   
-    @if (!onLogin) {
-      <nav class="nav"><app-nav-bar></app-nav-bar></nav>
-    }
-  
-  </div>
   
   @if (uiService.showConfirmationPopup) {
     <div class="confirm-popup-background"></div>

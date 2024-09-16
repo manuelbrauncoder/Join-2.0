@@ -5,19 +5,11 @@ aside{
     padding: 64px 0px 64px 0px;
     background-color: $color-main;
     color: white;
-    position: fixed;
-    left: 0;
-    top: 0;
     width: 232px;
-    height: 100vh;
-    @include dFlex($fd: column, $jc: flex-start);
+    height: 100%;
+    @include dFlex($fd: column, $jc: space-between);
     @media(max-width: 950px){
-        position: fixed;
-        left: 0;
-        right: 0;
         width: unset;
-        bottom: 0;
-        top: unset;
         height: 85px;
         padding: 0;
     }
@@ -34,7 +26,6 @@ aside{
 
     nav{
         width: 100%;
-        margin-top: 160px;
         @include dFlex($fd: column, $g: 32px, $ai: flex-start);
         @media(max-width: 950px){
             @include dFlex($g: 15px);
@@ -64,11 +55,10 @@ aside{
         }
     }
     .legals{
-        margin-top: auto;
         @include dFlex($fd: column, $g: 24px, $ai: flex-start);
         a{
             @extend .v2-body;
-            color: white;
+            color: $color-link-grey;
             text-decoration: none;
         }
         @media(max-width: 950px){

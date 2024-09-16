@@ -60,3 +60,12 @@ main {
     right: 14px;
     transform: translateY(-50%);
 }
+
+.legal-link{
+  text-decoration: none;
+  color: $color-lightblue;
+  cursor: pointer;
+  &:hover{
+    text-decoration: underline;
+  }
+}

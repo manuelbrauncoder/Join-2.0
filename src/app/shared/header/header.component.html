@@ -3,7 +3,9 @@
     <img (click)="uiService.goHome()" class="mobile-logo" src="assets/img/join-logo-maincolor.png" alt="">
     @if (uiService.userIsLoggedIn) {
         <div class="btns">
-            <button routerLink="help" class="help">?</button>
+            <div class="help-wrapper">
+                <a routerLink="help" class="help">?</a>
+            </div>
             <div class="btn-wrapper">
                 <button (click)="uiService.toggleHeaderMenu()" class="user-profile">
                       {{ authService.auth.currentUser?.displayName | initials }}
