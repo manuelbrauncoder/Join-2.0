@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { Task } from '../models/task.class';
 import { CommonModule } from '@angular/common';
 import { TaskService } from '../services/task.service';

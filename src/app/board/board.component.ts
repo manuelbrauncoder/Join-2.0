@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { TaskService } from '../services/task.service';
 import {
   CdkDrag,
@@ -93,13 +93,11 @@ export class BoardComponent {
         this.taskService.setTaskStatus(status);
       }
     }
-
   }
 
   isMobileView(): boolean {
     return window.innerWidth <= 950;
   }
-
 
   /**
    * filter tasks by searchInput

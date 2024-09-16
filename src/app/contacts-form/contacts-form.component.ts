@@ -23,29 +23,20 @@ export class ContactsFormComponent implements OnInit {
   uiService = inject(UiService);
 
   @Input() editMode: boolean = false;
-  @Input() currentUser = new UserCl(); // user before edited
+  @Input() currentUser = new UserCl();
 
-  user = new UserCl(); // user after edited
+  user = new UserCl();
 
   ngOnInit(): void {
     this.copyUser();
   }
 
-  /**
-   * copy current User
-   * to prevent change User data if not saved
-   * becouse of two way binding!
-   */
   copyUser() {
     if (this.editMode) {
       this.user = new UserCl(this.currentUser);
     }
   }
 
-  /**
-   * handle form submit
-   * @param ngForm
-   */
   async onSubmit(ngForm: NgForm) {
     if (ngForm.valid && ngForm.submitted && !this.editMode) {
       this.saveNewUser();

@@ -11,7 +11,7 @@ import {
   EmailAuthProvider,
   reauthenticateWithCredential,
 } from '@angular/fire/auth';
-import { from, Observable } from 'rxjs';
+import { catchError, from, Observable, of, tap, throwError } from 'rxjs';
 import { FirebaseService } from './firebase.service';
 import { UserInterface } from '../interfaces/user-interface';
 import { Router } from '@angular/router';
@@ -34,35 +34,31 @@ export class FirebaseAuthService {
 
   currentUserSig = signal<UserInterface | null | undefined>(undefined);
 
-  constructor() {
-  }
+  constructor() { }
 
-
-  register(
-    email: string,
-    username: string,
-    password: string
-  ): Observable<void> {
+  register(email: string, username: string, password: string): Observable<void> {
     const promise = createUserWithEmailAndPassword(
       this.auth,
       email,
       password
     ).then((response) => {
       updateProfile(response.user, { displayName: username })
-      console.log(response.user.uid);
-      this.fireService.addUser(this.fireService.getCleanUserJson({
-        id: '',
-        uid: response.user.uid,
-        name: username,
-        email: email,
-        password: '',
-        phone: '',
-        color: ''
-      }));
-
+      this.fireService.addUser(this.fireService.getCleanUserJson(this.createUser(response, username, email)));
     }
     );
     return from(promise);
+  }
+
+  createUser(response: any, username: string, email: string){
+    return {
+      id: '',
+      uid: response.user.uid,
+      name: username,
+      email: email,
+      password: '',
+      phone: '',
+      color: ''
+    }
   }
 
   login(email: string, password: string): Observable<void> {
@@ -71,9 +67,11 @@ export class FirebaseAuthService {
       this.uiService.mobileGreetingDone = false;
       this.router.navigate(['/summary']);
     }).catch((error) => {
-      const wrongPw = AuthErrorCodes.INVALID_PASSWORD;
+      const wrongPw = AuthErrorCodes.INVALID_PASSWORD;      
       if (wrongPw) {
         this.wrongPw = true;
+      } else {
+        console.log('onother Error Code', error);
       }
     });
     return from(promise)

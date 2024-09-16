@@ -36,7 +36,6 @@ export class ContactsComponent {
     color: '',
   };
 
-
   /**
    * select the user for detail view
    * @param user 

@@ -33,8 +33,6 @@ export class ContactsDetailViewComponent {
     color: '',
   };
 
-  
-
   async deleteUser() {
     this.uiService.showConfirmPopup('Contact deleted', false);
     await this.taskService.deleteUserInTask(this.currentUser.name);

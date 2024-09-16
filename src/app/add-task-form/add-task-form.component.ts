@@ -51,6 +51,7 @@ export class AddTaskFormComponent implements OnInit {
    */
   onKeyDownSubtask(event: KeyboardEvent){
     if (event.key === 'Enter') {
+      event.preventDefault();
       this.addSubtask();
     }
   }
@@ -61,6 +62,7 @@ export class AddTaskFormComponent implements OnInit {
    */
   onKeyDownSubtaskEdit(event: KeyboardEvent) {
     if (event.key === 'Enter') {
+      event.preventDefault();
       this.saveEditedSubtask(this.editingSubtaskIndex!);
     }
   }
@@ -83,7 +85,7 @@ export class AddTaskFormComponent implements OnInit {
     this.categoryOptions &&
     !this.categoryOptions.nativeElement.contains(event.target) &&
     this.categoryWrapper &&
-    !this.categoryWrapper.nativeElement.contains(event.target)
+    !this.categoryWrapper.nativeElement.contains(event.target) 
   }
 
   isClickOutsideUserDropDown(event: Event){
@@ -91,7 +93,7 @@ export class AddTaskFormComponent implements OnInit {
     this.userOptionsContainer &&
     !this.userOptionsContainer.nativeElement.contains(event.target) &&
     this.searchWrapper &&
-    !this.searchWrapper.nativeElement.contains(event.target)
+    !this.searchWrapper.nativeElement.contains(event.target) 
   }
 
   ngOnInit(): void {
@@ -162,23 +164,19 @@ export class AddTaskFormComponent implements OnInit {
     this.editingSubtaskIndex = null;
   }
 
- 
   toggleUserOptions() {
     this.userOptions = !this.userOptions;
   }
 
-  
   showUserOptions() {
     this.userOptions = true;
   }
 
-  
   toggleCategoryOptions() {
     this.taskCategoryOptions = !this.taskCategoryOptions;
     this.showCategoryHint = true;
   }
 
-  
   clearAllInputs() {
     this.task.title = '';
     this.task.description = '';
@@ -190,7 +188,6 @@ export class AddTaskFormComponent implements OnInit {
     this.task.category = '';
   }
 
-  
   clearSubtaskInput() {
     this.subTaskInput = '';
   }
@@ -200,7 +197,7 @@ export class AddTaskFormComponent implements OnInit {
    * clear input
    */
   addSubtask() {
-    let subtask = new SubTask({ title: this.subTaskInput, done: 'false' });
+    let subtask = new SubTask({ title: this.subTaskInput, done: false });
     this.task.subtasks.push(subtask);
     this.subTaskInput = '';
   }
@@ -227,18 +224,10 @@ export class AddTaskFormComponent implements OnInit {
     return this.task.assignedTo.includes(user);
   }
 
-  /**
-   * changes the priority of the task
-   * @param prio 
-   */
   changeTaskPrio(prio: 'urgent' | 'medium' | 'low') {
     this.task.priority = prio;
   }
 
-  /**
-   * change the task category
-   * @param cat
-   */
   changeTaskCategory(cat: 'User Story' | 'Technical Task') {
     this.task.category = cat;
     this.taskCategoryOptions = false;

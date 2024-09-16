@@ -43,7 +43,6 @@ export class BreakpointObserverService {
           this.mobileLandscape = false;
         }
         if (breakpoints['(max-width: 950px)'] && breakpoints[Breakpoints.HandsetLandscape]) {
-          console.log('Both custom breakpoint and Handset Landscape match');
           this.mobileLandscape = true;
         }
       });

@@ -77,12 +77,11 @@ main {
 form {
   max-width: 1000px;
   width: 100%;
-  display: grid;
-  grid-template-columns: minmax(380px, 1fr) minmax(380px, 1fr);
+  display: flex;
   gap: 32px;
 
-  @media(max-width: 999px) {
-    grid-template-columns: 1fr;
+  @media(max-width: 1099px) {
+    flex-direction: column;
   }
 }
 
@@ -174,14 +173,16 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .first {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
+  min-width: 380px;
   gap: 32px;
 }
 
 .second {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
+  min-width: 380px;
   gap: 32px;
 }
 
@@ -194,7 +195,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .options {
   z-index: 2;
   position: absolute;
-  top: 82px;
+  top: 100px;
   left: 0;
   background-color: white;
   cursor: pointer;

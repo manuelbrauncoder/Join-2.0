@@ -10,8 +10,6 @@ import { Component, Input } from '@angular/core';
 export class BoardTaskCardEmptyComponent {
   @Input()status: string = '';
 
-
-
   getStatusString(): string {
     switch (this.status) {
       case 'todo':
@@ -28,10 +26,5 @@ export class BoardTaskCardEmptyComponent {
   }
 }
 
-// create custom strings for different states:
-// No tasks To do
-// No tasks in progress
-// No tasks for feedback
-// No tasks done
 
 
