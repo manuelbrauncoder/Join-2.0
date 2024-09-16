@@ -1,5 +1,19 @@
 @import '../styles.scss';
 
+.landscape{
+   text-align: center;
+   font-size: 32px;
+}
+
+.landscape-wrapper{
+   width: 100vw;
+   height: 100dvh;
+   @include dFlex($fd: column, $jc: space-around);
+   padding: 32px;
+   background-color: $color-main;
+   color: white;
+}
+
 
 .confirm-popup-background {
    position: fixed;

@@ -1,5 +1,5 @@
 import { DestroyRef, inject, Injectable } from '@angular/core';
-import { BreakpointObserver } from '@angular/cdk/layout';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { UserService } from './user.service';
 import { UiService } from './ui.service';
@@ -9,11 +9,10 @@ import { UiService } from './ui.service';
 })
 export class BreakpointObserverService {
 
-  
   userService = inject(UserService);
   uiService = inject(UiService);
   mobile = false;
-
+  mobileLandscape = false;
 
   constructor(private responsive: BreakpointObserver,
     private destroyRef: DestroyRef,
@@ -24,24 +23,33 @@ export class BreakpointObserverService {
    * call in app-components.ts in ngOnInit()
    */
   initObserver() {
-    this.responsive.observe(`(max-width: 950px)`)
+    this.responsive.observe([
+      '(max-width: 950px)',
+      Breakpoints.HandsetLandscape
+    ])
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(state => {
-        if (!state.matches) {
-          // Desktop
-          this.uiService.showContactList = true;
-          this.mobile = false;
-          //console.log('Desktop');
-        } else if (state.matches) {
-          // Mobile
-          //console.log('Mobile');
+        const breakpoints = state.breakpoints;
+        if (breakpoints['(max-width: 950px)']) {
           this.mobile = true;
           this.hideContactList();
+        } else {
+          this.uiService.showContactList = true;
+          this.mobile = false;
         }
-      })
+        if (breakpoints[Breakpoints.HandsetLandscape]) {
+          this.mobileLandscape = true;
+        } else {
+          this.mobileLandscape = false;
+        }
+        if (breakpoints['(max-width: 950px)'] && breakpoints[Breakpoints.HandsetLandscape]) {
+          console.log('Both custom breakpoint and Handset Landscape match');
+          this.mobileLandscape = true;
+        }
+      });
   }
 
-  hideContactList(){
+  hideContactList() {
     if (this.uiService.showDetailView) {
       this.uiService.showContactList = false;
     }

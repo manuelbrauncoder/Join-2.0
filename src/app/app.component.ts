@@ -44,7 +44,6 @@ export class AppComponent implements OnDestroy, OnInit {
       this.observerService.initObserver();
   }
 
-
   initAuthSignal() {
     this.authService.user$.subscribe(user => {
       if (user) {
@@ -58,7 +57,6 @@ export class AppComponent implements OnDestroy, OnInit {
         this.router.navigate(['/']);
         this.uiService.userIsLoggedIn = false;
       }
-      console.log(this.authService.currentUserSig());
     });
   }
 
@@ -73,7 +71,6 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   setActiveSection(url: string) {
-    
     switch (url) {
       case '/summary':        
         this.uiService.activeSection = 'summary';
@@ -114,8 +111,6 @@ export class AppComponent implements OnDestroy, OnInit {
       this.uiService.showDetailView = false;
     }
   }
-
-  
 
   ngOnDestroy(): void {
     this.unsubTaskList();

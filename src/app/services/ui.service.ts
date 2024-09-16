@@ -57,7 +57,6 @@ export class UiService {
       }, 2500);
       this.mobileGreetingDone = true;
     }
-
   }
 
   showConfirmPopup(text: string, showIcon: boolean) {

@@ -24,10 +24,13 @@ export class FirebaseService {
   users: UserCl[] = [];
   letterUser: any = [];
 
-  constructor() {
-  }
+  constructor() { }
 
-
+  /**
+   * Group Users alphabetical
+   * creates a Letter - User Object, that contains
+   * The first Letter and the Users with this Letter
+   */
   getLetterObjects() {
     this.letterUser = [];
     let letterMap = new Map<string, UserCl[]>();

@@ -23,16 +23,13 @@ import { TaskService } from './task.service';
 })
 export class FirebaseAuthService {
   router = inject(Router);
-  wrongPw = false;
-  
-
   fireService = inject(FirebaseService);
   uiService = inject(UiService);
   taskService = inject(TaskService);
-
   auth = inject(Auth);
   user$ = user(this.auth);
-
+  
+  wrongPw = false;
   userEmailCache = '';
 
   currentUserSig = signal<UserInterface | null | undefined>(undefined);

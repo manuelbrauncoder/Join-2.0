@@ -46,6 +46,11 @@ main {
   @media(max-width: 950px) {
     padding: 8px;
     height: unset;
+  }
+
+  @media(max-width: 599px) {
+    padding: 8px;
+    height: unset;
     gap: 0;
   }
 }
@@ -76,10 +81,16 @@ section {
   width: 100%;
   @include dFlex($g: 80px, $jc: flex-start);
 
+  @media(max-width: 950px) {
+    justify-content: center;
+  }
+
   .summary {
     @include dFlex($g: 32px, $fd: column);
     width: 560px;
     height: 560px;
+
+    
 
     @media(max-width: 599px) {
       width: 100%;

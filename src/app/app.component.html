@@ -1,23 +1,31 @@
 
-
-
-<div [ngClass]="onLogin ? '' : 'grid-container'">
-
-  @if (!onLogin) {
-    <header class="header"><app-header></app-header></header>
-  }
-
-  <main cdkScrollable [ngClass]="onLogin ? 'on-login' : 'main'"><router-outlet /></main>
-
-  @if (!onLogin) {
-    <nav class="nav"><app-nav-bar></app-nav-bar></nav>
-  }
-
-</div>
-
-@if (uiService.showConfirmationPopup) {
-  <div class="confirm-popup-background"></div>
-  <div @slideInVertical class="popup-wrapper">
-    <app-confirmation-popup></app-confirmation-popup>
+@if (observerService.mobileLandscape) {
+  <div class="landscape-wrapper">
+    <h1 class="landscape">Landscape mode on mobile devices is not supported. Please rotate your device back to portrait mode.</h1>
+    <img src="assets/img/rotate.png" alt="">
   </div>
+} @else {
+  <div [ngClass]="onLogin ? '' : 'grid-container'">
+
+    @if (!onLogin) {
+      <header class="header"><app-header></app-header></header>
+    }
+  
+    <main cdkScrollable [ngClass]="onLogin ? 'on-login' : 'main'"><router-outlet /></main>
+  
+    @if (!onLogin) {
+      <nav class="nav"><app-nav-bar></app-nav-bar></nav>
+    }
+  
+  </div>
+  
+  @if (uiService.showConfirmationPopup) {
+    <div class="confirm-popup-background"></div>
+    <div @slideInVertical class="popup-wrapper">
+      <app-confirmation-popup></app-confirmation-popup>
+    </div>
+  }
 }
+
+
+

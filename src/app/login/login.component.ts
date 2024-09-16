@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
 import { FirebaseService } from '../services/firebase.service';
 import { FirebaseAuthService } from '../services/firebase-auth.service';
@@ -47,12 +47,10 @@ export class LoginComponent{
    guestLogin() {
     this.authService.login(this.guestEmail, this.guestPw).subscribe({
       next: () => {
-        console.log('Guest logged in');
         this.router.navigate(['/summary']);
       },
       error: (err) => {
-        console.log('Error signing in', err);
-        
+
       }
     })
   }
