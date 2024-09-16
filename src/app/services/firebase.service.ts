@@ -159,7 +159,7 @@ export class FirebaseService {
 
   logTaskChanges(change: DocumentChange<DocumentData>) {
     if (change.type === 'added') {
-      //console.log('New Data ', change.doc.data());
+      console.log('New Data ', change.doc.data());
     }
     if (change.type === 'modified') {
       console.log('Modified Data: ', change.doc.data());
@@ -172,15 +172,12 @@ export class FirebaseService {
   logUserChanges(change: DocumentChange<DocumentData>) {
     if (change.type === 'added') {
       console.log('New Data ', change.doc.data());
-      this.getLetterObjects();
     }
     if (change.type === 'modified') {
       console.log('Modified Data: ', change.doc.data());
-      this.getLetterObjects();
     }
     if (change.type === 'removed') {
       console.log('Removed Data: ', change.doc.data());
-      this.getLetterObjects();
     }
   }
 
@@ -193,7 +190,7 @@ export class FirebaseService {
         this.tasks.push(task);
       });
       list.docChanges().forEach((change) => {
-        this.logTaskChanges(change);
+        //this.logTaskChanges(change);
       });
     });
   }
@@ -207,7 +204,8 @@ export class FirebaseService {
         this.users.push(user);
       });
       list.docChanges().forEach((change) => {
-        this.logUserChanges(change);
+        this.getLetterObjects();
+        //this.logUserChanges(change);
       });
     });
   }

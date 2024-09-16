@@ -31,10 +31,10 @@ export class BreakpointObserverService {
           // Desktop
           this.uiService.showContactList = true;
           this.mobile = false;
-          console.log('Desktop');
+          //console.log('Desktop');
         } else if (state.matches) {
           // Mobile
-          console.log('Mobile');
+          //console.log('Mobile');
           this.mobile = true;
           this.hideContactList();
         }

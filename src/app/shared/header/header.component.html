@@ -1,22 +1,25 @@
 <header>
     <h2>Kanban Project Management Tool</h2>
-    <img class="mobile-logo" src="assets/img/join-logo-maincolor.png" alt="">
-    <div class="btns">
-        <button (click)="resetTasks()" class="help">?</button>
-        <div class="btn-wrapper">
-            <button (click)="uiService.toggleHeaderMenu()" class="user-profile">
-                  {{ authService.auth.currentUser?.displayName | initials }}
-            </button>
-            @if(uiService.showHeaderMenu){
-                <div (click)="uiService.toggleHeaderMenu()" class="menu-bg"></div>
-                <div class="popup">
-                    <a class="mobile-help" href="">Help</a>
-                    <a href="">Legal Notice</a>
-                    <a href="">Privacy Policy</a>
-                    <a (click)="logUserOut()">Log out</a>
-                </div>
-            }
-            
+    <img (click)="uiService.goHome()" class="mobile-logo" src="assets/img/join-logo-maincolor.png" alt="">
+    @if (uiService.userIsLoggedIn) {
+        <div class="btns">
+            <button routerLink="help" class="help">?</button>
+            <div class="btn-wrapper">
+                <button (click)="uiService.toggleHeaderMenu()" class="user-profile">
+                      {{ authService.auth.currentUser?.displayName | initials }}
+                </button>
+                @if(uiService.showHeaderMenu){
+                    <div (click)="uiService.toggleHeaderMenu()" class="menu-bg"></div>
+                    <div class="popup">
+                        <a class="mobile-help" routerLink="help">Help</a>
+                        <a routerLink="imprint">Legal Notice</a>
+                        <a routerLink="privacy">Privacy Policy</a>
+                        <a (click)="logUserOut()">Log out</a>
+                    </div>
+                }
+                
+            </div>
         </div>
-    </div>
+    }
+    
 </header>

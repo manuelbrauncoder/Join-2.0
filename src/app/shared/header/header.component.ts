@@ -3,13 +3,13 @@ import { TaskService } from '../../services/task.service';
 import { UserService } from '../../services/user.service';
 import { FirebaseAuthService } from '../../services/firebase-auth.service';
 import { InitialsPipe } from '../../pipes/initials.pipe';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UiService } from '../../services/ui.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [InitialsPipe],
+  imports: [InitialsPipe, RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })

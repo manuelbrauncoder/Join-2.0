@@ -22,6 +22,7 @@ aside{
         padding: 0;
     }
     .logo{
+        cursor: pointer;
         @media(max-width: 950px){
             display: none;
         }

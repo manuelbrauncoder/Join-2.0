@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { LoginComponent } from "../login/login.component";
 import { SignUpComponent } from '../sign-up/sign-up.component';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-start-screen',
   standalone: true,
-  imports: [LoginComponent, SignUpComponent, CommonModule],
+  imports: [LoginComponent, SignUpComponent, CommonModule, RouterLink],
   templateUrl: './start-screen.component.html',
   styleUrl: './start-screen.component.scss'
 })

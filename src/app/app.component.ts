@@ -48,6 +48,7 @@ export class AppComponent implements OnDestroy, OnInit {
   initAuthSignal() {
     this.authService.user$.subscribe(user => {
       if (user) {
+        this.uiService.userIsLoggedIn = true;
         this.authService.currentUserSig.set({
           email: user.email!,
           username: user.displayName!
@@ -55,6 +56,7 @@ export class AppComponent implements OnDestroy, OnInit {
       } else {
         this.authService.currentUserSig.set(null);
         this.router.navigate(['/']);
+        this.uiService.userIsLoggedIn = false;
       }
       console.log(this.authService.currentUserSig());
     });

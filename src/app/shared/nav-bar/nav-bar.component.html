@@ -1,13 +1,16 @@
 <aside>
-  <img class="logo" src="assets/img/join-logo.png" alt="">
-  <nav>
-    <a [ngClass]="{ 'active-section': uiService.activeSection === 'summary' }" routerLink="summary"><img src="assets/img/nav-bar-summary.png" alt="">Summary</a>
-    <a [ngClass]="{ 'active-section': uiService.activeSection === 'addTask' }" routerLink="addTask"><img src="assets/img/nav-bar-addtask.png" alt="">Add Task</a>
-    <a [ngClass]="{ 'active-section': uiService.activeSection === 'board' }" routerLink="board"><img src="assets/img/nav-bar-board.png" alt="">Board</a>
-    <a [ngClass]="{ 'active-section': uiService.activeSection === 'contacts' }" routerLink="contacts"><img src="assets/img/nav-bar-contact.png" alt="">Contacts</a>
-  </nav>
+  <img (click)="uiService.goHome()" class="logo" src="assets/img/join-logo.png" alt="">
+  @if (uiService.userIsLoggedIn) {
+    <nav>
+      <a [ngClass]="{ 'active-section': uiService.activeSection === 'summary' }" routerLink="summary"><img src="assets/img/nav-bar-summary.png" alt="">Summary</a>
+      <a [ngClass]="{ 'active-section': uiService.activeSection === 'addTask' }" routerLink="addTask"><img src="assets/img/nav-bar-addtask.png" alt="">Add Task</a>
+      <a [ngClass]="{ 'active-section': uiService.activeSection === 'board' }" routerLink="board"><img src="assets/img/nav-bar-board.png" alt="">Board</a>
+      <a [ngClass]="{ 'active-section': uiService.activeSection === 'contacts' }" routerLink="contacts"><img src="assets/img/nav-bar-contact.png" alt="">Contacts</a>
+    </nav>
+  }
+  
   <div class="legals">
-    <a href="">Privacy Policy</a>
-    <a href="">Legal notice</a>
+    <a routerLink="privacy">Privacy Policy</a>
+    <a routerLink="imprint">Legal notice</a>
   </div>
 </aside>

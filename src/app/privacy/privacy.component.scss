@@ -1,0 +1,35 @@
+@import '../../styles.scss';
+
+main{
+    @include dFlex($fd: column, $ai: flex-start);
+    max-width: 80ch;
+    padding: 64px;
+    @media(max-width: 599px) {
+        padding: 16px;
+    }
+}
+
+.headline{
+    @include dFlex($jc: space-between);
+    width: 100%;
+    h1{
+        @extend .v2-t1;
+    }
+    img{
+        width: 37px;
+        height: 37px;
+        border-radius: 100%;
+        flex-shrink: 0;
+        cursor: pointer;
+        transition: ease 150ms;
+        &:hover{
+            background-color: $color-grey;
+            transition: ease 150ms;
+        }
+    }
+}
+
+.color-lb {
+    color: $color-lightblue;
+}
+
