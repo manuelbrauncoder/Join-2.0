@@ -23,6 +23,10 @@ $content-limit: 1920px;
   margin: 0;
 }
 
+html {
+  overflow: hidden;
+}
+
 h1,
 h2,
 h3,

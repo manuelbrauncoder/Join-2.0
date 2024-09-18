@@ -4,6 +4,7 @@ main {
   display: flex;
   flex-direction: column;
   max-height: 90dvh;
+  
 }
 
 .mobile-margin {
@@ -15,6 +16,7 @@ main {
   background-color: white;
   border-radius: 30px;
   padding: 64px;
+  overflow-y: auto;
 }
 
 .edit-mode {
