@@ -177,6 +177,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   flex-direction: column;
   min-width: 380px;
   gap: 32px;
+  @media(max-width: 599px) {
+    min-width: unset;
+    width: 100%;
+  }
 }
 
 .second {
@@ -184,6 +188,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   flex-direction: column;
   min-width: 380px;
   gap: 32px;
+  @media(max-width: 599px) {
+    min-width: unset;
+    width: 100%;
+  }
 }
 
 .custom-select {
@@ -244,7 +252,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .btns {
-  margin-top: 160px;
+  margin-top: 80px;
   width: 100%;
   padding-bottom: 32px;
   @include dFlex($jc: flex-end, $g: 16px);
