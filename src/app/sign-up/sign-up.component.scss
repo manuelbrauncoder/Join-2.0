@@ -3,6 +3,9 @@
 main {
     width: 100%;
     @include dFlex($fd: column, $g: 32px);
+    @media(max-width: 599px) {
+      gap: 16px;
+    }
   header {
     width: 100%;
     @include dFlex();

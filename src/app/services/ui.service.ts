@@ -27,7 +27,7 @@ export class UiService {
   showConfirmIcon = false;
 
   mobileGreeting = false;
-  mobileGreetingDone = true;
+  mobileGreetingDone = false;
 
   userIsLoggedIn = false;
   showPWConfirmation = false;

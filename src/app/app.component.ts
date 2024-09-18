@@ -21,7 +21,7 @@ import { slideInVertical } from "./shared/animations";
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnDestroy, OnInit {
-  title = 'join-2';
+  title = 'join';
 
   authService = inject(FirebaseAuthService);
   observerService = inject(BreakpointObserverService);
