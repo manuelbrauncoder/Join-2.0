@@ -4,6 +4,7 @@ import { FirebaseAuthService } from '../services/firebase-auth.service';
 import { RouterLink } from '@angular/router';
 import { UiService } from '../services/ui.service';
 import { fadeIn } from "../shared/animations";
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-summary',
@@ -17,9 +18,33 @@ export class SummaryComponent implements OnInit {
   taskService = inject(TaskService);
   authService = inject(FirebaseAuthService);
   uiService = inject(UiService);
+  private datePipe = inject(DatePipe);
+  timestampArr: number[] = [];
 
   ngOnInit(): void {
     this.uiService.showMobileGreeting();
+  }
+
+  /**
+   * 
+   * @returns the next due date with highest priority,
+   * or an empty string if no tasks available
+   */
+  getnextDueDate() {
+    this.timestampArr = [];
+    this.getDates('urgent');
+    if (this.timestampArr.length < 1) this.getDates('medium');
+    if (this.timestampArr.length < 1) this.getDates('low');
+    const next = this.timestampArr.length > 0 ? Math.min(...this.timestampArr) : 0;
+    return next !== 0 ? this.datePipe.transform(next, 'MMMM d, yyy') : '';
+  }
+
+  getDates(prio: 'low' | 'medium' | 'urgent') {
+    this.taskService.fireService.tasks.forEach((task) => {
+      if (task && task.priority === prio) {
+        this.timestampArr.push(task.dueDate)
+      }
+    });
   }
 
   getNumberOfTasks(status: string): number {
@@ -32,7 +57,7 @@ export class SummaryComponent implements OnInit {
     return counter;
   }
 
-  getNumberOfUrgentTasks(){
+  getNumberOfUrgentTasks() {
     let counter = 0;
     this.taskService.fireService.tasks.forEach(task => {
       if (task.priority.toLowerCase() === 'urgent') {
@@ -42,7 +67,7 @@ export class SummaryComponent implements OnInit {
     return counter;
   }
 
-  getGreetingMessage(){
+  getGreetingMessage() {
     const date = new Date();
     const hours = date.getHours();
 
@@ -57,6 +82,6 @@ export class SummaryComponent implements OnInit {
     } else {
       return 'Good Night,';
     }
-    
+
   }
 }

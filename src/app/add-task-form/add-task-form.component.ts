@@ -268,6 +268,7 @@ export class AddTaskFormComponent implements OnInit {
         this.uiService.showConfirmPopup('Task added to board', true);
       }
     } else if (ngForm.valid && ngForm.submitted && this.editmode) {
+      this.handleDueDate();
       this.taskService.fireService.updateTask(this.task);
       this.taskService.showDetailOverlay = false;
       this.taskService.taskEditMode = false;

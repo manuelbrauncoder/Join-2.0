@@ -127,12 +127,9 @@ export class BoardComponent {
         event.currentIndex
       );
       const task = event.previousContainer.data[event.previousIndex];
-      console.log('same container', task.status);
     } else {
       const task = event.previousContainer.data[event.previousIndex];
       task.status = newStatus;
-      console.log('new status:', task.status);
-      console.log('moved task:', task);
       this.taskService.fireService.updateTask(task);
     }
   }

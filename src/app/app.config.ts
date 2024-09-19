@@ -7,10 +7,12 @@ import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { getStorage, provideStorage } from '@angular/fire/storage';
+import { DatePipe } from '@angular/common';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
+    DatePipe,
     provideFirebaseApp(() =>
       initializeApp({
         projectId: 'join-2-65b0d',
